@@ -3,17 +3,23 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const services = [
-  ['Laravel development', 'Scoped feature work, admin areas, customer portals, dashboards, imports, exports, and reporting tools.'],
-  ['Systems and integrations', 'APIs, queues, scheduled jobs, payment flows, data cleanup, and connections between business tools.'],
-  ['Maintenance and support', 'Bug fixes, upgrades, performance work, broken admin screens, queue issues, and inherited applications.'],
-  ['Practical AI workflows', 'Human-reviewed AI workflows for triage, drafting, reporting, internal search, and repetitive admin work.'],
+  ['Internal Laravel tools', 'Admin screens, dashboards, reporting flows, CSV imports/exports, user workflows, and the glue around them.'],
+  ['Queues, jobs, and integrations', 'Horizon, scheduled jobs, mail flows, APIs, webhooks, data cleanup, and systems that need to keep running.'],
+  ['Existing app work', 'Careful changes to Laravel/PHP applications that already exist: fixes, upgrades, performance work, and maintainable feature additions.'],
+  ['AI-assisted operations', 'Small, reviewable AI workflows for triage, summaries, drafting, retrieval, reporting, and agent-assisted admin work.'],
 ];
 
 const signals = [
-  'You need an experienced Laravel contractor for a defined piece of work',
-  'An existing PHP/Laravel application needs extending or maintaining',
-  'Internal processes rely on spreadsheets, manual admin, or disconnected tools',
-  'You want useful AI support, but only where it fits the workflow',
+  'You have a Laravel app or admin workflow that needs a capable pair of hands',
+  'Your team needs imports, reports, dashboards, queues, or integrations finished',
+  'A manual process is still living in spreadsheets, inboxes, or one person’s head',
+  'You want AI to help with real operations, not a chatbot demo bolted onto the side',
+];
+
+const evidence = [
+  ['Finance automation', 'Built and operated Laravel finance tooling with account ingestion, categorisation, budgets, sync health, and reporting.'],
+  ['Deployment and ops', 'Works across VPS/Tailscale infrastructure, Laravel deployments, queues, schedulers, Postgres, Redis/Valkey, and background workers.'],
+  ['Agent workflows', 'Builds practical agent workflows around Telegram, Linear/Jira, GitHub, MCP tools, cron jobs, and human approval loops.'],
 ];
 
 function App() {
@@ -28,6 +34,7 @@ function App() {
           <div className="nav-links">
             <a href="#fit">Fit</a>
             <a href="#work">Work</a>
+            <a href="#experience">Experience</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
@@ -35,10 +42,11 @@ function App() {
         <div className="hero-grid" id="top">
           <div className="hero-copy">
             <p className="eyebrow">Independent Laravel / PHP contractor</p>
-            <h1>Laravel development for internal tools, integrations, and support.</h1>
+            <h1>Laravel systems for internal tools, reporting, and automation.</h1>
             <p className="lead">
-              I work with UK agencies and small teams that need experienced Laravel/PHP help without hiring full-time.
-              I build features, improve internal systems, maintain existing apps, and add practical AI where it is useful.
+              I’m a Laravel/PHP developer and architect. I help UK agencies and small teams build the operational
+              parts of software: admin tools, imports, reports, queues, integrations, finance/admin workflows,
+              and careful changes to existing applications.
             </p>
             <div className="actions">
               <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%2FPHP%20contracting%20enquiry">Email Kim</a>
@@ -49,19 +57,19 @@ function App() {
           <aside className="case-card" aria-label="Working style summary">
             <div className="card-topline">Working mode</div>
             <div className="terminal-card">
-              <p><span>work</span> features / fixes / integrations / tools</p>
-              <p><span>style</span> async-first, clear written updates</p>
+              <p><span>stack</span> Laravel, PHP, queues, APIs, Postgres</p>
+              <p><span>work</span> admin tools, reports, imports, integrations</p>
+              <p><span>style</span> async-first, direct, written updates</p>
               <p><span>output</span> working code, tests, handover notes</p>
-              <p><span>fit</span> scoped work, maintenance, delivery support</p>
             </div>
-            <p className="card-note">Useful when you know the business problem and need a developer who can turn it into working software.</p>
+            <p className="card-note">Best fit for scoped work where the business problem is known and the system needs a reliable implementation.</p>
           </aside>
         </div>
       </section>
 
       <section className="strip" aria-label="Positioning summary">
         <div className="shell strip-line">
-          <p>Feature development, internal tools, integrations, maintenance, reporting, and practical AI workflows.</p>
+          <p>Admin tools, imports, reporting, queues, integrations, maintenance, and useful AI-assisted operations.</p>
           <span>Laravel / PHP · UK teams · async-first</span>
         </div>
       </section>
@@ -69,7 +77,7 @@ function App() {
       <section className="shell section" id="fit">
         <div className="section-heading">
           <p className="eyebrow">When to use me</p>
-          <h2>Good fit for scoped work where the problem is real and the outcome is clear.</h2>
+          <h2>Good fit when the work is specific, operational, and needs a developer who can own the details.</h2>
         </div>
         <div className="signals">
           {signals.map((item) => <div className="signal" key={item}>{item}</div>)}
@@ -79,7 +87,7 @@ function App() {
       <section className="shell section split" id="work">
         <div>
           <p className="eyebrow">What I take on</p>
-          <h2>Focused Laravel/PHP help for teams that need extra delivery capacity.</h2>
+          <h2>Focused Laravel/PHP help for the work that sits between product, ops, and support.</h2>
         </div>
         <div className="service-grid">
           {services.map(([title, body]) => (
@@ -91,21 +99,40 @@ function App() {
         </div>
       </section>
 
+      <section className="shell section evidence-section" id="experience">
+        <div className="section-heading">
+          <p className="eyebrow">Relevant experience</p>
+          <h2>Not a generic “AI developer” pitch.</h2>
+          <p className="section-copy">
+            My work is mostly Laravel systems, operational tooling, reporting, background jobs, and agent-assisted workflows
+            where the output still has to be maintainable software.
+          </p>
+        </div>
+        <div className="evidence-grid">
+          {evidence.map(([title, body]) => (
+            <article className="evidence" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="shell proof section">
         <div className="proof-panel">
           <div>
             <p className="eyebrow">How a first job can start</p>
-            <h2>Send the feature, bug, or workflow you need help with.</h2>
+            <h2>Send one concrete thing you need moved forward.</h2>
             <p>
-              Describe the current system, what needs to change, and what “done” should look like. I’ll reply with
-              the sensible next step, likely scope, and whether it is a quick task or a small project.
+              A short brief is enough: what system exists, what needs changing, and what “done” looks like.
+              I’ll reply with the likely approach, risks, and whether it is a quick task or a small project.
             </p>
           </div>
           <ul>
-            <li>Laravel feature or admin tool</li>
-            <li>CSV import/export, report, or dashboard</li>
-            <li>Queue, email, API, or scheduled job integration</li>
-            <li>AI-assisted triage, drafting, search, or reporting workflow</li>
+            <li>Build or fix an admin screen</li>
+            <li>Add an import/export, report, or dashboard</li>
+            <li>Debug a queue, scheduled job, mail flow, or API integration</li>
+            <li>Prototype an AI-assisted admin or reporting workflow</li>
           </ul>
         </div>
       </section>
@@ -118,7 +145,7 @@ function App() {
           </div>
           <div className="contact-card">
             <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%2FPHP%20contracting%20enquiry">hello@kimward.co.uk</a>
-            <p>Laravel/PHP feature development, internal systems, maintenance, reporting, and practical AI workflow help for UK teams. Based in Thailand, working async with UK hours overlap.</p>
+            <p>Laravel/PHP internal tools, reporting, maintenance, integrations, background jobs, and practical AI-assisted workflow help for UK teams. Based in Thailand, working async with UK hours overlap.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
               <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
