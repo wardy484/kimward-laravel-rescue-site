@@ -34,7 +34,7 @@ function App() {
 
         <div className="hero-grid" id="top">
           <div className="hero-copy">
-            <p className="eyebrow">Laravel / PHP support · UK agencies · async by default</p>
+            <p className="eyebrow">For agencies and small teams with Laravel work that needs moving</p>
             <h1>Laravel support work for teams that need it handled.</h1>
             <p className="lead">
               I help agencies and small businesses deal with Laravel/PHP maintenance, admin tools,
@@ -59,12 +59,10 @@ function App() {
         </div>
       </section>
 
-      <section className="strip">
-        <div className="shell strip-grid">
-          <div><strong>Laravel</strong><span>maintenance and support</span></div>
-          <div><strong>PHP</strong><span>legacy-aware fixes</span></div>
-          <div><strong>Ops</strong><span>queues, reports, imports</span></div>
-          <div><strong>Async</strong><span>clear updates, fewer calls</span></div>
+      <section className="strip" aria-label="Positioning summary">
+        <div className="shell strip-line">
+          <p>Maintenance, support tickets, internal tools, and practical fixes for Laravel/PHP systems.</p>
+          <span>Async-first. Clear scope. Written handover.</span>
         </div>
       </section>
 
