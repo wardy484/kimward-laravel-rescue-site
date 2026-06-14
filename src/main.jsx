@@ -123,8 +123,8 @@ function App() {
             <p>UK Laravel/PHP rescue and practical AI/internal workflow support. Based in Thailand, working async with UK teams.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
-              <span>LinkedIn to add</span>
-              <span>Upwork link on request</span>
+              <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
+              <a href="https://upwork.com/freelancers/~01b07de0c8a6f27084">Upwork</a>
             </div>
           </div>
         </div>
