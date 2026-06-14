@@ -3,17 +3,17 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const services = [
-  ['Laravel support work', 'Bug fixes, upgrades, slow pages, broken admin flows, queue issues, and inherited apps that need careful changes.'],
-  ['Agency overflow', 'Extra Laravel/PHP capacity for small tasks that should not pull your senior team off client delivery.'],
-  ['Internal tools', 'Reports, CSV imports/exports, dashboards, admin screens, ops panels, and workflow fixes for real business processes.'],
-  ['Practical AI workflows', 'Small, human-reviewed automations for inbox triage, reporting, admin checks, and repetitive operational work.'],
+  ['Laravel features', 'Build scoped features, admin flows, customer portals, dashboards, imports, reports, and workflow improvements.'],
+  ['Systems and integrations', 'APIs, queues, scheduled jobs, payment/admin workflows, data cleanup, and the glue between tools.'],
+  ['Support and rescue', 'Fix bugs, slow pages, broken admin screens, queue issues, and inherited apps that need careful changes.'],
+  ['Practical AI help', 'Add useful AI-assisted workflows for triage, reporting, drafting, internal search, and repetitive admin work.'],
 ];
 
 const signals = [
-  'A client has a Laravel app that needs maintenance, not a rebuild',
-  'A support issue needs diagnosis before anyone quotes a project',
-  'Your team is busy and the ticket still needs to move',
-  'The task is small, awkward, and worth doing properly',
+  'You need a feature built without turning it into a huge project',
+  'A Laravel system needs fixing, extending, or integrating',
+  'There is repetitive admin work that software or AI could reduce',
+  'Your team is busy and the work still needs to move',
 ];
 
 function App() {
@@ -34,11 +34,11 @@ function App() {
 
         <div className="hero-grid" id="top">
           <div className="hero-copy">
-            <p className="eyebrow">For agencies and small teams with Laravel work that needs moving</p>
-            <h1>Laravel support work for teams that need it handled.</h1>
+            <p className="eyebrow">For agencies and small teams with Laravel systems to build, fix, or improve</p>
+            <h1>Laravel features, systems, and practical AI help.</h1>
             <p className="lead">
-              I help agencies and small businesses deal with Laravel/PHP maintenance, admin tools,
-              imports, reports, queues, performance issues, and inherited systems.
+              I help agencies and small businesses build useful Laravel/PHP features, improve internal systems,
+              fix inherited apps, and add AI where it genuinely saves time.
             </p>
             <div className="actions">
               <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20support%20overflow">Email Kim</a>
@@ -49,27 +49,27 @@ function App() {
           <aside className="case-card" aria-label="Working style summary">
             <div className="card-topline">Working mode</div>
             <div className="terminal-card">
-              <p><span>scope</span> support ticket / diagnosis / small build</p>
+              <p><span>scope</span> feature / system / fix / AI workflow</p>
               <p><span>cadence</span> async, written updates, few calls</p>
-              <p><span>output</span> fix, test notes, handover summary</p>
-              <p><span>avoid</span> vague retainers, rewrites by default</p>
+              <p><span>output</span> working change, notes, handover summary</p>
+              <p><span>avoid</span> vague AI, rewrites by default</p>
             </div>
-            <p className="card-note">Useful when the work is clear enough to start, but still needs a careful developer.</p>
+            <p className="card-note">Useful when the work needs a careful developer who can also think through the business process.</p>
           </aside>
         </div>
       </section>
 
       <section className="strip" aria-label="Positioning summary">
         <div className="shell strip-line">
-          <p>Maintenance, support tickets, internal tools, and practical fixes for Laravel/PHP systems.</p>
-          <span>Async-first. Clear scope. Written handover.</span>
+          <p>Features, admin tools, integrations, support tickets, and AI-assisted workflows for Laravel/PHP systems.</p>
+          <span>Async-first. Clear scope. Working software.</span>
         </div>
       </section>
 
       <section className="shell section" id="fit">
         <div className="section-heading">
           <p className="eyebrow">When to use me</p>
-          <h2>Good fit when you know the problem, but need someone to move it on.</h2>
+          <h2>Good fit when you need useful software shipped, not a long discovery process.</h2>
         </div>
         <div className="signals">
           {signals.map((item) => <div className="signal" key={item}>{item}</div>)}
@@ -79,7 +79,7 @@ function App() {
       <section className="shell section split" id="work">
         <div>
           <p className="eyebrow">What I take on</p>
-          <h2>Focused Laravel/PHP help for support queues and internal systems.</h2>
+          <h2>Focused Laravel/PHP help for features, systems, support, and AI workflows.</h2>
         </div>
         <div className="service-grid">
           {services.map(([title, body]) => (
@@ -95,17 +95,17 @@ function App() {
         <div className="proof-panel">
           <div>
             <p className="eyebrow">How a first job can start</p>
-            <h2>Send one real support issue.</h2>
+            <h2>Send one feature, system problem, or workflow idea.</h2>
             <p>
-              Send the symptom, the affected area, and what “fixed” should look like. I’ll come back with
-              the likely cause, the first safe diagnostic step, and whether it is a quick patch or a small project.
+              Send what you are trying to change, automate, or fix. I’ll come back with the sensible first step,
+              what I would build, and whether it is a quick task or a small project.
             </p>
           </div>
           <ul>
-            <li>Admin panel bug or missing report</li>
-            <li>CSV import/export issue</li>
-            <li>Queue, Horizon, mail, or scheduled job problem</li>
-            <li>Slow query or production error investigation</li>
+            <li>Admin feature or internal workflow</li>
+            <li>CSV import/export, report, or dashboard</li>
+            <li>Queue, mail, API, or scheduled job integration</li>
+            <li>AI-assisted triage, drafting, search, or reporting</li>
           </ul>
         </div>
       </section>
@@ -114,11 +114,11 @@ function App() {
         <div className="shell contact-grid">
           <div>
             <p className="eyebrow">Contact</p>
-            <h2>Send the issue. I’ll tell you the sensible next step.</h2>
+            <h2>Send the feature or problem. I’ll tell you the sensible next step.</h2>
           </div>
           <div className="contact-card">
             <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20support%20overflow">hello@kimward.co.uk</a>
-            <p>Laravel/PHP support, internal tools, and practical AI workflow help for UK teams. Based in Thailand, working async with UK hours overlap.</p>
+            <p>Laravel/PHP features, internal systems, support, and practical AI workflow help for UK teams. Based in Thailand, working async with UK hours overlap.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
               <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
