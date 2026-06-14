@@ -4,28 +4,28 @@ import './styles.css';
 
 const problems = [
   'The original developer or agency has moved on',
-  'There are bugs, reports, imports, or admin changes stuck in the backlog',
+  'Bugs, reports, imports, or admin changes are stuck in the backlog',
   'Queues, scheduled jobs, emails, or APIs are unreliable',
-  'Teams want AI/agent help, but not a risky chatbot bolted onto production',
+  'The team wants useful AI support without giving a chatbot production control',
 ];
 
 const work = [
-  ['Fix and maintain', 'Bugs, Laravel upgrades, dependency updates, performance issues, production errors, and small safe changes to live applications.'],
-  ['Build the missing admin work', 'Admin screens, internal workflows, CSV imports/exports, operational reports, dashboards, and support tools.'],
-  ['Stabilise the background work', 'Horizon queues, scheduled jobs, mail flows, webhooks, payment/provider APIs, deployment notes, and handover documentation.'],
+  ['Fix the app you already have', 'Laravel upgrades, production bugs, dependency updates, slow pages, broken reports, and careful changes to live applications.'],
+  ['Ship the admin work that keeps slipping', 'Admin screens, internal workflows, CSV imports and exports, operational reports, dashboards, and support tools.'],
+  ['Make background work reliable again', 'Horizon queues, scheduled jobs, mail flows, webhooks, provider APIs, deployment notes, and handover documentation.'],
 ];
 
 const agentWork = [
-  ['Human-in-the-loop agents', 'Agent workflows that draft, triage, classify, search, or summarise — with review points, logs, and clear boundaries before anything touches customers or production data.'],
-  ['Internal AI tools', 'Small AI-assisted tools inside existing Laravel/admin systems: support queues, reporting summaries, document search, inbox triage, lead review, and operator checklists.'],
-  ['Automation plumbing', 'The unglamorous parts around AI: prompts, queues, cron jobs, webhooks, MCP/tool calls, retries, approvals, audit trails, and fallback paths.'],
+  ['Reviewed agent workflows', 'Agents that draft, triage, classify, search, or summarise, with review points, logs, and clear limits before anything reaches customers or production data.'],
+  ['Internal AI tools', 'Small AI-assisted tools inside existing Laravel or admin systems: support queues, reporting summaries, document search, inbox triage, lead review, and operator checklists.'],
+  ['The plumbing around AI', 'Prompts, queues, cron jobs, webhooks, MCP and tool calls, retries, approvals, audit trails, and fallback paths. The boring bits that make the workflow safe to run.'],
 ];
 
 const firstJobs = [
-  'Take over an existing Laravel app and identify the immediate risks',
+  'Review an existing Laravel app and flag the immediate risks',
   'Fix one production bug or failing background job',
   'Build one admin screen, report, import, export, or dashboard',
-  'Prototype one reviewed AI/agent workflow for an internal process',
+  'Prototype one reviewed AI workflow for an internal process',
 ];
 
 function App() {
@@ -47,22 +47,22 @@ function App() {
 
         <div className="hero-grid" id="top">
           <div className="hero-copy">
-            <p className="eyebrow">Laravel support + practical AI/agent workflows</p>
-            <h1>Existing Laravel apps. Useful internal agents.</h1>
+            <p className="eyebrow">Laravel support + reviewed AI workflows</p>
+            <h1>Keep the Laravel app moving. Add agents where they help.</h1>
             <p className="lead">
-              I help UK agencies and small teams maintain Laravel applications, build internal tools, and add carefully scoped AI/agent workflows where they make operational work easier — not riskier.
+              I help UK agencies and small teams maintain existing Laravel applications, ship internal tools, and add reviewed AI workflows for admin, support, reporting, and research work.
             </p>
             <div className="actions">
-              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20and%20agent%20workflow%20enquiry">Email Kim</a>
-              <a className="button secondary" href="#agents">See agent support</a>
+              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20and%20agent%20workflow%20enquiry">Send a backlog task</a>
+              <a className="button secondary" href="#agents">Check AI workflow fit</a>
             </div>
           </div>
 
           <aside className="case-card rescue-card" aria-label="Typical Laravel and agent support situation">
             <div className="card-topline">Typical situation</div>
-            <h2>Useful system, awkward backlog?</h2>
+            <h2>Useful app, awkward backlog?</h2>
             <p className="rescue-copy">
-              I’m useful when the app still matters, the admin work keeps piling up, and the team wants automation without handing control to a black box.
+              I’m useful when the app still matters, the admin work keeps piling up, and the team needs automation they can review, log, and switch off.
             </p>
             <div className="terminal-card">
               <p><span>app</span> live Laravel / PHP</p>
@@ -76,17 +76,17 @@ function App() {
 
       <section className="strip" aria-label="Positioning summary">
         <div className="shell strip-line">
-          <p>Laravel maintenance, admin tools, reporting, queues, integrations, and reviewed AI/agent workflows.</p>
-          <span>No black-box automation.</span>
+          <p>Laravel maintenance, admin tools, reporting, queues, integrations, and reviewed AI workflows.</p>
+          <span>Human review before customer or production impact.</span>
         </div>
       </section>
 
       <section className="shell section problem-section" id="problem">
         <div className="section-heading">
           <p className="eyebrow">The work I’m set up for</p>
-          <h2>Existing systems with real users, real data, and unfinished operational work.</h2>
+          <h2>Existing systems with users, data, and unfinished operational work.</h2>
           <p className="section-copy">
-            The useful category is not a broad AI consultancy. It is hands-on Laravel/PHP support plus practical agent workflows for internal operations: small, reviewable, and close to the systems people already use.
+            I work best on live Laravel/PHP systems where the next step is clear: repair the fragile bit, ship the overdue admin tool, or add a reviewed workflow that removes repetitive work from the team.
           </p>
         </div>
         <div className="problem-list">
@@ -97,7 +97,7 @@ function App() {
       <section className="shell section work-section" id="work">
         <div className="work-intro">
           <p className="eyebrow">Laravel support</p>
-          <h2>Small, concrete Laravel work that improves the app without turning into a rebuild.</h2>
+          <h2>Small Laravel jobs that improve the app without turning into a rebuild.</h2>
         </div>
         <div className="work-list">
           {work.map(([title, body]) => (
@@ -115,7 +115,7 @@ function App() {
             <p className="eyebrow">AI and agent support</p>
             <h2>Agents for internal work, with human control left in.</h2>
             <p>
-              I can help teams turn manual admin, support, reporting, and research workflows into small agent-assisted systems. The aim is not “AI transformation”; it is fewer repetitive steps, better visibility, and safer handoff between people and software.
+              I can help turn manual admin, support, reporting, and research workflows into small AI-assisted systems. Each workflow needs a clear boundary: what the agent can read, what it can draft, who reviews it, and what gets logged.
             </p>
           </div>
           <div className="agent-list">
@@ -135,7 +135,7 @@ function App() {
             <p className="eyebrow">Good first jobs</p>
             <h2>Send one task from the backlog.</h2>
             <p>
-              Tell me what the app or workflow does, what is wrong or missing, and what “done” should look like. I’ll reply with whether I can help, the likely approach, and any risks I can see from the brief.
+              Tell me what the app or workflow does, what is broken or missing, and what “done” should look like. I’ll reply with whether I can help, the likely approach, and any risks I can see from the brief.
             </p>
           </div>
           <ul>
@@ -152,7 +152,7 @@ function App() {
           </div>
           <div className="contact-card">
             <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20and%20agent%20workflow%20enquiry">hello@kimward.co.uk</a>
-            <p>Independent Laravel/PHP developer for UK agencies and small teams. Laravel support, internal tooling, integrations, and reviewed AI/agent workflows. Based in Thailand, working async with UK hours overlap.</p>
+            <p>Independent Laravel/PHP developer for UK agencies and small teams. Laravel support, internal tooling, integrations, and reviewed AI workflows. Based in Thailand, working async with UK hours overlap.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
               <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
