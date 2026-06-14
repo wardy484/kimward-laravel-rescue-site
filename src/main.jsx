@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const problems = [
-  'The original developer or agency has moved on',
-  'Bugs, reports, imports, or admin changes are stuck in the backlog',
-  'Queues, scheduled jobs, emails, or APIs are unreliable',
-  'The team wants useful AI support without giving a chatbot production control',
+  ['risk', 'The original developer or agency has moved on'],
+  ['backlog', 'Bugs, reports, imports, or admin changes are stuck in the backlog'],
+  ['ops', 'Queues, scheduled jobs, emails, or APIs are unreliable'],
+  ['ai', 'The team wants useful AI support without giving a chatbot production control'],
 ];
 
 const work = [
@@ -90,7 +90,12 @@ function App() {
           </p>
         </div>
         <div className="problem-list">
-          {problems.map((item) => <div className="problem-item" key={item}>{item}</div>)}
+          {problems.map(([label, item]) => (
+            <div className="problem-item" key={item}>
+              <span>{label}</span>
+              <p>{item}</p>
+            </div>
+          ))}
         </div>
       </section>
 
