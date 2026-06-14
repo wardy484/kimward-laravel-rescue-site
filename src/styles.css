@@ -47,6 +47,16 @@ h3 { font-size: 21px; letter-spacing: -0.035em; margin-bottom: 12px; }
 .terminal-card p { margin: 0; line-height: 1.5; }
 .terminal-card span { color: var(--acid); display: inline-block; width: 74px; }
 
+@media (min-width: 861px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 56px; }
+  .rescue-card { justify-self: end; max-width: 380px; padding: 28px; }
+  .case-card h2 { font-size: clamp(38px, 3.2vw, 46px); line-height: .98; letter-spacing: -0.058em; }
+  .rescue-copy { font-size: 16.5px; line-height: 1.55; }
+  .terminal-card { gap: 8px; padding: 16px; font-size: 14px; }
+  .terminal-card p { display: grid; grid-template-columns: 64px 1fr; column-gap: 12px; }
+  .terminal-card span { width: auto; }
+}
+
 .strip { background: var(--ink); color: var(--paper); border-block: 1px solid var(--ink); }
 .strip-line { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 0; }
 .strip-line p { margin: 0; font-size: clamp(18px, 2.2vw, 27px); line-height: 1.15; letter-spacing: -0.045em; font-weight: 820; max-width: 760px; }
