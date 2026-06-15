@@ -3,16 +3,16 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const problems = [
-  ['risk', 'The original developer or agency has moved on'],
-  ['backlog', 'Bugs, reports, imports, or admin changes are stuck in the backlog'],
-  ['ops', 'Queues, scheduled jobs, emails, or APIs are unreliable'],
-  ['ai', 'The team wants useful AI support without giving a chatbot production control'],
+  ['risk', 'Legacy Laravel app, still making money'],
+  ['backlog', 'Admin/reporting work keeps slipping'],
+  ['ops', 'Queues, cron, mail, or APIs are flaky'],
+  ['ai', 'AI workflow needs review and limits'],
 ];
 
 const work = [
-  ['Fix the app you already have', 'Laravel upgrades, production bugs, dependency updates, slow pages, broken reports, and careful changes to live applications.'],
-  ['Ship the admin work that keeps slipping', 'Admin screens, internal workflows, CSV imports and exports, operational reports, dashboards, and support tools.'],
-  ['Make background work reliable again', 'Horizon queues, scheduled jobs, mail flows, webhooks, provider APIs, deployment notes, and handover documentation.'],
+  ['Fix', 'Bugs, upgrades, slow pages, broken reports.'],
+  ['Extend', 'Admin screens, imports, dashboards, support tools.'],
+  ['Stabilise', 'Queues, scheduled jobs, mail, webhooks, APIs.'],
 ];
 
 const selectedWork = [
@@ -22,22 +22,22 @@ const selectedWork = [
 ];
 
 const proofCards = [
-  ['Old Laravel, still earning money', 'If your app is behind on Laravel, PHP, packages, or tests, I can help move it forward without pretending it is a clean greenfield project.'],
-  ['Stripe and pricing changes', 'Billing work needs a slower hand: refunds, fees, pricing rules, SCA-era payment changes, checkout flows, and payment-method surfaces.'],
-  ['Admin and workflow backlog', 'Reports, imports, dashboards, account flows, review screens, and operational tools often sit half-finished because they are awkward, not glamorous.'],
+  ['8 years in live Laravel', 'Maintenance, upgrades, billing, admin, queues.'],
+  ['Stripe-aware', 'Pricing, checkout, refunds, payment surfaces.'],
+  ['Backlog-friendly', 'Small awkward tasks shipped cleanly.'],
 ];
 
 const agentWork = [
-  ['Reviewed agent workflows', 'Agents that draft, triage, classify, search, or summarise, with review points, logs, and clear limits before anything reaches customers or production data.'],
-  ['Internal AI tools', 'Small AI-assisted tools inside existing Laravel or admin systems: support queues, reporting summaries, document search, inbox triage, lead review, and operator checklists.'],
-  ['The plumbing around AI', 'Prompts, queues, cron jobs, webhooks, MCP and tool calls, retries, approvals, audit trails, and fallback paths. The boring bits that make the workflow safe to run.'],
+  ['Draft', 'Summaries, classifications, triage, search.'],
+  ['Review', 'Human checkpoints before customer or data impact.'],
+  ['Run', 'Queues, logs, retries, approvals, fallbacks.'],
 ];
 
 const firstJobs = [
-  'Review an existing Laravel app and flag the immediate risks',
-  'Fix one production bug or failing background job',
-  'Build one admin screen, report, import, export, or dashboard',
-  'Prototype one reviewed AI workflow for an internal process',
+  'Review the app',
+  'Fix one production bug',
+  'Ship one admin/reporting task',
+  'Prototype one reviewed AI workflow',
 ];
 
 function App() {
@@ -62,9 +62,9 @@ function App() {
         <div className="hero-grid" id="top">
           <div className="hero-copy">
             <p className="eyebrow">Laravel products, support + reviewed AI workflows</p>
-            <h1>Build the useful bit. Keep the important app moving.</h1>
+            <h1>Laravel apps fixed, extended, and kept moving.</h1>
             <p className="lead">
-              I build and maintain Laravel products, internal tools, and reviewed AI workflows for teams with real users, operational data, and backlog work that needs a careful pair of hands.
+              Practical Laravel/PHP work for live products: maintenance, admin tools, billing, queues, integrations, and reviewed AI workflows.
             </p>
             <div className="actions">
               <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20product%20or%20workflow%20enquiry">Send a task or product idea</a>
@@ -74,9 +74,9 @@ function App() {
 
           <aside className="case-card rescue-card" aria-label="Typical Laravel and agent support situation">
             <div className="card-topline">Typical situation</div>
-            <h2>Useful app, awkward backlog?</h2>
+            <h2>Useful app, stuck backlog?</h2>
             <p className="rescue-copy">
-              I’m useful when the app still matters, the admin work keeps piling up, and the team needs automation they can review, log, and switch off.
+              For apps that still matter, but need careful changes rather than a rebuild.
             </p>
             <div className="terminal-card">
               <p><span>app</span> live Laravel / PHP</p>
@@ -90,17 +90,17 @@ function App() {
 
       <section className="strip" aria-label="Positioning summary">
         <div className="shell strip-line">
-          <p>Laravel products, maintenance, admin tools, reporting, queues, integrations, and reviewed AI workflows.</p>
-          <span>Practical systems, not demo theatre.</span>
+          <p>Maintenance, admin tools, billing, queues, integrations, reviewed AI.</p>
+          <span>Useful systems, not theatre.</span>
         </div>
       </section>
 
       <section className="shell section selected-work-section" id="selected-work">
         <div className="selected-work-copy">
           <p className="eyebrow">Selected work</p>
-          <h2>Real product plumbing, not just a services page.</h2>
+          <h2>Real product plumbing.</h2>
           <p>
-            Cramblr is a small Laravel product that turns Thai study pages into reviewed Anki flashcards. It is a useful proof point because it combines product UX, billing, uploads, queues, AI extraction, human review, and export workflows in one focused app.
+            Cramblr turns Thai study pages into reviewed Anki flashcards: uploads, billing, queues, AI extraction, review, export.
           </p>
         </div>
         <article className="product-card" aria-label="Cramblr selected work">
@@ -113,7 +113,7 @@ function App() {
           </div>
           <h3>Thai study pages to reviewed Anki decks.</h3>
           <p>
-            Photograph a textbook page or worksheet, review every generated card, then export an APKG deck you actually trust. The AI helps draft; the user keeps control.
+            Upload pages, review generated cards, export APKG.
           </p>
           <div className="product-meta">
             {selectedWork.map(([label, value]) => (
@@ -126,9 +126,9 @@ function App() {
       <section className="shell section problem-section" id="problem">
         <div className="section-heading">
           <p className="eyebrow">The work I’m set up for</p>
-          <h2>Existing systems with users, data, and unfinished operational work.</h2>
+          <h2>For existing systems with real users.</h2>
           <p className="section-copy">
-            I work best on live Laravel/PHP systems where the next step is clear: repair the fragile bit, ship the overdue admin tool, or add a reviewed workflow that removes repetitive work from the team.
+            Fix the fragile bit. Ship the overdue internal tool. Add automation with review built in.
           </p>
         </div>
         <div className="problem-list">
@@ -144,7 +144,7 @@ function App() {
       <section className="shell section work-section" id="work">
         <div className="work-intro">
           <p className="eyebrow">Laravel support</p>
-          <h2>Small Laravel jobs that improve the app without turning into a rebuild.</h2>
+          <h2>Small jobs. Visible progress.</h2>
         </div>
         <div className="work-list">
           {work.map(([title, body]) => (
@@ -159,9 +159,9 @@ function App() {
       <section className="shell section experience-section" id="proof">
         <div className="experience-intro">
           <p className="eyebrow">Experience from live Laravel products</p>
-          <h2>For Laravel apps that are too important to rewrite and too awkward to ignore.</h2>
+          <h2>Enough context to be useful quickly.</h2>
           <p>
-            I’ve spent 8 years working on established Laravel products with users, Stripe billing, admin workflows, account areas, background jobs, integrations, and framework upgrades. That experience is useful when your app needs careful changes, not a ground-up rebuild.
+            Eight years inside established Laravel products: billing, admin, queues, integrations, upgrades.
           </p>
         </div>
         <div className="experience-grid">
@@ -179,9 +179,9 @@ function App() {
         <div className="agent-panel">
           <div className="agent-intro">
             <p className="eyebrow">AI and agent support</p>
-            <h2>Agents for internal work, with human control left in.</h2>
+            <h2>AI where review stays obvious.</h2>
             <p>
-              I can help turn manual admin, support, reporting, and research workflows into small AI-assisted systems. Each workflow needs a clear boundary: what the agent can read, what it can draft, who reviews it, and what gets logged.
+              Draft useful output. Keep humans in control. Log the boring bits.
             </p>
           </div>
           <div className="agent-list">
@@ -199,9 +199,9 @@ function App() {
         <div className="proof-panel">
           <div>
             <p className="eyebrow">Good first jobs</p>
-            <h2>Send one task from the backlog.</h2>
+            <h2>Start with one task.</h2>
             <p>
-              Tell me what the app or workflow does, what is broken or missing, and what “done” should look like. I’ll reply with whether I can help, the likely approach, and any risks I can see from the brief.
+              Send the app, the problem, and what “done” means.
             </p>
           </div>
           <ul>
@@ -214,11 +214,11 @@ function App() {
         <div className="shell contact-grid">
           <div>
             <p className="eyebrow">Contact</p>
-            <h2>Email the app or workflow, the problem, and the outcome you need.</h2>
+            <h2>Email the problem. I’ll reply with the shape of the fix.</h2>
           </div>
           <div className="contact-card">
             <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20and%20agent%20workflow%20enquiry">hello@kimward.co.uk</a>
-            <p>Independent Laravel/PHP developer for UK teams and small agencies. Laravel products, support, internal tooling, integrations, and reviewed AI workflows. Based in Thailand, working async with UK hours overlap.</p>
+            <p>Independent Laravel/PHP developer. UK overlap from Thailand.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
               <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
