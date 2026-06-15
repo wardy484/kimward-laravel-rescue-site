@@ -3,30 +3,32 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const proofPoints = [
-  ['Tutorful/Tutora', '8 years on a live Laravel marketplace'],
-  ['Laravel 5→11', 'upgrade projects on a long-running app'],
-  ['Cramblr', 'uploads, billing, queues, reviewed AI'],
-];
-
-const issueRows = [
-  ['change', 'An established Laravel app needs careful changes'],
-  ['backlog', 'Admin, reports, imports, or support tools are stuck'],
-  ['reliability', 'Queues, mail, webhooks, or scheduled jobs are fragile'],
-  ['ai', 'AI could help, but only with review points and logs'],
+  ['Tutorful/Tutora', '8 years working on a production Laravel marketplace'],
+  ['Laravel 5 → 11', 'upgrade projects across multiple framework generations'],
+  ['Cramblr', 'a Laravel product with billing, uploads, queues, and reviewed AI'],
 ];
 
 const workItems = [
-  ['Maintain', 'upgrades, bugs, slow pages, broken reports'],
-  ['Ship', 'admin screens, imports, exports, dashboards'],
-  ['Stabilise', 'queues, scheduled jobs, mail, webhooks'],
-  ['Add reviewed AI', 'drafts, triage, search, summaries'],
+  ['Modernisation', 'Laravel upgrades, dependency work, testing, and legacy cleanup.'],
+  ['Product development', 'Admin tools, dashboards, imports, exports, and account workflows.'],
+  ['Payments and operations', 'Stripe, pricing changes, billing flows, refunds, and support tooling.'],
+  ['Reliability', 'Queues, scheduled jobs, mail, webhooks, and provider integrations.'],
+  ['Reviewed AI workflows', 'Internal tools where AI drafts, classifies, searches, or summarises with human review.'],
+];
+
+const tutorfulProof = [
+  ['Laravel upgrade work', 'Led upgrade projects on a long-running production app, taking it through multiple framework generations up to Laravel 11.'],
+  ['Stripe and billing', 'Worked on checkout, refunds, pricing changes, service fees, and payment edge cases where mistakes create real support load.'],
+  ['Admin and operations', 'Built and maintained internal tools for support, reporting, account workflows, imports, and operational review.'],
+  ['Reliability work', 'Worked on queues, scheduled jobs, webhooks, notifications, and production edge cases in a live system.'],
 ];
 
 const firstJobs = [
-  'One production bug',
-  'One admin/reporting task',
-  'One inherited-app review',
-  'One reviewed AI workflow',
+  'A Laravel upgrade or dependency problem',
+  'A Stripe, billing, or pricing change',
+  'An admin tool, report, import, or export',
+  'A queue, webhook, mail, or integration issue',
+  'A reviewed AI workflow for internal work',
 ];
 
 function App() {
@@ -40,31 +42,32 @@ function App() {
           </a>
           <div className="nav-links">
             <a href="#work">Work</a>
+            <a href="#tutorful">Tutorful</a>
             <a href="#cramblr">Cramblr</a>
-            <a href="#start">Start</a>
+            <a href="#contact">Contact</a>
           </div>
         </nav>
 
         <div className="hero-board">
           <div className="hero-copy">
-            <p className="eyebrow">Independent Laravel / PHP</p>
-            <h1>Laravel support for established products.</h1>
+            <p className="eyebrow">Independent Laravel / PHP developer</p>
+            <h1>Senior Laravel support for established products.</h1>
             <p className="lead">
-              I help teams maintain and improve existing Laravel/PHP apps: upgrades, billing, admin tools, queues, integrations, and reviewed AI workflows.
+              I help teams maintain, modernise, and extend Laravel applications that already have users, revenue, and operational complexity.
             </p>
             <div className="actions">
-              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">Send a Laravel task</a>
-              <a className="button secondary" href="#cramblr">See selected work</a>
+              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20project%20brief">Send a project brief</a>
+              <a className="button secondary" href="#work">See how I can help</a>
             </div>
           </div>
 
-          <aside className="ticket-card" aria-label="What to send">
+          <aside className="ticket-card" aria-label="Good fit">
             <p className="ticket-kicker">Good fit</p>
-            <h2>Old app. Real users. Work still to ship.</h2>
+            <h2>Production Laravel app. Real backlog. Careful changes needed.</h2>
             <ul>
-              <li>small scoped changes</li>
-              <li>UK-overlap async updates</li>
-              <li>human review around AI output</li>
+              <li>bounded projects, not a full rebuild</li>
+              <li>senior help on awkward product work</li>
+              <li>clear async updates with UK overlap</li>
             </ul>
           </aside>
         </div>
@@ -84,25 +87,39 @@ function App() {
       <section className="shell split-section" id="work">
         <div className="section-title">
           <p className="eyebrow">The work</p>
-          <h2>Useful when the app already exists and the work is awkward.</h2>
+          <h2>Practical Laravel work for live systems.</h2>
+          <p>
+            Useful Laravel work is often between “quick fix” and “full rebuild”: the inherited app, the risky billing change, the admin workflow, the queue that still needs to run.
+          </p>
         </div>
-        <div className="issue-list">
-          {issueRows.map(([label, text]) => (
-            <div className="issue-row" key={label}>
-              <span>{label}</span>
-              <p>{text}</p>
-            </div>
+        <div className="work-list-large">
+          {workItems.map(([title, body]) => (
+            <article className="work-row" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="shell work-grid" aria-label="Services">
-        {workItems.map(([title, body]) => (
-          <article className="work-card" key={title}>
-            <h3>{title}</h3>
-            <p>{body}</p>
-          </article>
-        ))}
+      <section className="tutorful-section" id="tutorful">
+        <div className="shell tutorful-grid">
+          <div className="tutorful-intro">
+            <p className="eyebrow">Tutorful / Tutora</p>
+            <h2>Experience from a real production Laravel marketplace.</h2>
+            <p>
+              I spent 8 years working on a long-running Laravel product with live users, Stripe payments, account areas, admin workflows, background jobs, integrations, and framework upgrades.
+            </p>
+          </div>
+          <div className="tutorful-cards">
+            {tutorfulProof.map(([title, body]) => (
+              <article className="proof-card" key={title}>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="shell cramblr-section" id="cramblr">
@@ -111,9 +128,9 @@ function App() {
         </div>
         <div className="cramblr-copy">
           <p className="eyebrow">Selected work</p>
-          <h2>Cramblr: small product, real Laravel plumbing.</h2>
+          <h2>Cramblr</h2>
           <p>
-            Thai study pages to reviewed Anki decks: uploads, billing, queues, AI extraction, human review, and APKG export.
+            Cramblr is a Laravel product that turns Thai study pages into reviewed Anki flashcards. It combines uploads, credits, billing, queues, AI extraction, human review, and APKG export.
           </p>
           <a href="https://cramblr.com">cramblr.com</a>
         </div>
@@ -123,8 +140,8 @@ function App() {
         <div className="shell start-grid">
           <div>
             <p className="eyebrow">Start small</p>
-            <h2>Start with one scoped job.</h2>
-            <p>Send the app, the problem, and what “done” means. I’ll reply with the likely approach and risks.</p>
+            <h2>Have a Laravel product that needs careful work?</h2>
+            <p>Send the app, the problem, and the outcome you need. I’ll reply with the likely approach, risks, and whether I’m a good fit.</p>
           </div>
           <ul className="first-jobs">
             {firstJobs.map((item) => <li key={item}>{item}</li>)}
@@ -136,11 +153,11 @@ function App() {
         <div className="shell contact-grid">
           <div>
             <p className="eyebrow">Contact</p>
-            <h2>Email the app, the problem, and the outcome you need.</h2>
+            <h2>Send a project brief.</h2>
           </div>
           <div className="contact-card">
-            <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">hello@kimward.co.uk</a>
-            <p>Independent Laravel/PHP developer. UK overlap from Thailand.</p>
+            <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20project%20brief">hello@kimward.co.uk</a>
+            <p>Independent Laravel/PHP developer. Based in Thailand, working async with UK hours overlap.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
               <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
