@@ -3,29 +3,29 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const proofPoints = [
-  ['8 years', 'working inside live Laravel products'],
-  ['Stripe', 'billing, pricing, checkout, refunds'],
-  ['Ops', 'queues, imports, reports, admin tooling'],
+  ['Tutorful/Tutora', '8 years on a live Laravel marketplace'],
+  ['Laravel 5→11', 'upgrade projects on a long-running app'],
+  ['Cramblr', 'uploads, billing, queues, reviewed AI'],
 ];
 
 const issueRows = [
-  ['risk', 'The app is important, but awkward to change'],
-  ['backlog', 'Admin, reports, imports, or support tools keep slipping'],
-  ['reliability', 'Queues, cron, mail, webhooks, or APIs are fragile'],
-  ['ai', 'AI could help, but needs review points and logs'],
+  ['change', 'An established Laravel app needs careful changes'],
+  ['backlog', 'Admin, reports, imports, or support tools are stuck'],
+  ['reliability', 'Queues, mail, webhooks, or scheduled jobs are fragile'],
+  ['ai', 'AI could help, but only with review points and logs'],
 ];
 
 const workItems = [
-  ['Fix', 'bugs, upgrades, slow pages, broken reports'],
+  ['Maintain', 'upgrades, bugs, slow pages, broken reports'],
   ['Ship', 'admin screens, imports, exports, dashboards'],
   ['Stabilise', 'queues, scheduled jobs, mail, webhooks'],
-  ['Add AI safely', 'drafts, triage, search, summaries with review'],
+  ['Add reviewed AI', 'drafts, triage, search, summaries'],
 ];
 
 const firstJobs = [
-  'One bug or failing job',
+  'One production bug',
   'One admin/reporting task',
-  'One inherited-app risk review',
+  'One inherited-app review',
   'One reviewed AI workflow',
 ];
 
@@ -48,23 +48,23 @@ function App() {
         <div className="hero-board">
           <div className="hero-copy">
             <p className="eyebrow">Independent Laravel / PHP</p>
-            <h1>Laravel maintenance for apps that still matter.</h1>
+            <h1>Laravel support for established products.</h1>
             <p className="lead">
-              I fix and extend live Laravel/PHP products: billing, admin tools, queues, integrations, and reviewed AI workflows — without turning every job into a rebuild.
+              I help teams maintain and improve existing Laravel/PHP apps: upgrades, billing, admin tools, queues, integrations, and reviewed AI workflows.
             </p>
             <div className="actions">
-              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">Send one Laravel task</a>
-              <a className="button secondary" href="#cramblr">View Cramblr</a>
+              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">Send a Laravel task</a>
+              <a className="button secondary" href="#cramblr">See selected work</a>
             </div>
           </div>
 
           <aside className="ticket-card" aria-label="What to send">
             <p className="ticket-kicker">Good fit</p>
-            <h2>Inherited app. Real users. Stuck backlog.</h2>
+            <h2>Old app. Real users. Work still to ship.</h2>
             <ul>
               <li>small scoped changes</li>
-              <li>async UK-overlap updates</li>
-              <li>human review before AI touches users</li>
+              <li>UK-overlap async updates</li>
+              <li>human review around AI output</li>
             </ul>
           </aside>
         </div>
@@ -84,7 +84,7 @@ function App() {
       <section className="shell split-section" id="work">
         <div className="section-title">
           <p className="eyebrow">The work</p>
-          <h2>For teams with a useful app and a backlog nobody owns.</h2>
+          <h2>Useful when the app already exists and the work is awkward.</h2>
         </div>
         <div className="issue-list">
           {issueRows.map(([label, text]) => (
@@ -111,7 +111,7 @@ function App() {
         </div>
         <div className="cramblr-copy">
           <p className="eyebrow">Selected work</p>
-          <h2>Cramblr: real Laravel product proof.</h2>
+          <h2>Cramblr: small product, real Laravel plumbing.</h2>
           <p>
             Thai study pages to reviewed Anki decks: uploads, billing, queues, AI extraction, human review, and APKG export.
           </p>
@@ -123,8 +123,8 @@ function App() {
         <div className="shell start-grid">
           <div>
             <p className="eyebrow">Start small</p>
-            <h2>Start with one small job.</h2>
-            <p>Send the app, the problem, and what “done” means. I’ll reply with approach, risks, and whether I’m a fit.</p>
+            <h2>Start with one scoped job.</h2>
+            <p>Send the app, the problem, and what “done” means. I’ll reply with the likely approach and risks.</p>
           </div>
           <ul className="first-jobs">
             {firstJobs.map((item) => <li key={item}>{item}</li>)}
