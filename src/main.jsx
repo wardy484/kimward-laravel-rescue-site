@@ -15,6 +15,12 @@ const work = [
   ['Make background work reliable again', 'Horizon queues, scheduled jobs, mail flows, webhooks, provider APIs, deployment notes, and handover documentation.'],
 ];
 
+const proofCards = [
+  ['Old Laravel, still earning money', 'If your app is behind on Laravel, PHP, packages, or tests, I can help move it forward without pretending it is a clean greenfield project.'],
+  ['Stripe and pricing changes', 'Billing work needs a slower hand: refunds, fees, pricing rules, SCA-era payment changes, checkout flows, and payment-method surfaces.'],
+  ['Admin and workflow backlog', 'Reports, imports, dashboards, account flows, review screens, and operational tools often sit half-finished because they are awkward, not glamorous.'],
+];
+
 const agentWork = [
   ['Reviewed agent workflows', 'Agents that draft, triage, classify, search, or summarise, with review points, logs, and clear limits before anything reaches customers or production data.'],
   ['Internal AI tools', 'Small AI-assisted tools inside existing Laravel or admin systems: support queues, reporting summaries, document search, inbox triage, lead review, and operator checklists.'],
@@ -40,6 +46,7 @@ function App() {
           <div className="nav-links">
             <a href="#problem">Problem</a>
             <a href="#work">Laravel</a>
+            <a href="#proof">Proof</a>
             <a href="#agents">Agents</a>
             <a href="#contact">Contact</a>
           </div>
@@ -107,6 +114,25 @@ function App() {
         <div className="work-list">
           {work.map(([title, body]) => (
             <article className="work-item" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="shell section experience-section" id="proof">
+        <div className="experience-intro">
+          <p className="eyebrow">Experience from live Laravel products</p>
+          <h2>For Laravel apps that are too important to rewrite and too awkward to ignore.</h2>
+          <p>
+            I’ve spent 8 years working on established Laravel products with users, Stripe billing, admin workflows, account areas, background jobs, integrations, and framework upgrades. That experience is useful when your app needs careful changes, not a ground-up rebuild.
+          </p>
+        </div>
+        <div className="experience-grid">
+          {proofCards.map(([title, body], index) => (
+            <article className="experience-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{title}</h3>
               <p>{body}</p>
             </article>
