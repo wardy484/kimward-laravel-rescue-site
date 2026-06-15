@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const proofPoints = [
-  ['Tutorful/Tutora', '8 years working on a production Laravel marketplace'],
+  ['Tutorful', '8 years working on a production Laravel marketplace'],
   ['Laravel 5 → 11', 'upgrade projects across multiple framework generations'],
   ['Cramblr', 'a Laravel product with billing, uploads, queues, and reviewed AI'],
 ];
@@ -105,7 +105,7 @@ function App() {
       <section className="tutorful-section" id="tutorful">
         <div className="shell tutorful-grid">
           <div className="tutorful-intro">
-            <p className="eyebrow">Tutorful / Tutora</p>
+            <p className="eyebrow">Tutorful</p>
             <h2>Experience from a real production Laravel marketplace.</h2>
             <p>
               I spent 8 years working on a long-running Laravel product with live users, Stripe payments, account areas, admin workflows, background jobs, integrations, and framework upgrades.
