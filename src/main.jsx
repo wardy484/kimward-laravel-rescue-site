@@ -3,30 +3,30 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const proofPoints = [
-  ['8 years', 'inside live Laravel products'],
-  ['Stripe', 'billing, pricing, payment surfaces'],
-  ['Ops', 'queues, imports, reports, admin tools'],
+  ['8 years', 'working inside live Laravel products'],
+  ['Stripe', 'billing, pricing, checkout, refunds'],
+  ['Ops', 'queues, imports, reports, admin tooling'],
 ];
 
 const issueRows = [
-  ['risk', 'Inherited Laravel app needs a safe pair of hands'],
-  ['backlog', 'Admin, reporting, imports, or support tools keep slipping'],
-  ['reliability', 'Queues, cron, mail, webhooks, or APIs need stabilising'],
-  ['ai', 'Internal AI would help, but only with review and logs'],
+  ['risk', 'The app is important, but awkward to change'],
+  ['backlog', 'Admin, reports, imports, or support tools keep slipping'],
+  ['reliability', 'Queues, cron, mail, webhooks, or APIs are fragile'],
+  ['ai', 'AI could help, but needs review points and logs'],
 ];
 
 const workItems = [
-  ['Fix', 'production bugs, upgrades, slow pages'],
-  ['Build', 'admin screens, reports, imports, exports'],
-  ['Stabilise', 'queues, schedules, mail, webhooks'],
-  ['Automate', 'reviewed AI drafts, triage, search, summaries'],
+  ['Fix', 'bugs, upgrades, slow pages, broken reports'],
+  ['Ship', 'admin screens, imports, exports, dashboards'],
+  ['Stabilise', 'queues, scheduled jobs, mail, webhooks'],
+  ['Add AI safely', 'drafts, triage, search, summaries with review'],
 ];
 
 const firstJobs = [
   'One bug or failing job',
   'One admin/reporting task',
-  'One inherited-app review',
-  'One reviewed AI workflow prototype',
+  'One inherited-app risk review',
+  'One reviewed AI workflow',
 ];
 
 function App() {
@@ -48,23 +48,23 @@ function App() {
         <div className="hero-board">
           <div className="hero-copy">
             <p className="eyebrow">Independent Laravel / PHP</p>
-            <h1>Keep the useful app moving.</h1>
+            <h1>Laravel maintenance for apps that still matter.</h1>
             <p className="lead">
-              Maintenance, admin tools, billing, queues, integrations, and reviewed AI workflows for live Laravel products.
+              I fix and extend live Laravel/PHP products: billing, admin tools, queues, integrations, and reviewed AI workflows — without turning every job into a rebuild.
             </p>
             <div className="actions">
-              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">Send a backlog task</a>
-              <a className="button secondary" href="#cramblr">See product proof</a>
+              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">Send one Laravel task</a>
+              <a className="button secondary" href="#cramblr">View Cramblr</a>
             </div>
           </div>
 
           <aside className="ticket-card" aria-label="What to send">
             <p className="ticket-kicker">Good fit</p>
-            <h2>Existing app. Real users. Awkward backlog.</h2>
+            <h2>Inherited app. Real users. Stuck backlog.</h2>
             <ul>
-              <li>async updates</li>
               <li>small scoped changes</li>
-              <li>human review before AI impact</li>
+              <li>async UK-overlap updates</li>
+              <li>human review before AI touches users</li>
             </ul>
           </aside>
         </div>
@@ -84,7 +84,7 @@ function App() {
       <section className="shell split-section" id="work">
         <div className="section-title">
           <p className="eyebrow">The work</p>
-          <h2>Not a rebuild. Not theatre. Just useful changes shipped safely.</h2>
+          <h2>For teams with a useful app and a backlog nobody owns.</h2>
         </div>
         <div className="issue-list">
           {issueRows.map(([label, text]) => (
@@ -111,9 +111,9 @@ function App() {
         </div>
         <div className="cramblr-copy">
           <p className="eyebrow">Selected work</p>
-          <h2>Cramblr: product plumbing, not portfolio filler.</h2>
+          <h2>Cramblr: real Laravel product proof.</h2>
           <p>
-            A Laravel product for turning Thai study pages into reviewed Anki decks: uploads, billing, queues, AI extraction, human review, and APKG export.
+            Thai study pages to reviewed Anki decks: uploads, billing, queues, AI extraction, human review, and APKG export.
           </p>
           <a href="https://cramblr.com">cramblr.com</a>
         </div>
@@ -123,8 +123,8 @@ function App() {
         <div className="shell start-grid">
           <div>
             <p className="eyebrow">Start small</p>
-            <h2>Send one concrete task.</h2>
-            <p>Tell me the app, the problem, and what “done” means.</p>
+            <h2>Start with one small job.</h2>
+            <p>Send the app, the problem, and what “done” means. I’ll reply with approach, risks, and whether I’m a fit.</p>
           </div>
           <ul className="first-jobs">
             {firstJobs.map((item) => <li key={item}>{item}</li>)}
@@ -136,7 +136,7 @@ function App() {
         <div className="shell contact-grid">
           <div>
             <p className="eyebrow">Contact</p>
-            <h2>Email the problem. I’ll reply with the shape of the fix.</h2>
+            <h2>Email the app, the problem, and the outcome you need.</h2>
           </div>
           <div className="contact-card">
             <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20backlog%20task">hello@kimward.co.uk</a>
