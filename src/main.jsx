@@ -15,6 +15,12 @@ const work = [
   ['Make background work reliable again', 'Horizon queues, scheduled jobs, mail flows, webhooks, provider APIs, deployment notes, and handover documentation.'],
 ];
 
+const selectedWork = [
+  ['Product', 'Cramblr'],
+  ['Stack', 'Laravel, queues, billing, uploads'],
+  ['Workflow', 'AI draft → human review → Anki export'],
+];
+
 const proofCards = [
   ['Old Laravel, still earning money', 'If your app is behind on Laravel, PHP, packages, or tests, I can help move it forward without pretending it is a clean greenfield project.'],
   ['Stripe and pricing changes', 'Billing work needs a slower hand: refunds, fees, pricing rules, SCA-era payment changes, checkout flows, and payment-method surfaces.'],
@@ -45,7 +51,8 @@ function App() {
           </a>
           <div className="nav-links">
             <a href="#problem">Problem</a>
-            <a href="#work">Laravel</a>
+            <a href="#selected-work">Selected work</a>
+            <a href="#work">Services</a>
             <a href="#proof">Proof</a>
             <a href="#agents">Agents</a>
             <a href="#contact">Contact</a>
@@ -54,14 +61,14 @@ function App() {
 
         <div className="hero-grid" id="top">
           <div className="hero-copy">
-            <p className="eyebrow">Laravel support + reviewed AI workflows</p>
-            <h1>Keep the Laravel app moving. Add agents where they help.</h1>
+            <p className="eyebrow">Laravel products, support + reviewed AI workflows</p>
+            <h1>Build the useful bit. Keep the important app moving.</h1>
             <p className="lead">
-              I help UK agencies and small teams maintain existing Laravel applications, ship internal tools, and add reviewed AI workflows for admin, support, reporting, and research work.
+              I build and maintain Laravel products, internal tools, and reviewed AI workflows for teams with real users, operational data, and backlog work that needs a careful pair of hands.
             </p>
             <div className="actions">
-              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20and%20agent%20workflow%20enquiry">Send a backlog task</a>
-              <a className="button secondary" href="#agents">Check AI workflow fit</a>
+              <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20product%20or%20workflow%20enquiry">Send a task or product idea</a>
+              <a className="button secondary" href="#selected-work">See selected work</a>
             </div>
           </div>
 
@@ -83,9 +90,34 @@ function App() {
 
       <section className="strip" aria-label="Positioning summary">
         <div className="shell strip-line">
-          <p>Laravel maintenance, admin tools, reporting, queues, integrations, and reviewed AI workflows.</p>
-          <span>Human review before customer or production impact.</span>
+          <p>Laravel products, maintenance, admin tools, reporting, queues, integrations, and reviewed AI workflows.</p>
+          <span>Practical systems, not demo theatre.</span>
         </div>
+      </section>
+
+      <section className="shell section selected-work-section" id="selected-work">
+        <div className="selected-work-copy">
+          <p className="eyebrow">Selected work</p>
+          <h2>Real product plumbing, not just a services page.</h2>
+          <p>
+            Cramblr is a small Laravel product that turns Thai study pages into reviewed Anki flashcards. It is a useful proof point because it combines product UX, billing, uploads, queues, AI extraction, human review, and export workflows in one focused app.
+          </p>
+        </div>
+        <article className="product-card" aria-label="Cramblr selected work">
+          <div className="product-card-header">
+            <p className="eyebrow">Cramblr</p>
+            <a href="https://cramblr.com">cramblr.com</a>
+          </div>
+          <h3>Thai study pages to reviewed Anki decks.</h3>
+          <p>
+            Photograph a textbook page or worksheet, review every generated card, then export an APKG deck you actually trust. The AI helps draft; the user keeps control.
+          </p>
+          <div className="product-meta">
+            {selectedWork.map(([label, value]) => (
+              <p key={label}><span>{label}</span>{value}</p>
+            ))}
+          </div>
+        </article>
       </section>
 
       <section className="shell section problem-section" id="problem">
@@ -183,7 +215,7 @@ function App() {
           </div>
           <div className="contact-card">
             <a className="email" href="mailto:hello@kimward.co.uk?subject=Laravel%20and%20agent%20workflow%20enquiry">hello@kimward.co.uk</a>
-            <p>Independent Laravel/PHP developer for UK agencies and small teams. Laravel support, internal tooling, integrations, and reviewed AI workflows. Based in Thailand, working async with UK hours overlap.</p>
+            <p>Independent Laravel/PHP developer for UK teams and small agencies. Laravel products, support, internal tooling, integrations, and reviewed AI workflows. Based in Thailand, working async with UK hours overlap.</p>
             <div className="contact-links">
               <a href="https://github.com/wardy484">GitHub</a>
               <a href="https://linkedin.com/in/kim-ward-90884643">LinkedIn</a>
