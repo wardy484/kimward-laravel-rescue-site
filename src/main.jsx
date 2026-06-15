@@ -104,6 +104,9 @@ function App() {
           </p>
         </div>
         <article className="product-card" aria-label="Cramblr selected work">
+          <div className="product-screenshot" aria-label="Screenshot of the Cramblr homepage">
+            <img src="/cramblr-home.png" alt="Cramblr homepage showing Thai study pages turned into trusted flashcards" />
+          </div>
           <div className="product-card-header">
             <p className="eyebrow">Cramblr</p>
             <a href="https://cramblr.com">cramblr.com</a>
