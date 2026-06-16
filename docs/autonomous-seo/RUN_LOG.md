@@ -69,3 +69,21 @@ Blockers / next actions:
 - Fix Cloudflare DNS for `kimward.co.uk`: point apex and `www` to Laravel Cloud's requested `to.laravel.cloud` target, likely DNS-only/not proxied to avoid Cloudflare 1014.
 - Attach/verify the domain against Laravel Cloud environment `env-a205451d-e9c5-4e69-90d6-25972ba3ac7b` after DNS changes.
 - Add Search Console access for the service account used at `/root/credentials/gsc-service-account.json`; it currently only has access to `sc-domain:cramblr.com` and `https://tools.kimward.co.uk/`, not `sc-domain:kimward.co.uk`.
+
+## 2026-06-16T01:48:00Z — Canonical domain recovered
+
+Status: canonical domain is crawlable.
+
+Verification:
+
+- `https://kimward.co.uk/`: 200.
+- `https://www.kimward.co.uk/`: 301 to apex, then 200.
+- No `x-robots-tag: noindex,nofollow` header on canonical domain response.
+- `https://kimward.co.uk/robots.txt`: 200 and references `https://kimward.co.uk/sitemap.xml`.
+- `https://kimward.co.uk/sitemap.xml`: 200 and references `https://kimward.co.uk/`.
+- Homepage raw HTML includes title, meta description, canonical, one H1, Open Graph title, and JSON-LD.
+- Laravel Cloud domain verify reports `hostnameStatus=verified`, `sslStatus=verified`, `originStatus=verified` for apex and www.
+
+Remaining blocker:
+
+- Search Console API service account still lacks access to `sc-domain:kimward.co.uk`; it lists only `sc-domain:cramblr.com` and `https://tools.kimward.co.uk/`.
