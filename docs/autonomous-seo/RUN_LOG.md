@@ -42,3 +42,30 @@ Deployment/rollback:
 Likely first SEO task:
 
 - Add sitemap, canonical, OG/Twitter metadata, and JSON-LD; update `robots.txt`.
+
+## 2026-06-16T01:35:00Z — Crawlability metadata shipped; domain blocked
+
+Status: code fix deployed, DNS/domain still blocking canonical site.
+
+Actions:
+
+- Added canonical homepage URL, Open Graph/Twitter metadata, JSON-LD structured data, and a server-rendered fallback H1/body inside the React root.
+- Added `public/sitemap.xml` and referenced it from `public/robots.txt`.
+- Committed and pushed `88e229e` to `main`.
+- Triggered Laravel Cloud deploy `depl-a2087e63-4235-4da2-9596-e3b3ffa7c2ef`; deployment succeeded.
+
+Verification:
+
+- `npm run build`: passed.
+- `composer test`: passed, 2 tests.
+- `php artisan route:list --except-vendor`: one route, `/`.
+- Laravel Cloud vanity URL returns 200 and includes the new title, raw H1, and JSON-LD.
+- Vanity URL still returns `x-robots-tag: noindex, nofollow`; Laravel Cloud environment API reports `networkSettings.response_headers.robots_tag=index, follow`, so this may be vanity-domain behaviour or delayed edge/runtime state.
+- `https://kimward.co.uk/` currently returns Cloudflare Error 1014 `CNAME Cross-User Banned` from external checks.
+- Laravel Cloud domain `kimward.co.uk` is `hostnameStatus=failed`, `sslStatus=failed`, `originStatus=failed`, `environmentId=null`; Cloud requests CNAME records for `kimward.co.uk` and `www.kimward.co.uk` to `to.laravel.cloud`.
+
+Blockers / next actions:
+
+- Fix Cloudflare DNS for `kimward.co.uk`: point apex and `www` to Laravel Cloud's requested `to.laravel.cloud` target, likely DNS-only/not proxied to avoid Cloudflare 1014.
+- Attach/verify the domain against Laravel Cloud environment `env-a205451d-e9c5-4e69-90d6-25972ba3ac7b` after DNS changes.
+- Add Search Console access for the service account used at `/root/credentials/gsc-service-account.json`; it currently only has access to `sc-domain:cramblr.com` and `https://tools.kimward.co.uk/`, not `sc-domain:kimward.co.uk`.
