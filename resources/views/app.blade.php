@@ -3,20 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Independent Laravel/PHP developer for UK teams that need senior help with upgrades, Stripe, admin tools, integrations, queues, and reviewed AI workflows." />
+    @php
+      $isShopifyReport = request()->path() === 'shopify-reconciliation-report';
+      $pageTitle = $isShopifyReport
+        ? 'Shopify reconciliation exception report - Kim Ward'
+        : 'Kim Ward - Laravel/PHP contractor for UK teams';
+      $pageDescription = $isShopifyReport
+        ? 'One-off Shopify reconciliation exception report for bookkeepers and ecommerce accountants dealing with messy payouts, manual payments, A/R collections, layby payments, refunds, and review rows.'
+        : 'Independent Laravel/PHP developer for UK teams that need senior help with upgrades, Stripe, admin tools, integrations, queues, and reviewed AI workflows.';
+      $pageUrl = $isShopifyReport ? 'https://kimward.co.uk/shopify-reconciliation-report' : 'https://kimward.co.uk/';
+    @endphp
+    <meta name="description" content="{{ $pageDescription }}" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://kimward.co.uk/" />
+    <link rel="canonical" href="{{ $pageUrl }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://kimward.co.uk/" />
-    <meta property="og:title" content="Kim Ward - Laravel/PHP contractor for UK teams" />
-    <meta property="og:description" content="Senior Laravel/PHP help for established products: upgrades, Stripe, admin tools, integrations, queues, and reviewed AI workflows." />
+    <meta property="og:url" content="{{ $pageUrl }}" />
+    <meta property="og:title" content="{{ $pageTitle }}" />
+    <meta property="og:description" content="{{ $pageDescription }}" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Kim Ward - Laravel/PHP contractor for UK teams" />
-    <meta name="twitter:description" content="Senior Laravel/PHP help for established products: upgrades, Stripe, admin tools, integrations, queues, and reviewed AI workflows." />
+    <meta name="twitter:title" content="{{ $pageTitle }}" />
+    <meta name="twitter:description" content="{{ $pageDescription }}" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>Kim Ward - Laravel/PHP contractor for UK teams</title>
+    <title>{{ $pageTitle }}</title>
     <script type="application/ld+json">
       @verbatim
       {

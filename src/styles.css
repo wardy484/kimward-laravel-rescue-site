@@ -116,9 +116,33 @@ h3 { font-size: 25px; letter-spacing: -0.04em; margin-bottom: 8px; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .contact-links a { border: 1px solid var(--line); padding: 10px 14px; font-weight: 760; background: var(--card); }
 
+.shopify-page { background: var(--paper); }
+.shopify-hero { padding-bottom: 70px; }
+.shopify-board { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 38px; align-items: stretch; padding-top: 34px; }
+.shopify-copy { min-height: 520px; display: flex; flex-direction: column; justify-content: center; border: 1px solid var(--line); background: var(--card); padding: clamp(30px, 6vw, 68px); position: relative; overflow: hidden; }
+.shopify-copy > * { position: relative; z-index: 1; }
+.shopify-copy::after { content: ""; position: absolute; z-index: 0; right: -90px; top: -110px; width: 310px; height: 310px; border-radius: 50%; background: var(--acid); opacity: .8; }
+.shopify-copy h1 { max-width: 740px; }
+.shopify-ticket { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); padding: 30px; display: flex; flex-direction: column; justify-content: center; box-shadow: 12px 12px 0 var(--acid); }
+.shopify-ticket strong { display: block; font-family: Georgia, "Times New Roman", serif; font-size: clamp(74px, 8vw, 112px); line-height: .85; letter-spacing: -0.08em; color: var(--acid); }
+.shopify-ticket span { display: block; margin-top: 12px; font-size: 19px; font-weight: 850; }
+.shopify-ticket p:last-child { margin: 34px 0 0; color: rgba(245,239,228,.78); line-height: 1.5; }
+.shopify-section { padding: 84px 0; }
+.compact-title { max-width: 760px; margin-bottom: 30px; }
+.report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.report-card { min-height: 190px; background: var(--card); border: 1px solid var(--line); border-top: 6px solid var(--ink); padding: 24px; }
+.report-card h3 { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; line-height: 1.05; margin-bottom: 12px; }
+.report-card p { color: var(--muted); line-height: 1.48; margin: 0; }
+.shopify-dark { background: var(--ink-2); color: var(--paper); }
+.fit-grid { padding: 78px 0; display: grid; grid-template-columns: .95fr 1.05fr; gap: 54px; align-items: start; }
+.fit-grid h2 { color: var(--paper); }
+.fit-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.fit-list li { border: 1px solid rgba(245,239,228,.2); background: rgba(245,239,228,.06); padding: 18px 20px; font-weight: 780; }
+
 @media (max-width: 920px) {
   .nav-links { display: none; }
-  .hero-board, .split-section, .tutorful-grid, .cramblr-section, .start-grid, .contact-grid { grid-template-columns: 1fr; }
+  .hero-board, .shopify-board, .split-section, .tutorful-grid, .cramblr-section, .start-grid, .contact-grid, .fit-grid { grid-template-columns: 1fr; }
+  .report-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-copy { min-height: auto; }
   .ticket-card { box-shadow: 8px 8px 0 var(--acid); }
   .proof-grid { grid-template-columns: 1fr; }
@@ -135,7 +159,8 @@ h3 { font-size: 25px; letter-spacing: -0.04em; margin-bottom: 8px; }
   .hero-copy, .ticket-card, .contact-card { padding: 24px; }
   h1 { font-size: clamp(46px, 15vw, 64px); }
   .issue-row, .work-row { grid-template-columns: 1fr; gap: 8px; }
-  .work-grid, .first-jobs { grid-template-columns: 1fr; }
+  .work-grid, .first-jobs, .report-grid { grid-template-columns: 1fr; }
+  .shopify-copy, .shopify-ticket { min-height: auto; }
   .split-section, .tutorful-grid, .cramblr-section { padding: 62px 0; }
 }
 
