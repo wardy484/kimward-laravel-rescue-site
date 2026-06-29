@@ -9,25 +9,25 @@ const proofPoints = [
 ];
 
 const workItems = [
-  ['Modernisation', 'Framework upgrades, dependency work, testing, and legacy cleanup.'],
-  ['Product development', 'Admin tools, dashboards, imports, exports, and account workflows.'],
-  ['Payments and operations', 'Stripe, pricing changes, billing flows, refunds, and support tooling.'],
-  ['Reliability', 'Queues, scheduled jobs, mail, webhooks, and provider integrations.'],
-  ['Reviewed AI workflows', 'Internal tools where AI drafts, classifies, searches, or summarises with human review.'],
+  ['Small greenfield builds', 'Tiny apps, MVP slices, admin panels, and tools with a clear first version.'],
+  ['Feature patches', 'Contained product changes with acceptance criteria, not open-ended staff augmentation.'],
+  ['Internal tools', 'Dashboards, imports, exports, account workflows, and reporting helpers.'],
+  ['API integrations', 'One concrete flow at a time: forms, providers, exports, notifications, or data sync.'],
+  ['Reviewed AI workflows', 'Small tools where AI drafts, classifies, searches, or summarises with human review.'],
 ];
 
 const tutorfulProof = [
-  ['Laravel upgrade work', 'Led upgrade projects on a long-running production app, taking it through multiple framework generations up to Laravel 11.'],
-  ['Stripe and billing', 'Worked on checkout, refunds, pricing changes, service fees, and payment edge cases where mistakes create real support load.'],
-  ['Admin and operations', 'Built and maintained internal tools for support, reporting, account workflows, imports, and operational review.'],
-  ['Reliability work', 'Worked on queues, scheduled jobs, webhooks, notifications, and production edge cases in a live system.'],
+  ['Product engineering', 'Shipped across a long-running production marketplace with real users and operational constraints.'],
+  ['Small product slices', 'Worked on account flows, marketplace journeys, admin surfaces, and internal tools.'],
+  ['Admin and operations', 'Built and maintained tools for support, reporting, account workflows, imports, and operational review.'],
+  ['Reliability-aware delivery', 'Comfortable with queues, scheduled jobs, notifications, and provider integrations when the feature needs them.'],
 ];
 
 const firstJobs = [
-  'An upgrade or dependency problem',
-  'A Stripe, billing, or pricing change',
-  'An admin tool, report, import, or export',
-  'A queue, webhook, mail, or integration issue',
+  'A small greenfield app or MVP slice',
+  'A contained feature patch for an existing product',
+  'An admin panel, dashboard, report, import, or export',
+  'A single API integration or workflow automation',
   'A reviewed AI workflow for internal work',
 ];
 
@@ -148,9 +148,9 @@ function App() {
         <div className="hero-board">
           <div className="hero-copy">
             <p className="eyebrow">Independent software engineer · Laravel / PHP specialist</p>
-            <h1>Laravel, product and internal tooling for teams that need senior help.</h1>
+            <h1>Small web apps and product features, shipped cleanly.</h1>
             <p className="lead">
-              I work with established products: upgrades, Stripe changes, admin workflows, queues, integrations and small product builds like Cramblr.
+              I help founders and small teams ship narrow greenfield builds, feature patches, admin tools, integrations, and reviewed AI workflows without turning it into a full-time hire.
             </p>
             <div className="actions">
               <a className="button primary" href="mailto:hello@kimward.co.uk?subject=Laravel%20project%20brief">Send a project brief</a>
@@ -160,10 +160,10 @@ function App() {
 
           <aside className="ticket-card" aria-label="Good fit">
             <p className="ticket-kicker">Good fit</p>
-            <h2>Established product. Bounded engineering work. Clear delivery.</h2>
+            <h2>Small build. Clear scope. Tasteful delivery.</h2>
             <ul>
-              <li>bounded projects, not a full rebuild</li>
-              <li>senior help on scoped product work</li>
+              <li>greenfield builds with a narrow first version</li>
+              <li>small feature patches with clear acceptance criteria</li>
               <li>clear async updates with UK overlap</li>
             </ul>
           </aside>
@@ -184,9 +184,9 @@ function App() {
       <section className="shell split-section" id="work">
         <div className="section-title">
           <p className="eyebrow">The work</p>
-          <h2>Practical engineering work for live systems.</h2>
+          <h2>Scoped product engineering without the staff-augmentation drag.</h2>
           <p>
-            Useful work is often between “quick fix” and “full rebuild”: the inherited app, the risky billing change, the admin workflow, the queue that still needs to run.
+            Useful work is often a small thing that still needs senior judgment: the first version, the admin surface, the integration, or the feature patch that should not sprawl.
           </p>
         </div>
         <div className="work-list-large">
@@ -205,7 +205,7 @@ function App() {
             <p className="eyebrow">Tutorful</p>
             <h2>Experience from a real production marketplace.</h2>
             <p>
-              I spent 8 years working on Tutorful: a long-running product with live users, Stripe payments, account areas, admin workflows, background jobs, integrations, and framework upgrades.
+              I spent 8 years working on Tutorful: a long-running product with live users, account areas, marketplace flows, admin workflows, background jobs, integrations, and repeated product changes.
             </p>
           </div>
           <div className="tutorful-cards">
@@ -237,8 +237,8 @@ function App() {
         <div className="shell start-grid">
           <div>
             <p className="eyebrow">Start small</p>
-            <h2>Have a product that needs careful work?</h2>
-            <p>Send the app, the problem, and the outcome you need. I’ll reply with the likely approach, risks, and whether I’m a good fit.</p>
+            <h2>Have a small build or feature that needs careful work?</h2>
+            <p>Send the outcome, rough scope, and anything already decided. I’ll reply with the tightest useful first slice, risks, and whether I’m a good fit.</p>
           </div>
           <ul className="first-jobs">
             {firstJobs.map((item) => <li key={item}>{item}</li>)}

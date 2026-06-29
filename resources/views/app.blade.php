@@ -7,10 +7,10 @@
       $isShopifyReport = request()->path() === 'shopify-reconciliation-report';
       $pageTitle = $isShopifyReport
         ? 'Shopify reconciliation exception report - Kim Ward'
-        : 'Kim Ward - Laravel/PHP contractor for UK teams';
+        : 'Kim Ward - small web apps and product features';
       $pageDescription = $isShopifyReport
         ? 'One-off Shopify reconciliation exception report for bookkeepers and ecommerce accountants dealing with messy payouts, manual payments, A/R collections, layby payments, refunds, and review rows.'
-        : 'Independent Laravel/PHP developer for UK teams that need senior help with upgrades, Stripe, admin tools, integrations, queues, and reviewed AI workflows.';
+        : 'Independent software engineer for small greenfield builds, scoped product features, admin tools, integrations, and reviewed AI workflows.';
       $pageUrl = $isShopifyReport ? 'https://kimward.co.uk/shopify-reconciliation-report' : 'https://kimward.co.uk/';
     @endphp
     <meta name="description" content="{{ $pageDescription }}" />
@@ -36,7 +36,7 @@
         "url": "https://kimward.co.uk/",
         "email": "hello@kimward.co.uk",
         "areaServed": "United Kingdom",
-        "description": "Independent Laravel/PHP developer for UK teams that need senior help with upgrades, Stripe, admin tools, integrations, queues, and reviewed AI workflows.",
+        "description": "Independent software engineer for small greenfield builds, scoped product features, admin tools, integrations, and reviewed AI workflows.",
         "founder": {
           "@type": "Person",
           "name": "Kim Ward",
@@ -45,10 +45,10 @@
         "knowsAbout": [
           "Laravel",
           "PHP",
-          "Stripe integrations",
+          "Small greenfield builds",
+          "Feature patches",
           "Internal tools",
-          "Admin workflows",
-          "Queue and webhook reliability",
+          "API integrations",
           "Reviewed AI workflows"
         ]
       }
@@ -68,12 +68,12 @@
         </nav>
         <section>
           <p>Independent software engineer · Laravel / PHP specialist</p>
-          <h1>Laravel, product and internal tooling for teams that need senior help.</h1>
+          <h1>Small web apps and product features, shipped cleanly.</h1>
           <p>
-            I work with established products: upgrades, Stripe changes, admin workflows, queues, integrations and small product builds like Cramblr.
+            I help founders and small teams ship narrow greenfield builds, feature patches, admin tools, integrations, and reviewed AI workflows without turning it into a full-time hire.
           </p>
           <p>
-            Useful first jobs include Laravel upgrades, dependency problems, Stripe or billing changes, admin tools, reports, imports, exports, queues, webhooks, mail, integrations, and reviewed AI workflows for internal work.
+            Useful first jobs include small greenfield apps, MVP slices, feature patches, admin tools, reports, imports, exports, single integrations, and reviewed AI workflows for internal work.
           </p>
           <p><a href="mailto:hello@kimward.co.uk?subject=Laravel%20project%20brief">Send a project brief</a></p>
         </section>
