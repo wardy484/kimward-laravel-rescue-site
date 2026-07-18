@@ -5,7 +5,7 @@ import './styles.css';
 const proofPoints = [
   ['Tutorful', '8 years working on a production marketplace'],
   ['Laravel 5 → 11', 'upgrade projects across multiple framework generations'],
-  ['Cramblr', 'Thai study pages turned into reviewed Anki flashcards'],
+  ['Scoped delivery', 'builds, feature patches, internal tools, and integrations'],
 ];
 
 const workItems = [
@@ -17,10 +17,9 @@ const workItems = [
 ];
 
 const tutorfulProof = [
-  ['Product engineering', 'Shipped across a long-running production marketplace with real users and operational constraints.'],
-  ['Small product slices', 'Worked on account flows, marketplace journeys, admin surfaces, and internal tools.'],
-  ['Admin and operations', 'Built and maintained tools for support, reporting, account workflows, imports, and operational review.'],
-  ['Reliability-aware delivery', 'Comfortable with queues, scheduled jobs, notifications, and provider integrations when the feature needs them.'],
+  ['Old Laravel, live systems', 'Shipped contained changes across multiple Laravel generations while respecting existing behaviour, data, and operational constraints.'],
+  ['Stripe and pricing changes', 'Delivered scoped payment and pricing work where rollout details, edge cases, and reliable existing flows all mattered.'],
+  ['Admin and workflow backlog', 'Turned operational backlog into focused admin tools and workflow improvements that reduced repetitive work.'],
 ];
 
 const firstJobs = [
@@ -140,7 +139,6 @@ function App() {
           <div className="nav-links">
             <a href="#work">Work</a>
             <a href="#tutorful">Tutorful</a>
-            <a href="#cramblr">Cramblr</a>
             <a href="#contact">Contact</a>
           </div>
         </nav>
@@ -203,9 +201,9 @@ function App() {
         <div className="shell tutorful-grid">
           <div className="tutorful-intro">
             <p className="eyebrow">Tutorful</p>
-            <h2>Experience from a real production marketplace.</h2>
+            <h2>Proof from long-running Laravel product work.</h2>
             <p>
-              I spent 8 years working on Tutorful: a long-running product with live users, account areas, marketplace flows, admin workflows, background jobs, integrations, and repeated product changes.
+              Eight years of shipping careful, scoped changes in a live product: maintaining older Laravel code, changing commercial flows, and improving operational tooling.
             </p>
           </div>
           <div className="tutorful-cards">
@@ -216,20 +214,6 @@ function App() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="shell cramblr-section" id="cramblr">
-        <div className="cramblr-media">
-          <img src="/cramblr-home.png" alt="Cramblr homepage showing Thai study pages turned into trusted flashcards" />
-        </div>
-        <div className="cramblr-copy">
-          <p className="eyebrow">Selected work</p>
-          <h2>Cramblr</h2>
-          <p>
-            Cramblr turns Thai study pages into reviewed Anki flashcards. Learners upload study material, AI drafts the cards, a human review step improves them, and the finished deck exports ready for Anki.
-          </p>
-          <a href="https://cramblr.com">cramblr.com</a>
         </div>
       </section>
 

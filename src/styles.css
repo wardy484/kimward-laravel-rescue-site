@@ -91,6 +91,7 @@ h3 { font-size: 25px; letter-spacing: -0.04em; margin-bottom: 8px; }
 .tutorful-grid { padding: 86px 0; display: grid; grid-template-columns: .88fr 1.12fr; gap: 52px; align-items: start; }
 .tutorful-intro p:not(.eyebrow) { color: #4d5a52; font-size: 19px; line-height: 1.58; }
 .tutorful-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.tutorful-cards .proof-card:last-child { grid-column: span 2; }
 .proof-card { background: var(--card); border: 1px solid var(--line); padding: 24px; min-height: 210px; }
 .proof-card h3 { font-family: Georgia, "Times New Roman", serif; font-size: 30px; line-height: 1; }
 .proof-card p { color: var(--muted); line-height: 1.52; margin-bottom: 0; }

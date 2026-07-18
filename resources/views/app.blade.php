@@ -77,6 +77,22 @@
           </p>
           <p><a href="mailto:hello@kimward.co.uk?subject=Laravel%20project%20brief">Send a project brief</a></p>
         </section>
+        <section id="tutorful">
+          <p>Tutorful</p>
+          <h2>Proof from long-running Laravel product work.</h2>
+          <article>
+            <h3>Old Laravel, live systems</h3>
+            <p>Shipped contained changes across multiple Laravel generations while respecting existing behaviour, data, and operational constraints.</p>
+          </article>
+          <article>
+            <h3>Stripe and pricing changes</h3>
+            <p>Delivered scoped payment and pricing work where rollout details, edge cases, and reliable existing flows all mattered.</p>
+          </article>
+          <article>
+            <h3>Admin and workflow backlog</h3>
+            <p>Turned operational backlog into focused admin tools and workflow improvements that reduced repetitive work.</p>
+          </article>
+        </section>
       </main>
     </div>
   </body>
