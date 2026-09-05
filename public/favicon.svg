@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kim Ward logo">
-  <rect width="64" height="64" rx="10" fill="#f4f0e8"/>
-  <g transform="translate(32 32) rotate(-3) translate(-32 -32)">
-    <rect x="9" y="9" width="46" height="46" fill="#d7ff63" stroke="#111513" stroke-width="3"/>
-    <text x="32" y="39" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900" letter-spacing="-2" fill="#111513">KW</text>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#f8f6f0"/><path fill="#a43e26" d="M29 7h6l2 18L49 11l4 4-13 13 18 1v6l-18 2 14 12-4 4-13-13-2 18h-6l-2-18-12 14-4-4 13-13-18-2v-6l18-2L10 15l4-4 13 13z"/><circle cx="32" cy="32" r="5" fill="#f8f6f0"/></svg>
