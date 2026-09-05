@@ -5,15 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f6f7f4">
-    <title>Kim Ward — Software developer & maker</title>
+    <title>Kim Ward — Laravel & Flutter Developer</title>
     <meta name="description"
-        content="I'm Kim, a British software developer with a soft spot for Laravel. I build web products, useful tools and things that make life a little simpler.">
+        content="I'm Kim Ward, a British software developer working with Laravel and Flutter. Explore my work on Tutorful, Strong Girl Society and Plates & Plans.">
     <link rel="canonical" href="https://kimward.co.uk/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kimward.co.uk/">
-    <meta property="og:title" content="Kim Ward — Software developer & maker">
+    <meta property="og:site_name" content="Kim Ward">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:title" content="Kim Ward — Laravel & Flutter Developer">
     <meta property="og:description"
-        content="Web products, useful tools and a soft spot for Laravel. A little about me and the things I build.">
+        content="I'm Kim Ward, a British software developer working with Laravel and Flutter. Explore my work on Tutorful, Strong Girl Society and Plates & Plans.">
     <meta property="og:image" content="https://kimward.co.uk/social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -32,15 +34,39 @@
         @verbatim
         {
             "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Kim Ward",
-            "url": "https://kimward.co.uk/",
-            "jobTitle": "Software developer",
-            "email": "hello@kimward.co.uk",
-            "sameAs": [
-                "https://github.com/wardy484",
-                "https://www.linkedin.com/in/kim-ward-90884643",
-                "https://www.upwork.com/freelancers/kimward4"
+            "@graph": [
+                {
+                    "@type": "WebSite",
+                    "@id": "https://kimward.co.uk/#website",
+                    "url": "https://kimward.co.uk/",
+                    "name": "Kim Ward",
+                    "inLanguage": "en-GB",
+                    "publisher": { "@id": "https://kimward.co.uk/#person" }
+                },
+                {
+                    "@type": "ProfilePage",
+                    "@id": "https://kimward.co.uk/#profile",
+                    "url": "https://kimward.co.uk/",
+                    "name": "Kim Ward — Laravel & Flutter Developer",
+                    "inLanguage": "en-GB",
+                    "isPartOf": { "@id": "https://kimward.co.uk/#website" },
+                    "mainEntity": { "@id": "https://kimward.co.uk/#person" }
+                },
+                {
+                    "@type": "Person",
+                    "@id": "https://kimward.co.uk/#person",
+                    "name": "Kim Ward",
+                    "url": "https://kimward.co.uk/",
+                    "image": "https://kimward.co.uk/images/kim-ward.png",
+                    "jobTitle": "Software developer",
+                    "description": "British software developer working across Laravel, web products and mobile apps.",
+                    "email": "hello@kimward.co.uk",
+                    "sameAs": [
+                        "https://github.com/wardy484",
+                        "https://www.linkedin.com/in/kim-ward-90884643",
+                        "https://www.upwork.com/freelancers/kimward4"
+                    ]
+                }
             ]
         }
         @endverbatim

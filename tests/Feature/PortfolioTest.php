@@ -20,11 +20,21 @@ class PortfolioTest extends TestCase
 
     public function test_the_portfolio_has_personal_metadata_for_the_canonical_domain(): void
     {
-        $this->get('/')
+        $response = $this->get('/')
             ->assertOk()
+            ->assertSee('<title>Kim Ward — Laravel & Flutter Developer</title>', false)
             ->assertSee('<link rel="canonical" href="https://kimward.co.uk/">', false)
-            ->assertSee('"@type": "Person"', false)
             ->assertSee('https://kimward.co.uk/social-card.png', false);
+
+        preg_match('/<script type="application\/ld\+json">(.*?)<\/script>/s', $response->getContent(), $matches);
+
+        $schema = json_decode($matches[1], true, flags: JSON_THROW_ON_ERROR);
+        $entities = collect($schema['@graph'])->keyBy('@type');
+
+        $this->assertSame('Kim Ward', $entities['Person']['name']);
+        $this->assertSame($entities['Person']['@id'], $entities['ProfilePage']['mainEntity']['@id']);
+        $this->assertSame($entities['WebSite']['@id'], $entities['ProfilePage']['isPartOf']['@id']);
+        $this->assertSame('https://kimward.co.uk/', $entities['WebSite']['url']);
     }
 
     public function test_the_retired_service_page_is_no_longer_available(): void

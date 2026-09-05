@@ -53,7 +53,20 @@ portfolio. Keep Laravel Cloud's `/up` health check. Configure `kimward.co.uk` as
 the custom domain in Cloud, using the DNS records supplied there.
 
 The old Shopify report route and service content have been removed. The sitemap,
-canonical URL, social card and Person structured data describe the new homepage.
+canonical URL, social card and linked WebSite, ProfilePage and Person structured
+data describe the new homepage.
+
+## Google Search
+
+The homepage uses a descriptive Laravel/Flutter title and summary, one canonical
+HTTPS URL, crawlable HTML and structured data linking Kim's profile to the site.
+`public/robots.txt` allows crawling and points to `public/sitemap.xml`, which lists
+the homepage. Update the sitemap when adding public pages.
+
+After deployment, verify the `kimward.co.uk` domain property in Google Search
+Console, submit `https://kimward.co.uk/sitemap.xml`, and inspect the homepage URL
+to request indexing. Domain verification needs the DNS TXT value supplied by
+Search Console. Monitor indexing and Core Web Vitals there once data is available.
 
 ## Content and assets
 
