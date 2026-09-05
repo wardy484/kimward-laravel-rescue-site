@@ -59,8 +59,11 @@ canonical URL, social card and Person structured data describe the new homepage.
 
 - Public contact: `hello@kimward.co.uk`.
 - Tutorful describes Kim's product work, without private metrics or customer data.
-- Envoyer Deploy and ShipLog link to their public source repositories.
+- Case studies cover Tutorful, Strong Girl Society, Plates & Plans and Fulfiliates.
+  Copy and images come from Kim’s prepared Upwork portfolio asset pack.
+  Each entry distinguishes Kim’s engineering contribution from the wider product.
 - Profile photo: Kim's public [Upwork profile](https://www.upwork.com/freelancers/kimward4).
-- Project illustrations are original code-based artwork, not product screenshots.
+- Case-study images are supplied portfolio exports of product screenshots.
+  The hero mark and social card are original code-based artwork.
 - DM Sans and Instrument Serif are self-hosted under their included OFL licences
   in `public/fonts/`.

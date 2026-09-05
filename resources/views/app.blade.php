@@ -22,9 +22,12 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="preload" href="{{ Vite::asset('public/fonts/dm-sans-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ Vite::asset('public/fonts/instrument-serif-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ Vite::asset('public/fonts/instrument-serif-italic-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ Vite::asset('public/fonts/dm-sans-latin.woff2') }}" as="font" type="font/woff2"
+        crossorigin>
+    <link rel="preload" href="{{ Vite::asset('public/fonts/instrument-serif-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ Vite::asset('public/fonts/instrument-serif-italic-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
     <script type="application/ld+json">
         @verbatim
         {
@@ -97,77 +100,89 @@
             <div class="section-heading">
                 <div>
                     <p class="eyebrow"><span>01</span> Selected work</p>
-                    <h2 id="work-title">Built, shipped,<br><em>still improving.</em></h2>
+                    <h2 id="work-title">A few things<br><em>I’ve worked on.</em></h2>
                 </div>
-                <p>A mix of day-to-day product engineering,<br class="desktop-break"> open-source tools and things
-                    built out of curiosity.</p>
+                <p>From a tutoring marketplace to mobile apps,<br class="desktop-break"> and the tools behind a
+                    business.</p>
             </div>
-            <article class="featured-project">
-                <div class="tutorful-art" aria-hidden="true">
-                    <span class="project-art-label">tutorful<span>↗</span></span>
-                    <div class="learning-art"><span class="learning-word">Room to<br><i>grow.</i></span><svg
-                            viewBox="0 0 220 240" class="growing-shape" fill="none">
-                            <path d="M110 232V44" stroke="currentColor" stroke-width="3" />
-                            <path d="M110 158C35 160 11 112 17 65c54-1 97 30 93 93Z" fill="#bccdb4" />
-                            <path d="M111 203c70 0 98-42 92-89-56 0-97 35-92 89Z" fill="#dce3c8" />
-                            <path d="M110 99C64 84 57 36 75 8c40 14 62 58 35 91Z" fill="#e7b78b" />
-                            <path d="M110 160 40 91m70 111 70-62M110 99 82 34" stroke="#284e3d" stroke-width="2" />
-                        </svg></div>
-                    <div class="art-footer"><span>PEOPLE × LEARNING × SOFTWARE</span><span>01 / PRODUCT</span></div>
+            <article class="featured-project case-study" aria-labelledby="tutorful-title">
+                <div class="case-study-image"><img src="/images/projects/tutorful.png" width="1000" height="750"
+                        loading="lazy" decoding="async"
+                        alt="Tutorful product screenshots showing tutor search, messaging and lesson scheduling.">
                 </div>
                 <div class="featured-copy">
-                    <p class="eyebrow">Ongoing · Product engineering</p>
-                    <h3>Tutorful</h3>
-                    <p>Software that helps people find the right tutor and keep learning.</p>
-                    <p>I work on the product behind it: evolving an established Laravel application, improving everyday
-                        workflows and making changes that hold up in a live system.</p>
-                    <div class="tags"><span>Laravel</span><span>PHP</span><span>Product development</span></div><a
-                        class="text-link" href="https://tutorful.co.uk/">Visit Tutorful <span
+                    <p class="eyebrow">Lead Software Engineer · Ongoing</p>
+                    <h3 id="tutorful-title">Tutorful</h3>
+                    <p>Hands-on engineering across a live tutoring marketplace.</p>
+                    <p>I joined Tutorful in 2018 and moved into a Lead Software Engineer role in 2021. My work spans
+                        booking and pricing, Stripe billing, messaging, onboarding, APIs and the admin tools that
+                        support the team.</p>
+                    <p class="contribution-note">It’s sustained product work: making useful changes, testing them
+                        properly and keeping an established application running well.</p>
+                    <div class="tags"><span>Laravel</span><span>Vue.js</span><span>MySQL</span><span>Stripe</span>
+                    </div>
+                    <a class="text-link" href="https://tutorful.co.uk/">Visit Tutorful <span
                             aria-hidden="true">↗</span></a>
                 </div>
             </article>
-            <div class="project-grid">
-                <article class="project">
-                    <div class="project-visual deploy-art" aria-hidden="true">
-                        <div class="terminal" aria-hidden="true">
-                            <div class="terminal-top"><span></span><span></span><span></span>
-                                <p>your next deployment</p>
-                            </div>
-                            <div class="terminal-code"><span>~/your-project</span>
-                                <p><b>❯</b> php artisan envoyer:deploy</p>
-                                <div class="terminal-rule"></div>
-                                <p class="terminal-caption">One less trip to the browser.<span>↗</span></p>
-                            </div>
-                        </div>
-                        <span class="visual-index" aria-hidden="true">02 / DEVELOPER TOOLING</span>
-                    </div>
-                    <div class="project-title">
-                        <h3><a href="https://github.com/wardy484/envoyer-deploy">Envoyer Deploy</a></h3><span
-                            aria-hidden="true">↗</span>
-                    </div>
-                    <p>A small Laravel package to trigger Envoyer deployments from Artisan. Built to make a familiar
-                        task a little simpler.</p>
-                    <div class="tags"><span>Open source</span><span>Laravel package</span></div>
-                </article>
-                <article class="project">
-                    <div class="project-visual shiplog-art" aria-hidden="true">
-                        <div class="workflow" aria-hidden="true">
-                            <p class="workflow-heading">Small change.<br><em>Clear evidence.</em></p>
-                            <div class="workflow-steps">
-                                <span>01<br><b>Issue</b></span><i>→</i><span>02<br><b>Build</b></span><i>→</i><span>03<br><b>Review</b></span>
-                            </div>
-                        </div>
-                        <span class="visual-index" aria-hidden="true">03 / EXPLORATION</span>
-                    </div>
-                    <div class="project-title">
-                        <h3><a href="https://github.com/wardy484/agent-pr-proof-demo">ShipLog</a></h3><span
-                            aria-hidden="true">↗</span>
-                    </div>
-                    <p>A small Laravel demo exploring how coding agents can take a focused issue through to a reviewable
-                        pull request, with tests and visual evidence.</p>
-                    <div class="tags"><span>Experiment</span><span>Laravel</span><span>AI workflows</span></div>
-                </article>
-            </div>
+            <article class="featured-project case-study" aria-labelledby="sgs-title">
+                <div class="case-study-image"><img src="/images/projects/sgs.png" width="1000" height="750"
+                        loading="lazy" decoding="async"
+                        alt="Strong Girl Society app screenshots showing training programmes, community and activity tracking.">
+                </div>
+                <div class="featured-copy">
+                    <p class="eyebrow">Laravel backend developer</p>
+                    <h3 id="sgs-title">Strong Girl Society</h3>
+                    <p>Stabilising the backend of an existing fitness app.</p>
+                    <p>I took over the Laravel backend and worked alongside the mobile developer on training programmes,
+                        recipes, community features and integrations including Strava and RevenueCat. The work involved
+                        fixing unfinished functionality and making the backend more dependable.</p>
+                    <p class="contribution-note">My contribution was to the backend. The React Native interface shown
+                        here was built by the mobile team.</p>
+                    <div class="tags"><span>Laravel</span><span>PHP</span><span>API
+                            integrations</span><span>Debugging</span></div>
+                    <a class="text-link" href="https://apps.apple.com/us/app/sgs/id6738397927">View the app <span
+                            aria-hidden="true">↗</span></a>
+                </div>
+            </article>
+            <article class="featured-project case-study" aria-labelledby="plates-and-plans-title">
+                <div class="case-study-image"><img src="/images/projects/plates-and-plans.png" width="1000"
+                        height="750" loading="lazy" decoding="async"
+                        alt="Plates and Plans app screenshots showing weekly meal plans, daily check-ins and recipes.">
+                </div>
+                <div class="featured-copy">
+                    <p class="eyebrow">Full-stack mobile developer</p>
+                    <h3 id="plates-and-plans-title">Plates & Plans</h3>
+                    <p>A nutrition and meal-planning app, built with Flutter and Laravel.</p>
+                    <p>I built most of the mobile app before handover: implementing supplied designs in Flutter,
+                        building the Laravel APIs and product logic, and integrating RevenueCat subscriptions.</p>
+                    <p class="contribution-note">My work was on the mobile app. These screenshots show the released
+                        product, which may include changes made after handover.</p>
+                    <div class="tags"><span>Flutter</span><span>Laravel</span><span>RevenueCat</span><span>API
+                            development</span></div>
+                    <a class="text-link" href="https://apps.apple.com/ca/app/plates-plans/id6756631706">View the app
+                        <span aria-hidden="true">↗</span></a>
+                </div>
+            </article>
+            <article class="featured-project case-study" aria-labelledby="fulfiliates-title">
+                <div class="case-study-image"><img src="/images/projects/fulfiliates.png" width="1000"
+                        height="750" loading="lazy" decoding="async"
+                        alt="Fulfiliates supplier portal showing hired products, quote requests and product totals.">
+                </div>
+                <div class="featured-copy">
+                    <p class="eyebrow">Full-stack developer</p>
+                    <h3 id="fulfiliates-title">Fulfiliates</h3>
+                    <p>A supplier portal for an equipment-hire network.</p>
+                    <p>I turned client-supplied designs into working product flows: authentication, business onboarding,
+                        team and depot management, product listings, pricing and availability, uploads, quote tracking
+                        and an operational dashboard.</p>
+                    <p class="contribution-note">The focus was on the engineering behind the screens: forms,
+                        validation, data models and business workflows that fit together.</p>
+                    <div class="tags"><span>Supplier portal</span><span>Authentication</span><span>Business
+                            workflows</span></div>
+
+                </div>
+            </article>
             <div class="work-footer"><span>There’s usually something else on the go.</span><a class="text-link"
                     href="https://github.com/wardy484">Have a look around my GitHub <span
                         aria-hidden="true">↗</span></a></div>

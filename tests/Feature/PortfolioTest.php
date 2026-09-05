@@ -13,8 +13,9 @@ class PortfolioTest extends TestCase
             ->assertSee('Thoughtful code.')
             ->assertSee('Useful things.')
             ->assertSee('mailto:hello@kimward.co.uk', false)
-            ->assertSee('https://github.com/wardy484/envoyer-deploy', false)
-            ->assertSee('https://github.com/wardy484/agent-pr-proof-demo', false)
+            ->assertSee('Strong Girl Society')
+            ->assertSee('Plates & Plans', false)
+            ->assertSee('Fulfiliates')
             ->assertSee('https://www.upwork.com/freelancers/kimward4', false);
     }
 
