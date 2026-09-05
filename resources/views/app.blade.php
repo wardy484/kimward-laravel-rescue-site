@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8f6f0">
+    <meta name="theme-color" content="#f6f7f4">
     <title>Kim Ward — Software developer & maker</title>
     <meta name="description"
         content="I'm Kim, a British software developer with a soft spot for Laravel. I build web products, useful tools and things that make life a little simpler.">
@@ -17,7 +17,7 @@
     <meta property="og:image" content="https://kimward.co.uk/social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Kim Ward. Software developer and maker. Thoughtful code. Useful things.">
+    <meta property="og:image:alt" content="Kim Ward. Software developer. Laravel, web products and mobile apps.">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -51,11 +51,7 @@
 <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header shell">
-        <a class="brand" href="#top" aria-label="Kim Ward, home">kim ward<svg viewBox="0 0 300 300"
-                aria-hidden="true">
-                <path fill="currentColor"
-                    d="M135 18h30l9 91 59-70 22 22-64 66 91 8v30l-91 9 70 59-22 22-66-64-8 91h-30l-9-91-59 70-22-22 64-66-91-8v-30l91-9-70-59 22-22 66 64z" />
-            </svg></a>
+        <a class="brand" href="#top" aria-label="Kim Ward, home">Kim Ward</a>
         <nav aria-label="Main navigation">
             <a href="#work">Work</a>
             <a href="#about">About</a>
@@ -66,28 +62,31 @@
         <section class="hero shell" aria-labelledby="hero-title">
             <div class="hero-intro"><img src="/images/kim-ward.png" alt="" width="48" height="48"
                     fetchpriority="high">
-                <p>Hi, I’m Kim.<br><span>Software developer & maker</span></p>
+                <p>Software developer<br><span>Laravel · Web · Mobile</span></p>
             </div>
             <div class="hero-grid">
                 <div>
-                    <h1 id="hero-title">Thoughtful code.<br><em>Useful things.</em></h1>
-                    <p class="hero-description">I’m a British developer who enjoys turning a good idea into something
-                        people can actually use. Mostly with Laravel. Always with care.</p>
+                    <h1 id="hero-title">Hi, I’m Kim.<br><em>I build software.</em></h1>
+                    <p class="hero-description">I’m a British developer working across Laravel, web products and mobile
+                        apps. I like making complicated things simpler, and building software that earns its place in
+                        someone’s day.</p>
                     <div class="hero-actions"><a class="button" href="#work">A few things I’ve worked on <span
                                 aria-hidden="true">↓</span></a><a class="text-link" href="#about">A little about me
                             <span aria-hidden="true">↗</span></a></div>
                 </div>
-                <div class="maker-art" aria-hidden="true">
-                    <div class="art-orbit orbit-one"></div>
-                    <div class="art-orbit orbit-two"></div>
-                    <svg class="maker-flower" viewBox="0 0 300 300" fill="none">
-                        <path fill="currentColor"
-                            d="M135 18h30l9 91 59-70 22 22-64 66 91 8v30l-91 9 70 59-22 22-66-64-8 91h-30l-9-91-59 70-22-22 64-66-91-8v-30l91-9-70-59 22-22 66 64z" />
-                        <circle cx="150" cy="150" r="24" fill="#f8f6f0" />
-                    </svg>
-                    <span class="art-note">A little curiosity goes a long way.</span>
-                    <span class="art-coordinate">KW — A WORK IN PROGRESS</span>
-                </div>
+                <figure class="hero-project">
+                    <a class="hero-project-link" href="#plates-and-plans-title"
+                        aria-label="Read about my work on Plates & Plans">
+                        <div class="hero-screens" aria-hidden="true">
+                            <img class="hero-screen hero-screen-back" src="/images/projects/plates-week-plan.webp"
+                                width="500" height="954" alt="" fetchpriority="high">
+                            <img class="hero-screen hero-screen-front" src="/images/projects/plates-recipes.webp"
+                                width="500" height="952" alt="" fetchpriority="high">
+                        </div>
+                    </a>
+                    <figcaption><span>Plates & Plans</span><span>Flutter + Laravel <span
+                                aria-hidden="true">↗</span></span></figcaption>
+                </figure>
             </div>
             <div class="hero-footnote">
                 <p><span class="status-dot" aria-hidden="true"></span> Currently building at <a
@@ -102,8 +101,7 @@
                     <p class="eyebrow"><span>01</span> Selected work</p>
                     <h2 id="work-title">A few things<br><em>I’ve worked on.</em></h2>
                 </div>
-                <p>From a tutoring marketplace to mobile apps,<br class="desktop-break"> and the tools behind a
-                    business.</p>
+                <p>Product engineering for a tutoring marketplace,<br class="desktop-break"> a fitness app and a meal-planning app.</p>
             </div>
             <article class="featured-project case-study" aria-labelledby="tutorful-title">
                 <div class="case-study-image"><img src="/images/projects/tutorful.png" width="1000" height="750"
@@ -162,25 +160,6 @@
                             development</span></div>
                     <a class="text-link" href="https://apps.apple.com/ca/app/plates-plans/id6756631706">View the app
                         <span aria-hidden="true">↗</span></a>
-                </div>
-            </article>
-            <article class="featured-project case-study" aria-labelledby="fulfiliates-title">
-                <div class="case-study-image"><img src="/images/projects/fulfiliates.png" width="1000"
-                        height="750" loading="lazy" decoding="async"
-                        alt="Fulfiliates supplier portal showing hired products, quote requests and product totals.">
-                </div>
-                <div class="featured-copy">
-                    <p class="eyebrow">Full-stack developer</p>
-                    <h3 id="fulfiliates-title">Fulfiliates</h3>
-                    <p>A supplier portal for an equipment-hire network.</p>
-                    <p>I turned client-supplied designs into working product flows: authentication, business onboarding,
-                        team and depot management, product listings, pricing and availability, uploads, quote tracking
-                        and an operational dashboard.</p>
-                    <p class="contribution-note">The focus was on the engineering behind the screens: forms,
-                        validation, data models and business workflows that fit together.</p>
-                    <div class="tags"><span>Supplier portal</span><span>Authentication</span><span>Business
-                            workflows</span></div>
-
                 </div>
             </article>
             <div class="work-footer"><span>There’s usually something else on the go.</span><a class="text-link"
@@ -251,10 +230,6 @@
             <div class="shell">
                 <div class="contact-top">
                     <p class="eyebrow"><span>04</span> Get in touch</p>
-                    <svg class="contact-star" viewBox="0 0 300 300" aria-hidden="true">
-                        <path fill="currentColor"
-                            d="M135 18h30l9 91 59-70 22 22-64 66 91 8v30l-91 9 70 59-22 22-66-64-8 91h-30l-9-91-59 70-22-22 64-66-91-8v-30l91-9-70-59 22-22 66 64z" />
-                    </svg>
                 </div>
                 <h2 id="contact-title">Something in mind?<br><em>Let’s have a chat.</em></h2>
                 <p>A project, a question, or just a shared interest.<br>You’re welcome to drop me a line.</p><a
@@ -270,11 +245,8 @@
             </div>
         </section>
     </main>
-    <footer class="site-footer shell"><a class="brand" href="#top" aria-label="Kim Ward, back to top">kim
-            ward<svg viewBox="0 0 300 300" aria-hidden="true">
-                <path fill="currentColor"
-                    d="M135 18h30l9 91 59-70 22 22-64 66 91 8v30l-91 9 70 59-22 22-66-64-8 91h-30l-9-91-59 70-22-22 64-66-91-8v-30l91-9-70-59 22-22 66 64z" />
-            </svg></a>
+    <footer class="site-footer shell"><a class="brand" href="#top" aria-label="Kim Ward, back to top">Kim
+            Ward</a>
         <p>© {{ date('Y') }} Kim Ward</p><a class="back-top" href="#top">Back to top <span
                 aria-hidden="true">↑</span></a>
     </footer>

@@ -10,12 +10,11 @@ class PortfolioTest extends TestCase
     {
         $this->get('/')
             ->assertOk()
-            ->assertSee('Thoughtful code.')
-            ->assertSee('Useful things.')
+            ->assertSee('Hi, I’m Kim.', false)
+            ->assertSee('I build software.')
             ->assertSee('mailto:hello@kimward.co.uk', false)
             ->assertSee('Strong Girl Society')
             ->assertSee('Plates & Plans', false)
-            ->assertSee('Fulfiliates')
             ->assertSee('https://www.upwork.com/freelancers/kimward4', false);
     }
 
