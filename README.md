@@ -58,7 +58,7 @@ data describe the new homepage.
 
 ## Google Search
 
-The homepage uses a descriptive Laravel/Flutter title and summary, one canonical
+The homepage uses a descriptive Laravel and AI title and summary, one canonical
 HTTPS URL, crawlable HTML and structured data linking Kim's profile to the site.
 `public/robots.txt` allows crawling and points to `public/sitemap.xml`, which lists
 the homepage. Update the sitemap when adding public pages.
