@@ -22,7 +22,7 @@ class PortfolioTest extends TestCase
     {
         $response = $this->get('/')
             ->assertOk()
-            ->assertSee('<title>Kim Ward — Laravel & Flutter Developer</title>', false)
+            ->assertSee('<title>Kim Ward | Laravel & AI Developer</title>', false)
             ->assertSee('<link rel="canonical" href="https://kimward.co.uk/">', false)
             ->assertSee('https://kimward.co.uk/social-card.png', false);
 

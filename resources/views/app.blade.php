@@ -4,18 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f6f7f4">
-    <title>Kim Ward — Laravel & Flutter Developer</title>
+    <meta name="theme-color" content="#fff8ef">
+    <title>Kim Ward | Laravel & AI Developer</title>
     <meta name="description"
-        content="I'm Kim Ward, a British software developer working with Laravel and Flutter. Explore my work on Tutorful, Strong Girl Society and Plates & Plans.">
+        content="I'm Kim Ward, a UK developer who helps businesses solve problems with software. Laravel specialist, building with AI every day.">
     <link rel="canonical" href="https://kimward.co.uk/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kimward.co.uk/">
     <meta property="og:site_name" content="Kim Ward">
     <meta property="og:locale" content="en_GB">
-    <meta property="og:title" content="Kim Ward — Laravel & Flutter Developer">
+    <meta property="og:title" content="Kim Ward | Laravel & AI Developer">
     <meta property="og:description"
-        content="I'm Kim Ward, a British software developer working with Laravel and Flutter. Explore my work on Tutorful, Strong Girl Society and Plates & Plans.">
+        content="I'm Kim Ward, a UK developer who helps businesses solve problems with software. Laravel specialist, building with AI every day.">
     <meta property="og:image" content="https://kimward.co.uk/social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -47,7 +47,7 @@
                     "@type": "ProfilePage",
                     "@id": "https://kimward.co.uk/#profile",
                     "url": "https://kimward.co.uk/",
-                    "name": "Kim Ward — Laravel & Flutter Developer",
+                    "name": "Kim Ward | Laravel & AI Developer",
                     "inLanguage": "en-GB",
                     "isPartOf": { "@id": "https://kimward.co.uk/#website" },
                     "mainEntity": { "@id": "https://kimward.co.uk/#person" }
@@ -59,7 +59,7 @@
                     "url": "https://kimward.co.uk/",
                     "image": "https://kimward.co.uk/images/kim-ward.png",
                     "jobTitle": "Software developer",
-                    "description": "British software developer working across Laravel, web products and mobile apps.",
+                    "description": "UK developer who helps businesses solve problems with software. Laravel specialist, building with AI.",
                     "email": "hello@kimward.co.uk",
                     "sameAs": [
                         "https://github.com/wardy484",
@@ -77,204 +77,184 @@
 <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header shell">
-        <a class="brand" href="#top" aria-label="Kim Ward, home">Kim Ward</a>
+        <a class="brand" href="#top" aria-label="Kim Ward, home">
+            <span class="brand-mark" aria-hidden="true">K</span>
+            Kim Ward
+        </a>
         <nav aria-label="Main navigation">
             <a href="#work">Work</a>
             <a href="#about">About</a>
-            <a class="nav-contact" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
+            <a class="nav-contact" href="#contact">Say hello</a>
         </nav>
     </header>
     <main id="main" tabindex="-1">
         <section class="hero shell" aria-labelledby="hero-title">
-            <div class="hero-intro"><img src="/images/kim-ward.png" alt="" width="48" height="48"
-                    fetchpriority="high">
-                <p>Software developer<br><span>Laravel · Web · Mobile</span></p>
-            </div>
-            <div class="hero-grid">
-                <div>
-                    <h1 id="hero-title">Hi, I’m Kim.<br><em>I build software.</em></h1>
-                    <p class="hero-description">I’m a British developer working across Laravel, web products and mobile
-                        apps. I like making complicated things simpler, and building software that earns its place in
-                        someone’s day.</p>
-                    <div class="hero-actions"><a class="button" href="#work">A few things I’ve worked on <span
-                                aria-hidden="true">↓</span></a><a class="text-link" href="#about">A little about me
-                            <span aria-hidden="true">↗</span></a></div>
+            <div class="hero-copy">
+                <p class="hello-pill"><span class="status-dot" aria-hidden="true"></span> Lead engineer at <a
+                        href="https://tutorful.co.uk/">Tutorful</a></p>
+                <h1 id="hero-title">Hi, I’m Kim.<br><em>I build software.</em></h1>
+                <p class="hero-description">I help businesses solve problems with software. Tell me what’s getting
+                    in the way and I’ll find the simplest fix.</p>
+                <p class="hero-description">Need a specialist? Laravel is my home ground, with Vue and Flutter
+                    alongside. And I build with AI coding agents every day.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#work">See my work <span aria-hidden="true">↓</span></a>
+                    <a class="button button-soft" href="#contact">Say hello</a>
                 </div>
-                <figure class="hero-project">
-                    <a class="hero-project-link" href="#plates-and-plans-title"
-                        aria-label="Read about my work on Plates & Plans">
-                        <div class="hero-screens" aria-hidden="true">
-                            <img class="hero-screen hero-screen-back" src="/images/projects/plates-week-plan.webp"
-                                width="500" height="954" alt="" fetchpriority="high">
-                            <img class="hero-screen hero-screen-front" src="/images/projects/plates-recipes.webp"
-                                width="500" height="952" alt="" fetchpriority="high">
-                        </div>
-                    </a>
-                    <figcaption><span>Plates & Plans</span><span>Flutter + Laravel <span
-                                aria-hidden="true">↗</span></span></figcaption>
-                </figure>
+                <ul class="stack" aria-label="Things I work with">
+                    <li class="peach">Laravel</li>
+                    <li class="mint">Flutter</li>
+                    <li class="lilac">Vue</li>
+                    <li class="butter">Stripe</li>
+                    <li class="sky">APIs</li>
+                    <li class="peach">Testing</li>
+                    <li class="mint">AI</li>
+                </ul>
             </div>
-            <div class="hero-footnote">
-                <p><span class="status-dot" aria-hidden="true"></span> Currently building at <a
-                        href="https://tutorful.co.uk/">Tutorful <span aria-hidden="true">↗</span></a></p>
-                <p>Laravel at heart. Curious by nature.</p>
-            </div>
+            <a class="hero-project" href="#plates-and-plans-title" aria-label="Read about my work on Plates & Plans">
+                <span class="blob blob-one" aria-hidden="true"></span>
+                <span class="blob blob-two" aria-hidden="true"></span>
+                <span class="hero-screens" aria-hidden="true">
+                    <img class="hero-screen hero-screen-back" src="/images/projects/plates-week-plan.webp"
+                        width="500" height="954" alt="" fetchpriority="high">
+                    <img class="hero-screen hero-screen-front" src="/images/projects/plates-recipes.webp"
+                        width="500" height="952" alt="" fetchpriority="high">
+                </span>
+                <span class="hero-project-label">Plates & Plans · Flutter + Laravel <span aria-hidden="true">↗</span></span>
+            </a>
         </section>
 
         <section class="work-section shell section-space" id="work" aria-labelledby="work-title">
             <div class="section-heading">
-                <div>
-                    <p class="eyebrow"><span>01</span> Selected work</p>
-                    <h2 id="work-title">A few things<br><em>I’ve worked on.</em></h2>
-                </div>
-                <p>Product engineering for a tutoring marketplace,<br class="desktop-break"> a fitness app and a meal-planning app.</p>
+                <p class="eyebrow">Selected work</p>
+                <h2 id="work-title">Things I’ve <em>worked on.</em></h2>
             </div>
-            <article class="featured-project case-study" aria-labelledby="tutorful-title">
-                <div class="case-study-image"><img src="/images/projects/tutorful.png" width="1000" height="750"
+
+            <article class="project project-peach" aria-labelledby="tutorful-title">
+                <div class="project-image"><img src="/images/projects/tutorful.png" width="1000" height="750"
                         loading="lazy" decoding="async"
                         alt="Tutorful product screenshots showing tutor search, messaging and lesson scheduling.">
                 </div>
-                <div class="featured-copy">
-                    <p class="eyebrow">Lead Software Engineer · Ongoing</p>
+                <div class="project-copy">
+                    <p class="eyebrow">Lead Software Engineer · 2018–now</p>
                     <h3 id="tutorful-title">Tutorful</h3>
-                    <p>Hands-on engineering across a live tutoring marketplace.</p>
-                    <p>I joined Tutorful in 2018 and moved into a Lead Software Engineer role in 2021. My work spans
-                        booking and pricing, Stripe billing, messaging, onboarding, APIs and the admin tools that
-                        support the team.</p>
-                    <p class="contribution-note">It’s sustained product work: making useful changes, testing them
-                        properly and keeping an established application running well.</p>
-                    <div class="tags"><span>Laravel</span><span>Vue.js</span><span>MySQL</span><span>Stripe</span>
-                    </div>
-                    <a class="text-link" href="https://tutorful.co.uk/">Visit Tutorful <span
-                            aria-hidden="true">↗</span></a>
+                    <p class="project-lede">Hands-on engineering on a live tutoring marketplace.</p>
+                    <p>Booking, pricing, Stripe billing, messaging, onboarding, APIs and the admin tools behind
+                        them. Lead since 2021.</p>
+                    <ul class="tags" aria-label="Technologies">
+                        <li>Laravel</li><li>Vue.js</li><li>MySQL</li><li>Stripe</li>
+                    </ul>
+                    <a class="text-link" href="https://tutorful.co.uk/">Visit Tutorful <span aria-hidden="true">↗</span></a>
                 </div>
             </article>
-            <article class="featured-project case-study" aria-labelledby="sgs-title">
-                <div class="case-study-image"><img src="/images/projects/sgs.png" width="1000" height="750"
+
+            <article class="project project-mint" aria-labelledby="sgs-title">
+                <div class="project-image"><img src="/images/projects/sgs.png" width="1000" height="750"
                         loading="lazy" decoding="async"
                         alt="Strong Girl Society app screenshots showing training programmes, community and activity tracking.">
                 </div>
-                <div class="featured-copy">
-                    <p class="eyebrow">Laravel backend developer</p>
+                <div class="project-copy">
+                    <p class="eyebrow">Laravel backend · Fitness app</p>
                     <h3 id="sgs-title">Strong Girl Society</h3>
-                    <p>Stabilising the backend of an existing fitness app.</p>
-                    <p>I took over the Laravel backend and worked alongside the mobile developer on training programmes,
-                        recipes, community features and integrations including Strava and RevenueCat. The work involved
-                        fixing unfinished functionality and making the backend more dependable.</p>
-                    <p class="contribution-note">My contribution was to the backend. The React Native interface shown
-                        here was built by the mobile team.</p>
-                    <div class="tags"><span>Laravel</span><span>PHP</span><span>API
-                            integrations</span><span>Debugging</span></div>
-                    <a class="text-link" href="https://apps.apple.com/us/app/sgs/id6738397927">View the app <span
-                            aria-hidden="true">↗</span></a>
+                    <p class="project-lede">Took over and stabilised the backend of a fitness app.</p>
+                    <p>Training programmes, recipes, community features, plus Strava and RevenueCat integrations.
+                        Finished half-built features and made the whole thing dependable.</p>
+                    <p class="note">Backend only. The React Native app was built by the mobile team.</p>
+                    <ul class="tags" aria-label="Technologies">
+                        <li>Laravel</li><li>PHP</li><li>Integrations</li><li>Debugging</li>
+                    </ul>
+                    <a class="text-link" href="https://apps.apple.com/us/app/sgs/id6738397927">View the app <span aria-hidden="true">↗</span></a>
                 </div>
             </article>
-            <article class="featured-project case-study" aria-labelledby="plates-and-plans-title">
-                <div class="case-study-image"><img src="/images/projects/plates-and-plans.png" width="1000"
+
+            <article class="project project-lilac" aria-labelledby="plates-and-plans-title">
+                <div class="project-image"><img src="/images/projects/plates-and-plans.png" width="1000"
                         height="750" loading="lazy" decoding="async"
                         alt="Plates and Plans app screenshots showing weekly meal plans, daily check-ins and recipes.">
                 </div>
-                <div class="featured-copy">
-                    <p class="eyebrow">Full-stack mobile developer</p>
+                <div class="project-copy">
+                    <p class="eyebrow">Flutter + Laravel · Meal planning</p>
                     <h3 id="plates-and-plans-title">Plates & Plans</h3>
-                    <p>A nutrition and meal-planning app, built with Flutter and Laravel.</p>
-                    <p>I built most of the mobile app before handover: implementing supplied designs in Flutter,
-                        building the Laravel APIs and product logic, and integrating RevenueCat subscriptions.</p>
-                    <p class="contribution-note">My work was on the mobile app. These screenshots show the released
-                        product, which may include changes made after handover.</p>
-                    <div class="tags"><span>Flutter</span><span>Laravel</span><span>RevenueCat</span><span>API
-                            development</span></div>
-                    <a class="text-link" href="https://apps.apple.com/ca/app/plates-plans/id6756631706">View the app
-                        <span aria-hidden="true">↗</span></a>
+                    <p class="project-lede">Built most of a meal-planning app, front to back.</p>
+                    <p>Flutter screens from supplied designs, Laravel APIs and product logic, and RevenueCat
+                        subscriptions.</p>
+                    <p class="note">Screenshots show the released app, which may include changes after handover.</p>
+                    <ul class="tags" aria-label="Technologies">
+                        <li>Flutter</li><li>Laravel</li><li>RevenueCat</li><li>APIs</li>
+                    </ul>
+                    <a class="text-link" href="https://apps.apple.com/ca/app/plates-plans/id6756631706">View the app <span aria-hidden="true">↗</span></a>
                 </div>
             </article>
-            <div class="work-footer"><span>There’s usually something else on the go.</span><a class="text-link"
-                    href="https://github.com/wardy484">Have a look around my GitHub <span
-                        aria-hidden="true">↗</span></a></div>
+
+            <p class="work-footer">Always something else on the go. <a class="text-link"
+                    href="https://github.com/wardy484">Poke around my GitHub <span aria-hidden="true">↗</span></a></p>
         </section>
 
-        <section class="about-section section-space" id="about" aria-labelledby="about-title">
-            <div class="shell about-grid">
-                <div>
-                    <p class="eyebrow"><span>02</span> A little about me</p>
-                    <h2 id="about-title">I like making<br><em>things simpler.</em></h2>
-                    <div class="about-signature"><img src="/images/kim-ward.png" alt="Kim Ward" width="64"
-                            height="64" loading="lazy">
-                        <div><span class="signature">Kim</span>
-                            <p>Developer. Perpetual tinkerer.</p>
-                        </div>
+        <section class="about-section shell section-space" id="about" aria-labelledby="about-title">
+            <div class="about-card">
+                <div class="about-intro">
+                    <div class="about-photo-wrap">
+                        <img class="about-photo" src="/images/kim-ward.png" alt="Kim Ward" width="120" height="120"
+                            loading="lazy">
                     </div>
+                    <p class="eyebrow">About me</p>
+                    <h2 id="about-title">I like making things <em>simpler.</em></h2>
                 </div>
                 <div class="about-copy">
-                    <p class="large-copy">The bit I enjoy most is taking something complicated and finding a
-                        straightforward way through it.</p>
-                    <p>Laravel is my home ground. I like its conventions, its ecosystem and the way a few well-chosen
-                        lines can do a proper job. I care just as much about what happens on the other side of the
-                        screen.</p>
-                    <p>Much of my work is at Tutorful, building and improving a product people use every day. Outside
-                        that, I make small tools, explore ideas and follow whatever has caught my attention.</p>
-                    <p>I’m happiest when I’m building something useful, with people who care about the details.</p>
-                    <div class="toolkit"><span class="eyebrow">Usually within reach</span>
-                        <ul aria-label="Technologies I work with">
-                            <li>Laravel</li>
-                            <li>PHP</li>
-                            <li>Vue</li>
-                            <li>JavaScript</li>
-                            <li>Git</li>
-                        </ul>
-                    </div>
+                    <p class="large-copy">My favourite part of the job is finding the straightforward way through
+                        something complicated.</p>
+                    <p>Laravel is home. I love its conventions, its ecosystem, and how a few well-chosen lines can
+                        do a proper job.</p>
+                    <p>Day job: Tutorful, improving a product people use every day. The rest of the time: small
+                        tools, side projects and whatever’s caught my attention.</p>
+                    <p>Lately I’ve gone deep on AI. I use coding agents in my daily work and build tools that keep
+                        their output small, tested and easy to review.</p>
                 </div>
             </div>
         </section>
+
         <section class="approach-section shell section-space" aria-labelledby="approach-title">
             <div class="section-heading">
-                <div>
-                    <p class="eyebrow"><span>03</span> How I work</p>
-                    <h2 id="approach-title">A few things<br><em>I come back to.</em></h2>
-                </div>
-                <p>Good software is as much about judgement<br class="desktop-break"> as it is about writing code.</p>
+                <p class="eyebrow">How I work</p>
+                <h2 id="approach-title">Three things I <em>come back to.</em></h2>
             </div>
             <div class="principles">
-                <article><span class="principle-number">01 /</span>
+                <article class="principle-butter">
+                    <span class="principle-number" aria-hidden="true">1</span>
                     <h3>Understand it first.</h3>
-                    <p>Find out what someone actually needs, how things work today and what would make a useful
-                        difference.</p>
+                    <p>What’s actually needed, how it works today, and what would make a real difference.</p>
                 </article>
-                <article><span class="principle-number">02 /</span>
-                    <h3>Keep it straightforward.</h3>
-                    <p>Use the tools and patterns that fit. Build what’s needed, and leave room for the next person to
-                        understand it.</p>
+                <article class="principle-sky">
+                    <span class="principle-number" aria-hidden="true">2</span>
+                    <h3>Keep it simple.</h3>
+                    <p>Use the patterns that fit. Build what’s needed. Leave it clear for the next person.</p>
                 </article>
-                <article><span class="principle-number">03 /</span>
+                <article class="principle-peach">
+                    <span class="principle-number" aria-hidden="true">3</span>
                     <h3>Care about the finish.</h3>
-                    <p>Small, reviewable changes. Useful tests. Check the real thing, and pay attention to the bits
-                        people will notice.</p>
+                    <p>Small, reviewable changes. Useful tests. Check the real thing, not just the green tick.</p>
                 </article>
             </div>
         </section>
-        <section class="contact-section" id="contact" aria-labelledby="contact-title">
-            <div class="shell">
-                <div class="contact-top">
-                    <p class="eyebrow"><span>04</span> Get in touch</p>
-                </div>
-                <h2 id="contact-title">Something in mind?<br><em>Let’s have a chat.</em></h2>
-                <p>A project, a question, or just a shared interest.<br>You’re welcome to drop me a line.</p><a
-                    class="contact-email" href="mailto:hello@kimward.co.uk">hello@kimward.co.uk <span
-                        aria-hidden="true">↗</span></a>
-                <div class="contact-bottom"><span>Find me elsewhere</span>
-                    <div><a href="https://github.com/wardy484">GitHub <span aria-hidden="true">↗</span></a><a
-                            href="https://www.linkedin.com/in/kim-ward-90884643">LinkedIn <span
-                                aria-hidden="true">↗</span></a><a
-                            href="https://www.upwork.com/freelancers/kimward4">Upwork <span
-                                aria-hidden="true">↗</span></a></div>
+
+        <section class="contact-section shell section-space" id="contact" aria-labelledby="contact-title">
+            <div class="contact-card">
+                <span class="blob blob-three" aria-hidden="true"></span>
+                <span class="blob blob-four" aria-hidden="true"></span>
+                <p class="eyebrow">Get in touch</p>
+                <h2 id="contact-title">Got a problem to solve? <em>Let’s chat.</em></h2>
+                <a class="contact-email" href="mailto:hello@kimward.co.uk">hello@kimward.co.uk</a>
+                <div class="contact-links">
+                    <a href="https://github.com/wardy484">GitHub <span aria-hidden="true">↗</span></a>
+                    <a href="https://www.linkedin.com/in/kim-ward-90884643">LinkedIn <span aria-hidden="true">↗</span></a>
+                    <a href="https://www.upwork.com/freelancers/kimward4">Upwork <span aria-hidden="true">↗</span></a>
                 </div>
             </div>
         </section>
     </main>
-    <footer class="site-footer shell"><a class="brand" href="#top" aria-label="Kim Ward, back to top">Kim
-            Ward</a>
-        <p>© {{ date('Y') }} Kim Ward</p><a class="back-top" href="#top">Back to top <span
-                aria-hidden="true">↑</span></a>
+    <footer class="site-footer shell">
+        <p>© {{ date('Y') }} Kim Ward</p>
+        <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
     </footer>
 </body>
 
