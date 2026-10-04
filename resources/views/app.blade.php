@@ -131,9 +131,11 @@
             </div>
 
             <article class="project project-peach" aria-labelledby="tutorful-title">
-                <div class="project-image"><img src="/images/projects/tutorful.png" width="1000" height="750"
-                        loading="lazy" decoding="async"
-                        alt="Tutorful product screenshots showing tutor search, messaging and lesson scheduling.">
+                <div class="project-image">
+                    <video controls preload="none" playsinline width="1280" height="720"
+                        poster="/videos/tutorful.webp" aria-label="Video showing my work on Tutorful: messaging, booking and Stripe billing.">
+                        <source src="/videos/tutorful.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="project-copy">
                     <p class="eyebrow">Lead Software Engineer · 2018–now</p>
@@ -149,9 +151,11 @@
             </article>
 
             <article class="project project-mint" aria-labelledby="sgs-title">
-                <div class="project-image"><img src="/images/projects/sgs.png" width="1000" height="750"
-                        loading="lazy" decoding="async"
-                        alt="Strong Girl Society app screenshots showing training programmes, community and activity tracking.">
+                <div class="project-image">
+                    <video controls preload="none" playsinline width="1280" height="720"
+                        poster="/videos/sgs.webp" aria-label="Video showing the Strong Girl Society app and the Laravel backend I worked on.">
+                        <source src="/videos/sgs.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="project-copy">
                     <p class="eyebrow">Laravel backend · Fitness app</p>
@@ -168,9 +172,11 @@
             </article>
 
             <article class="project project-lilac" aria-labelledby="plates-and-plans-title">
-                <div class="project-image"><img src="/images/projects/plates-and-plans.png" width="1000"
-                        height="750" loading="lazy" decoding="async"
-                        alt="Plates and Plans app screenshots showing weekly meal plans, daily check-ins and recipes.">
+                <div class="project-image">
+                    <video controls preload="none" playsinline width="1280" height="720"
+                        poster="/videos/plates-and-plans.webp" aria-label="Video showing the Plates & Plans app: weekly meal plans and recipes.">
+                        <source src="/videos/plates-and-plans.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="project-copy">
                     <p class="eyebrow">Flutter + Laravel · Meal planning</p>

@@ -475,6 +475,12 @@ h2 em {
   transition: transform 0.45s var(--bounce), box-shadow 0.3s ease;
 }
 
+.project-image video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .project-peach .project-image { background: var(--peach); }
 .project-mint .project-image { background: var(--mint); }
 .project-lilac .project-image { background: var(--lilac); }
