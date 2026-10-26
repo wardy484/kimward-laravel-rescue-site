@@ -193,21 +193,23 @@
                 </div>
             </article>
 
-            <article class="tool" id="diff-stage" aria-labelledby="diff-stage-title">
-                <div class="tool-intro">
-                    <p class="eyebrow">A tool I built</p>
-                    <h3 id="diff-stage-title">Diff Stage</h3>
-                    <p class="project-lede">Watch the changed flow next to main.</p>
+            <article class="project project-sky" id="diff-stage" aria-labelledby="diff-stage-title">
+                <div class="project-image">
+                    <video controls preload="none" playsinline width="1280" height="720"
+                        poster="/videos/diff-stage.webp" aria-label="Video showing Diff Stage playing a pull request next to main, with the coding agent’s notes.">
+                        <source src="/videos/diff-stage.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="tool-copy">
-                    <p>Records Pest 4 and 5 browser tests in GitHub Actions and plays each pull request next to main, with the coding agent’s notes on what to check.</p>
+                <div class="project-copy">
+                    <p class="eyebrow">Creator · Developer tool</p>
+                    <h3 id="diff-stage-title">Diff Stage</h3>
+                    <p class="project-lede">Side-by-side browser test videos for Laravel pull requests.</p>
+                    <p>Coding agents write pull requests quickly, so reviewing the UI change is the slow part.
+                        Diff Stage records Pest browser tests in GitHub Actions and plays the pull request next to
+                        main, with the agent’s notes on what to check.</p>
                     <p class="note">Free <a href="https://diffstage.com/tools/dusk-to-pest">Dusk-to-Pest converter</a> for tests that still use Dusk.</p>
                     <ul class="tags" aria-label="Technologies">
-                        <li>Laravel</li>
-                        <li>Pest</li>
-                        <li>Playwright</li>
-                        <li>GitHub Actions</li>
-                        <li>AI</li>
+                        <li>Laravel</li><li>Pest</li><li>Playwright</li><li>GitHub Actions</li><li>AI</li>
                     </ul>
                     <a class="text-link" href="https://diffstage.com">Visit Diff Stage <span aria-hidden="true">↗</span></a>
                 </div>
