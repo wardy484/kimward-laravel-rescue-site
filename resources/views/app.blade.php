@@ -64,7 +64,8 @@
                     "sameAs": [
                         "https://github.com/wardy484",
                         "https://www.linkedin.com/in/kim-ward-90884643",
-                        "https://www.upwork.com/freelancers/kimward4"
+                        "https://www.upwork.com/freelancers/kimward4",
+                        "https://diffstage.com"
                     ]
                 }
             ]
@@ -192,6 +193,26 @@
                 </div>
             </article>
 
+            <article class="tool" id="diff-stage" aria-labelledby="diff-stage-title">
+                <div class="tool-intro">
+                    <p class="eyebrow">A tool I built</p>
+                    <h3 id="diff-stage-title">Diff Stage</h3>
+                    <p class="project-lede">Watch the changed flow next to main.</p>
+                </div>
+                <div class="tool-copy">
+                    <p>Records Pest 4 and 5 browser tests in GitHub Actions and plays each pull request next to main, with the coding agent’s notes on what to check.</p>
+                    <p class="note">Free <a href="https://diffstage.com/tools/dusk-to-pest">Dusk-to-Pest converter</a> for tests that still use Dusk.</p>
+                    <ul class="tags" aria-label="Technologies">
+                        <li>Laravel</li>
+                        <li>Pest</li>
+                        <li>Playwright</li>
+                        <li>GitHub Actions</li>
+                        <li>AI</li>
+                    </ul>
+                    <a class="text-link" href="https://diffstage.com">Visit Diff Stage <span aria-hidden="true">↗</span></a>
+                </div>
+            </article>
+
             <p class="work-footer">Always something else on the go. <a class="text-link"
                     href="https://github.com/wardy484">Poke around my GitHub <span aria-hidden="true">↗</span></a></p>
         </section>
@@ -213,7 +234,7 @@
                         do a proper job.</p>
                     <p>Day job: Tutorful, improving a product people use every day. The rest of the time: small
                         tools, side projects and whatever’s caught my attention.</p>
-                    <p>Lately I’ve gone deep on AI. I use coding agents in my daily work and build tools that keep
+                    <p>Lately I’ve gone deep on AI. I use coding agents in my daily work and build tools, like <a href="https://diffstage.com">Diff Stage</a>, that keep
                         their output small, tested and easy to review.</p>
                 </div>
             </div>
