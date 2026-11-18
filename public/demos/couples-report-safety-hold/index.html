@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Couples report demo</title>
+<style>
+  :root { --bg: #f7f6f3; --card: #fff; --ink: #1d1d1f; --muted: #6b6b70; --line: #e3e1dc; --accent: #2f5d50; --warn: #a2541b; --ok: #2f6b3a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--ink); }
+  main { max-width: 640px; margin: 0 auto; padding: 16px; }
+  .intro { font-size: 15px; color: var(--muted); margin: 4px 0 16px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tabs button { flex: 1; padding: 10px 6px; border: 1px solid var(--line); background: var(--card); border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; }
+  .tabs button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  h2 { font-size: 18px; margin: 0 0 8px; }
+  label { display: block; margin: 10px 0 4px; font-size: 14px; color: var(--muted); }
+  input[type=text] { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+  .q { margin: 12px 0; }
+  .q p { margin: 0 0 6px; }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opts label { margin: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); cursor: pointer; }
+  .opts input { margin-right: 4px; }
+  .btn { display: inline-block; padding: 11px 16px; border: 0; border-radius: 10px; background: var(--accent); color: #fff; font: inherit; cursor: pointer; margin-top: 10px; }
+  .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  .btn.small { padding: 6px 10px; font-size: 14px; margin: 4px 4px 0 0; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 13px; background: #eceae5; }
+  .pill.held { background: #f7e3d4; color: var(--warn); }
+  .pill.ready { background: #dcefdf; color: var(--ok); }
+  .code { font: 600 22px/1 ui-monospace, monospace; letter-spacing: 2px; }
+  .muted { color: var(--muted); font-size: 14px; }
+  .log { font-size: 13px; color: var(--muted); border-top: 1px dashed var(--line); margin-top: 10px; padding-top: 8px; }
+  .order { border-top: 1px solid var(--line); padding: 10px 0; }
+  .order:first-child { border-top: 0; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <p class="intro">A quick demo for your Upwork post: two partners linked by a code, a couples report that waits until both have finished, and answers that hold the report for your review. Fake data, saved in this browser only. Built by Kim Ward.</p>
+
+  <div class="tabs">
+    <button data-tab="a" class="on">Partner 1</button>
+    <button data-tab="b">Partner 2</button>
+    <button data-tab="admin">Admin</button>
+  </div>
+
+  <section id="tab-a"></section>
+  <section id="tab-b" class="hidden"></section>
+  <section id="tab-admin" class="hidden"></section>
+
+  <p class="muted">Try it: pay as partner 1, copy the code into partner 2, answer both. Pick "Yes" on the last question to see a report held. <button class="btn small ghost" id="reset">Start again</button></p>
+</main>
+
+<script>
+const PRICE = 49;
+const DISCOUNTS = { WELCOME10: 0.1, GIFTCOUPLE: 1 };
+
+const QUESTIONS = [
+  { id: 'plans', text: 'When plans change last minute, I…', options: ['Adapt quickly', 'Need time to reset', 'Feel thrown for the day'] },
+  { id: 'noise', text: 'Busy, noisy places leave me…', options: ['Energised', 'Fine for a while', 'Drained'] },
+  { id: 'talk', text: 'I prefer hard conversations…', options: ['Face to face', 'In writing first', 'With a break in the middle'] },
+  { id: 'safe', text: 'Right now, do you feel unsafe or in crisis?', options: ['No', 'Yes'], flag: 'Yes' },
+];
+
+const store = {
+  load() {
+    try { return JSON.parse(localStorage.getItem('couples-demo')) || { orders: [] }; } catch { return { orders: [] }; }
+  },
+  save(state) {
+    try { localStorage.setItem('couples-demo', JSON.stringify(state)); } catch {}
+  },
+};
+
+let state = store.load();
+
+const order = (code) => state.orders.find((o) => o.code === code);
+const now = () => new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+function newCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code.slice(0, 3) + '-' + code.slice(3);
+}
+
+function status(o) {
+  if (o.deleted) return 'deleted';
+  if (!o.answers.a || !o.answers.b) return 'waiting';
+  if (o.flagged && !o.released) return 'held';
+  return 'ready';
+}
+
+function pill(o) {
+  const s = status(o);
+  const text = {
+    waiting: `Waiting for ${o.answers.a ? 'partner 2' : 'partner 1'}`,
+    held: 'Held for review',
+    ready: 'Report emailed',
+    deleted: 'Data deleted',
+  }[s];
+  return `<span class="pill ${s}">${text}</span>`;
+}
+
+function settle(o) {
+  if (o.answers.a && o.answers.b && !o.settled) {
+    o.settled = true;
+    o.flagged = Object.values(o.answers).some((a) => QUESTIONS.some((q) => q.flag && a[q.id] === q.flag));
+    o.log.push(o.flagged
+      ? `${now()} Both finished. A safety answer was given, so the report is held and you're emailed.`
+      : `${now()} Both finished. PDF report emailed to both partners.`);
+  }
+}
+
+function questionForm(who, o) {
+  return `
+    <form data-who="${who}" data-code="${o.code}">
+      ${QUESTIONS.map((q) => `
+        <div class="q"><p>${q.text}</p><div class="opts">
+          ${q.options.map((opt) => `<label><input type="radio" name="${q.id}" value="${opt}" required>${opt}</label>`).join('')}
+        </div></div>`).join('')}
+      <button class="btn">Finish my part</button>
+    </form>`;
+}
+
+function renderA() {
+  const el = document.getElementById('tab-a');
+  const o = state.current && order(state.current);
+
+  if (!o) {
+    el.innerHTML = `
+      <div class="card">
+        <h2>Couples report · £${PRICE}</h2>
+        <p class="muted">Payment unlocks the questionnaire. In the real build this is Stripe Checkout.</p>
+        <label for="disc">Discount or gift code (try WELCOME10 or GIFTCOUPLE)</label>
+        <input type="text" id="disc" autocomplete="off">
+        <button class="btn" id="pay">Pay</button>
+      </div>`;
+
+    document.getElementById('pay').onclick = () => {
+      const entered = document.getElementById('disc').value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+      const off = DISCOUNTS[entered] ?? 0;
+      const code = newCode();
+      const paid = Math.round(PRICE * (1 - off) * 100) / 100;
+
+      state.orders.unshift({
+        code,
+        paid,
+        discount: off ? entered : null,
+        answers: {},
+        log: [`${now()} Paid £${paid.toFixed(2)}${off ? ` with ${entered}` : ''}. Questionnaire link emailed to partner 1.`],
+      });
+      state.current = code;
+      store.save(state);
+      render();
+    };
+    return;
+  }
+
+  el.innerHTML = `
+    <div class="card">
+      <h2>Your partner's code</h2>
+      <p class="code">${o.code}</p>
+      <p class="muted">Send this to your partner. Your report is written once you've both finished.</p>
+      ${pill(o)}
+    </div>
+    <div class="card">
+      ${o.answers.a ? '<h2>Thanks, your part is done</h2><p class="muted">We\'ll email the report when it\'s ready.</p>' : `<h2>Your questions</h2>${questionForm('a', o)}`}
+    </div>`;
+}
+
+function renderB() {
+  const el = document.getElementById('tab-b');
+  const o = state.joined && order(state.joined);
+
+  if (!o) {
+    el.innerHTML = `
+      <div class="card">
+        <h2>Join your partner</h2>
+        <label for="join">Code from your partner</label>
+        <input type="text" id="join" autocomplete="off" placeholder="ABC-123" value="${state.current || ''}">
+        <button class="btn" id="joinBtn">Join</button>
+        <p class="muted" id="joinErr"></p>
+      </div>`;
+
+    document.getElementById('joinBtn').onclick = () => {
+      const code = document.getElementById('join').value.trim().toUpperCase();
+      const found = order(code);
+
+      if (!found || found.deleted) {
+        document.getElementById('joinErr').textContent = "That code doesn't match an order.";
+        return;
+      }
+
+      state.joined = code;
+      found.log.push(`${now()} Partner 2 joined with the code.`);
+      store.save(state);
+      render();
+    };
+    return;
+  }
+
+  el.innerHTML = `
+    <div class="card">
+      <h2>Linked to ${o.code}</h2>
+      ${pill(o)}
+    </div>
+    <div class="card">
+      ${o.answers.b ? '<h2>Thanks, your part is done</h2><p class="muted">We\'ll email the report when it\'s ready.</p>' : `<h2>Your questions</h2>${questionForm('b', o)}`}
+    </div>`;
+}
+
+function renderAdmin() {
+  const el = document.getElementById('tab-admin');
+  const live = state.orders;
+
+  if (!live.length) {
+    el.innerHTML = '<div class="card"><h2>Orders</h2><p class="muted">No orders yet. Pay as partner 1 first.</p></div>';
+    return;
+  }
+
+  el.innerHTML = `<div class="card"><h2>Orders</h2>${live.map((o) => `
+    <div class="order">
+      <strong>${o.code}</strong> · £${o.paid.toFixed(2)}${o.discount ? ` · ${o.discount}` : ''}<br>
+      ${pill(o)}
+      <div>
+        ${status(o) === 'held' ? `<button class="btn small" data-release="${o.code}">Release report</button>` : ''}
+        ${status(o) !== 'deleted' ? `<button class="btn small ghost" data-delete="${o.code}">Delete answers</button>` : ''}
+      </div>
+      <div class="log">${o.log.join('<br>')}</div>
+    </div>`).join('')}</div>`;
+}
+
+function render() {
+  renderA();
+  renderB();
+  renderAdmin();
+}
+
+document.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const o = order(form.dataset.code);
+  o.answers[form.dataset.who] = Object.fromEntries(new FormData(form));
+  o.log.push(`${now()} Partner ${form.dataset.who === 'a' ? 1 : 2} finished.`);
+  settle(o);
+  store.save(state);
+  render();
+});
+
+document.addEventListener('click', (e) => {
+  const tab = e.target.dataset.tab;
+  const release = e.target.dataset.release;
+  const del = e.target.dataset.delete;
+
+  if (tab) {
+    document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
+    ['a', 'b', 'admin'].forEach((t) => document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab));
+  }
+
+  if (release) {
+    const o = order(release);
+    o.released = true;
+    o.log.push(`${now()} You released the report. PDF emailed to both partners.`);
+  }
+
+  if (del) {
+    const o = order(del);
+    o.answers = { a: o.answers.a && {}, b: o.answers.b && {} };
+    o.deleted = true;
+    o.log.push(`${now()} Answers deleted. The order record stays for your accounts.`);
+  }
+
+  if (release || del) {
+    store.save(state);
+    render();
+  }
+});
+
+document.getElementById('reset').onclick = () => {
+  state = { orders: [] };
+  store.save(state);
+  render();
+};
+
+render();
+</script>
+</body>
+</html>
