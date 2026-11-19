@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Release ID check</title>
+<style>
+  :root {
+    --bg: #F4F1EC; --card: #FFFFFF; --ink: #1F2624; --muted: #5A6460; --line: #DDD6CB;
+    --ok: #1E7A4C; --ok-bg: #E4F3EA; --bad: #B23A2E; --bad-bg: #FBE7E4; --warn: #8A6413; --warn-bg: #FBF1D9;
+    --accent: #1C2E28;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141917; --card: #1D2421; --ink: #E8E4DD; --muted: #A3ABA7; --line: #34403B;
+      --ok: #7FD3A4; --ok-bg: #18342A; --bad: #F2978C; --bad-bg: #3A1F1C; --warn: #E8C26E; --warn-bg: #3A3020;
+      --accent: #C9AE7A;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .note { background: var(--accent); color: var(--bg); padding: 8px 16px; font-size: .85rem; text-align: center; }
+  main { max-width: 980px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 0 0 6px; }
+  h2 { font-size: 1.05rem; margin: 0 0 8px; }
+  p { margin: 0 0 10px; }
+  .muted { color: var(--muted); }
+  .grid { display: grid; gap: 14px; grid-template-columns: 1fr; margin: 16px 0; }
+  @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  textarea { width: 100%; min-height: 220px; resize: vertical; border: 1px solid var(--line); border-radius: 8px; padding: 10px;
+    font: 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--bg); color: var(--ink); }
+  .buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
+  button { font: inherit; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 8px; padding: 9px 14px; cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .summary { font-weight: 600; padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; }
+  .row { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px; }
+  .row .label { font-weight: 600; }
+  .row .vals { font: 12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+  .ok { background: var(--ok-bg); color: var(--ok); }
+  .bad { background: var(--bad-bg); color: var(--bad); }
+  .warn { background: var(--warn-bg); color: var(--warn); }
+  .vals span { color: var(--ink); }
+  .copied { font-size: .85rem; color: var(--muted); align-self: center; }
+</style>
+</head>
+<body>
+<div class="note">A quick demo for your Upwork post: checking a Flutter template upgrade keeps the live app's IDs before it goes to Play. Built by Kim Ward. Sample data only.</div>
+<main>
+  <h1>Release ID check</h1>
+  <p class="muted">Paste the release files from the live version on the left and the upgraded branch on the right. Start each file with a <code>// file:</code> line. The check runs as you type and saves in this browser.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Live version</h2>
+      <textarea id="old" spellcheck="false"></textarea>
+    </div>
+    <div class="card">
+      <h2>Upgraded branch</h2>
+      <textarea id="new" spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="primary" id="copy">Copy report</button>
+    <button id="reset">Reset sample files</button>
+    <span class="copied" id="copied"></span>
+  </div>
+
+  <div class="card">
+    <h2>Result</h2>
+    <div id="result"></div>
+  </div>
+</main>
+
+<script>
+const SAMPLE_OLD = `// file: pubspec.yaml
+name: news_app
+version: 2.4.1+41
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_mobile_ads: ^5.1.0
+  onesignal_flutter: ^5.2.0
+
+// file: android/app/build.gradle
+android {
+    defaultConfig {
+        applicationId "com.example.sgnews"
+        minSdkVersion 21
+        targetSdkVersion 34
+    }
+    signingConfigs {
+        release {
+            keyAlias "sgnews-upload"
+            storeFile file("upload-keystore.jks")
+        }
+    }
+}
+
+// file: android/app/src/main/AndroidManifest.xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-1234567890123456~1111111111"/>
+
+// file: lib/config/ad_config.dart
+const bannerAdUnit = 'ca-app-pub-1234567890123456/2222222222';
+const interstitialAdUnit = 'ca-app-pub-1234567890123456/3333333333';
+const nativeAdUnit = 'ca-app-pub-1234567890123456/4444444444';
+
+// file: lib/main.dart
+OneSignal.initialize('00000000-aaaa-bbbb-cccc-000000000000');`;
+
+const SAMPLE_NEW = `// file: pubspec.yaml
+name: news_app
+version: 3.0.0+30
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_mobile_ads: ^6.0.0
+
+// file: android/app/build.gradle
+android {
+    defaultConfig {
+        applicationId "com.example.sgnews"
+        minSdkVersion 23
+        targetSdkVersion 35
+    }
+    signingConfigs {
+        release {
+            keyAlias "sgnews-upload"
+            storeFile file("upload-keystore.jks")
+        }
+    }
+}
+
+// file: android/app/src/main/AndroidManifest.xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-1234567890123456~1111111111"/>
+
+// file: lib/config/ad_config.dart
+const bannerAdUnit = 'ca-app-pub-1234567890123456/2222222222';
+const interstitialAdUnit = 'ca-app-pub-1234567890123456/3333333333';
+const nativeAdUnit = 'ca-app-pub-1234567890123456/4444444444';
+
+// file: lib/services/notification_service.dart
+// TODO remove: import 'package:onesignal_flutter/onesignal_flutter.dart';`;
+
+const oldBox = document.getElementById('old');
+const newBox = document.getElementById('new');
+const result = document.getElementById('result');
+
+const store = {
+  get(key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch (e) {} },
+};
+
+function files(text) {
+  const out = [];
+  let current = { name: '(no file line)', lines: [] };
+  text.split('\n').forEach((line, i) => {
+    const m = line.match(/^\/\/\s*file:\s*(.+)$/);
+    if (m) {
+      if (current.lines.length) out.push(current);
+      current = { name: m[1].trim(), lines: [] };
+      return;
+    }
+    current.lines.push(line);
+  });
+  out.push(current);
+  return out;
+}
+
+function read(text) {
+  const appId = text.match(/applicationId\s+["']([^"']+)["']/);
+  const admob = text.match(/gms\.ads\.APPLICATION_ID"[\s\S]*?android:value="([^"]+)"/);
+  const units = [...new Set(text.match(/ca-app-pub-\d+\/\d+/g) || [])].sort();
+  const keyAlias = text.match(/keyAlias\s+["']([^"']+)["']/);
+  const storeFile = text.match(/storeFile\s+file\(["']([^"']+)["']\)/);
+  const version = text.match(/^version:\s*([\d.]+)\+(\d+)/m);
+
+  const oneSignal = [];
+  files(text).forEach((file) => {
+    file.lines.forEach((line) => {
+      if (/onesignal/i.test(line)) oneSignal.push(`${file.name}: ${line.trim()}`);
+    });
+  });
+
+  return {
+    appId: appId ? appId[1] : null,
+    admob: admob ? admob[1] : null,
+    units,
+    signing: keyAlias || storeFile ? `${keyAlias ? keyAlias[1] : '?'} / ${storeFile ? storeFile[1] : '?'}` : null,
+    version: version ? { name: version[1], build: Number(version[2]) } : null,
+    oneSignal,
+    notifyPermission: /android\.permission\.POST_NOTIFICATIONS/.test(text),
+  };
+}
+
+function same(label, a, b) {
+  const pass = a !== null && a === b;
+  return { label, state: pass ? 'ok' : 'bad', old: a ?? 'not found', new: b ?? 'not found' };
+}
+
+function check() {
+  const a = read(oldBox.value);
+  const b = read(newBox.value);
+  const rows = [
+    same('Package name', a.appId, b.appId),
+    same('Signing key alias / keystore', a.signing, b.signing),
+    same('AdMob App ID', a.admob, b.admob),
+  ];
+
+  const unitsSame = a.units.length > 0 && a.units.join() === b.units.join();
+  const missing = a.units.filter((u) => !b.units.includes(u));
+  const added = b.units.filter((u) => !a.units.includes(u));
+  rows.push({
+    label: `Ad unit IDs (${a.units.length} live, ${b.units.length} on branch)`,
+    state: unitsSame ? 'ok' : 'bad',
+    old: a.units.join('\n') || 'not found',
+    new: unitsSame ? 'all match' : [
+      missing.length ? `missing: ${missing.join(', ')}` : '',
+      added.length ? `new: ${added.join(', ')}` : '',
+    ].filter(Boolean).join('\n') || 'not found',
+  });
+
+  const higher = a.version && b.version && b.version.build > a.version.build;
+  rows.push({
+    label: 'Build number is higher than live',
+    state: higher ? 'ok' : 'bad',
+    old: a.version ? `${a.version.name}+${a.version.build}` : 'not found',
+    new: b.version ? `${b.version.name}+${b.version.build}${higher ? '' : '  (Play rejects an update unless this goes up)'}` : 'not found',
+  });
+
+  rows.push({
+    label: 'OneSignal fully removed',
+    state: b.oneSignal.length ? 'bad' : 'ok',
+    old: `${a.oneSignal.length} reference${a.oneSignal.length === 1 ? '' : 's'}`,
+    new: b.oneSignal.length ? b.oneSignal.join('\n') : 'none left',
+  });
+
+  rows.push({
+    label: 'Notification permission',
+    state: b.notifyPermission ? 'warn' : 'ok',
+    old: a.notifyPermission ? 'POST_NOTIFICATIONS declared' : 'not declared',
+    new: b.notifyPermission ? 'still declared. Nothing sends push after OneSignal goes, so it can come out' : 'not declared',
+  });
+
+  const failures = rows.filter((r) => r.state === 'bad').length;
+  const summary = failures
+    ? `<div class="summary bad">${failures} thing${failures === 1 ? '' : 's'} to fix before building the release</div>`
+    : `<div class="summary ok">Safe to build: the IDs match the live app</div>`;
+
+  result.innerHTML = summary + rows.map((r) => `
+    <div class="row ${r.state}">
+      <div class="label">${r.state === 'ok' ? '✓' : r.state === 'bad' ? '✗' : '!'} ${esc(r.label)}</div>
+      <div class="vals">Live: <span>${esc(r.old).replace(/\n/g, '<br>')}</span></div>
+      <div class="vals">Branch: <span>${esc(r.new).replace(/\n/g, '<br>')}</span></div>
+    </div>`).join('');
+
+  store.set('rc-old', oldBox.value);
+  store.set('rc-new', newBox.value);
+  return rows;
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+
+function report() {
+  return check().map((r) => {
+    const mark = r.state === 'ok' ? 'PASS' : r.state === 'bad' ? 'FAIL' : 'NOTE';
+    return `${mark}  ${r.label}\n  Live:   ${r.old.replace(/\n/g, '\n          ')}\n  Branch: ${r.new.replace(/\n/g, '\n          ')}`;
+  }).join('\n\n');
+}
+
+oldBox.value = store.get('rc-old') ?? SAMPLE_OLD;
+newBox.value = store.get('rc-new') ?? SAMPLE_NEW;
+oldBox.addEventListener('input', check);
+newBox.addEventListener('input', check);
+
+document.getElementById('reset').addEventListener('click', () => {
+  oldBox.value = SAMPLE_OLD;
+  newBox.value = SAMPLE_NEW;
+  check();
+});
+
+document.getElementById('copy').addEventListener('click', async () => {
+  const text = report();
+  const label = document.getElementById('copied');
+  try {
+    await navigator.clipboard.writeText(text);
+    label.textContent = 'Copied';
+  } catch (e) {
+    label.textContent = 'Copy blocked by the browser';
+  }
+  setTimeout(() => { label.textContent = ''; }, 2000);
+});
+
+check();
+</script>
+</body>
+</html>
