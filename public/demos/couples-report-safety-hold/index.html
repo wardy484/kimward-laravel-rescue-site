@@ -4,286 +4,597 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#fff8ef">
 <title>Couples report demo</title>
 <style>
-  :root { --bg: #f7f6f3; --card: #fff; --ink: #1d1d1f; --muted: #6b6b70; --line: #e3e1dc; --accent: #2f5d50; --warn: #a2541b; --ok: #2f6b3a; }
+  @font-face { font-family: "DM Sans"; src: url("/fonts/dm-sans-latin.woff2") format("woff2"); font-weight: 100 1000; font-display: swap; }
+  @font-face { font-family: "Instrument Serif"; src: url("/fonts/instrument-serif-latin.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Instrument Serif"; src: url("/fonts/instrument-serif-italic-latin.woff2") format("woff2"); font-style: italic; font-display: swap; }
+
+  :root {
+    --cream: #fff8ef; --ink: #2e2430; --muted: #65575f; --line: #eadfd3;
+    --coral: #b8492a; --coral-hover: #9c3b20;
+    --butter: #ffedb0; --lilac: #e3dafa; --lilac-soft: #f4f0ff; --mint: #cdeedd; --mint-soft: #ecf8f1;
+    --peach: #ffdcc8; --peach-soft: #fff0e6; --sky: #d5e9f8;
+    --sans: "DM Sans", Arial, sans-serif; --serif: "Instrument Serif", Georgia, serif;
+    --radius: 24px;
+    --shadow: 0 1px 2px rgb(94 52 38 / 0.06), 0 12px 32px -12px rgb(94 52 38 / 0.22);
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; background: var(--bg); color: var(--ink); }
-  main { max-width: 640px; margin: 0 auto; padding: 16px; }
-  .intro { font-size: 15px; color: var(--muted); margin: 4px 0 16px; }
-  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
-  .tabs button { flex: 1; padding: 10px 6px; border: 1px solid var(--line); background: var(--card); border-radius: 10px; font: inherit; font-size: 14px; cursor: pointer; }
-  .tabs button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
-  h2 { font-size: 18px; margin: 0 0 8px; }
-  label { display: block; margin: 10px 0 4px; font-size: 14px; color: var(--muted); }
-  input[type=text] { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
-  .q { margin: 12px 0; }
-  .q p { margin: 0 0 6px; }
-  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
-  .opts label { margin: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); cursor: pointer; }
-  .opts input { margin-right: 4px; }
-  .btn { display: inline-block; padding: 11px 16px; border: 0; border-radius: 10px; background: var(--accent); color: #fff; font: inherit; cursor: pointer; margin-top: 10px; }
-  .btn.ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  .btn.small { padding: 6px 10px; font-size: 14px; margin: 4px 4px 0 0; }
-  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 13px; background: #eceae5; }
-  .pill.held { background: #f7e3d4; color: var(--warn); }
-  .pill.ready { background: #dcefdf; color: var(--ok); }
-  .code { font: 600 22px/1 ui-monospace, monospace; letter-spacing: 2px; }
-  .muted { color: var(--muted); font-size: 14px; }
-  .log { font-size: 13px; color: var(--muted); border-top: 1px dashed var(--line); margin-top: 10px; padding-top: 8px; }
-  .order { border-top: 1px solid var(--line); padding: 10px 0; }
-  .order:first-child { border-top: 0; }
-  .hidden { display: none; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--cream); color: var(--ink); font: 16px/1.55 var(--sans); }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 16px 56px; }
+  .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .02em; background: var(--butter); padding: 4px 12px; border-radius: 999px; }
+  h1 { font: 400 clamp(34px, 6vw, 52px)/1.05 var(--serif); margin: 14px 0 10px; letter-spacing: -.01em; }
+  h1 em { color: var(--coral); }
+  .lede { max-width: 640px; color: var(--muted); margin: 0 0 6px; }
+  .small { font-size: 14px; color: var(--muted); }
+  .small a { color: var(--coral); }
+
+  .steps { display: flex; gap: 8px; flex-wrap: wrap; margin: 22px 0 22px; padding: 0; list-style: none; }
+  .steps li { display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  .steps li b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--peach-soft); font-size: 13px; color: var(--ink); }
+  .steps li.done { color: var(--ink); }
+  .steps li.done b { background: var(--mint); }
+  .steps li.now { color: #fff; background: var(--ink); border-color: var(--ink); }
+  .steps li.now b { background: var(--coral); color: #fff; }
+
+  .grid { display: grid; gap: 20px; align-items: start; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 400px 1fr; } }
+
+  .panel-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 0 10px; }
+  .panel-title h2 { font: 400 26px/1.1 var(--serif); margin: 0; }
+
+  .phone { background: #fff; border-radius: 34px; box-shadow: var(--shadow); border: 1px solid var(--line); overflow: hidden; }
+  .switch { display: flex; gap: 6px; padding: 10px; background: var(--peach-soft); border-bottom: 1px solid var(--line); }
+  .switch button { flex: 1; border: 0; background: transparent; padding: 9px 8px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--muted); }
+  .switch button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgb(94 52 38 / .15); }
+  .switch button:disabled { opacity: .45; cursor: not-allowed; }
+  .screen { padding: 22px 20px 24px; }
+  @media (min-width: 900px) { .screen { min-height: 520px; } }
+  .narrow { display: inline; }
+  .wide { display: none; }
+  @media (min-width: 900px) { .narrow { display: none; } .wide { display: inline; } }
+  .screen h3 { font: 400 28px/1.1 var(--serif); margin: 0 0 6px; }
+  .screen p { margin: 0 0 14px; }
+
+  .product { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: var(--lilac-soft); margin: 14px 0 10px; }
+  .product strong { font-size: 17px; }
+  .addon { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; font-size: 15px; }
+  .addon input { margin-top: 4px; accent-color: var(--coral); width: 18px; height: 18px; }
+  .field { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin: 14px 0 6px; }
+  .row { display: flex; gap: 8px; }
+  .input { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  .input[disabled] { background: #faf6f1; color: var(--muted); }
+  .chip { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--mint); margin-top: 8px; }
+  .chip.err { background: var(--peach); }
+  .totals { margin: 16px 0 4px; font-size: 15px; }
+  .totals div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .totals .sum { font-weight: 700; font-size: 18px; border-top: 1px solid var(--line); margin-top: 6px; padding-top: 10px; }
+
+  .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 13px 22px; background: var(--coral); color: #fff; font-weight: 600; transition: background .15s, transform .15s; }
+  .btn:hover { background: var(--coral-hover); }
+  .btn:active { transform: scale(.98); }
+  .btn.block { width: 100%; margin-top: 14px; }
+  .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .btn.ghost:hover { background: var(--peach-soft); }
+  .btn.sm { padding: 8px 14px; font-size: 14px; }
+  .link { border: 0; background: none; padding: 0; color: var(--coral); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+  .codebox { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; border-radius: 16px; background: var(--butter); margin: 6px 0 18px; }
+  .codebox .code { font: 600 24px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
+  .q { margin: 0 0 18px; }
+  .q > p { font-weight: 600; margin: 0 0 8px; }
+  .opts { display: grid; gap: 8px; }
+  .opt { position: relative; }
+  .opt input { position: absolute; opacity: 0; inset: 0; }
+  .opt span { display: block; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 14px; background: #fff; transition: border-color .15s, background .15s; }
+  .opt input:checked + span { border-color: var(--coral); background: var(--peach-soft); }
+  .opt input:focus-visible + span { outline: 3px solid var(--coral); outline-offset: 2px; }
+  .hint { font-size: 14px; background: var(--sky); border-radius: 14px; padding: 10px 14px; margin: 0 0 16px; }
+
+  .state { text-align: center; padding: 30px 6px 10px; }
+  .state .icon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 14px; font-size: 28px; }
+
+  .report { border: 1px solid var(--line); border-radius: 18px; padding: 20px; background: #fffdf9; box-shadow: 0 1px 0 #fff inset; }
+  .report .tag { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral); }
+  .report h4 { font: 400 22px/1.15 var(--serif); margin: 4px 0 12px; }
+  .report h5 { font-size: 14px; margin: 16px 0 6px; }
+  .report ul { margin: 0; padding-left: 18px; font-size: 15px; }
+  .report li { margin: 0 0 6px; }
+  .report .tip { color: var(--muted); }
+
+  .side { display: grid; gap: 16px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); }
+  .card h3 { margin: 0 0 4px; font-size: 17px; }
+  .card .sub { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
+  .empty { font-size: 14px; color: var(--muted); padding: 10px 0 2px; }
+  .pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--lilac); }
+  .pill.waiting { background: var(--butter); }
+  .pill.held { background: var(--peach); color: #7a2e17; }
+  .pill.sent { background: var(--mint); }
+  .pill.deleted { background: #eee6de; color: var(--muted); }
+  .order-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .order-head strong { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+  .timeline { list-style: none; margin: 12px 0 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 14px; padding: 6px 0; border-top: 1px dashed var(--line); }
+  .timeline time { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .mail { display: grid; grid-template-columns: 36px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .mail:first-of-type { border-top: 0; }
+  .mail .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--lilac-soft); font-size: 16px; }
+  .mail .to { font-size: 13px; color: var(--muted); }
+  .mail .subj { font-weight: 600; font-size: 15px; }
+  .mail .att { display: inline-block; margin-top: 4px; font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--peach-soft); border: 1px solid var(--peach); }
+  .review { border-radius: 18px; background: var(--peach-soft); border: 1px solid var(--peach); padding: 14px 16px; }
+  .review p { margin: 0 0 10px; font-size: 15px; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .foot { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+  .flash { animation: flash 1.2s ease; }
+  @keyframes flash { 0% { box-shadow: 0 0 0 0 rgb(184 73 42 / .45); } 100% { box-shadow: var(--shadow); } }
+  @media (prefers-reduced-motion: reduce) { .flash { animation: none; } .btn { transition: none; } }
 </style>
 </head>
 <body>
-<main>
-  <p class="intro">A quick demo for your Upwork post: two partners linked by a code, a couples report that waits until both have finished, and answers that hold the report for your review. Fake data, saved in this browser only. Built by Kim Ward.</p>
+<div class="wrap">
+  <span class="eyebrow">A quick demo for your Upwork post</span>
+  <h1>Two partners, one report, and a <em>safety hold</em></h1>
+  <p class="lede">Pay, answer as partner 1, join with the code as partner 2. The report waits until you've both finished, and some answers hold it for review before anything is sent.</p>
+  <p class="small">Fake data, saved in this browser only. Nothing is charged or emailed. Built by <a href="https://kimward.co.uk/">Kim Ward</a>.</p>
 
-  <div class="tabs">
-    <button data-tab="a" class="on">Partner 1</button>
-    <button data-tab="b">Partner 2</button>
-    <button data-tab="admin">Admin</button>
+  <ol class="steps" id="steps"></ol>
+
+  <div class="grid">
+    <section aria-labelledby="customer-title">
+      <div class="panel-title"><h2 id="customer-title">What your customer sees</h2></div>
+      <div class="phone">
+        <div class="switch" role="tablist" id="switch"></div>
+        <div class="screen" id="screen"></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="behind-title">
+      <div class="panel-title"><h2 id="behind-title">Behind the scenes</h2></div>
+      <div class="side">
+        <div class="card" id="admin"></div>
+        <div class="card" id="outbox"></div>
+        <div class="card" id="order"></div>
+      </div>
+    </section>
   </div>
 
-  <section id="tab-a"></section>
-  <section id="tab-b" class="hidden"></section>
-  <section id="tab-admin" class="hidden"></section>
-
-  <p class="muted">Try it: pay as partner 1, copy the code into partner 2, answer both. Pick "Yes" on the last question to see a report held. <button class="btn small ghost" id="reset">Start again</button></p>
-</main>
+  <div class="foot">
+    <p class="small" style="margin:0">In the real build: Stripe Checkout, answers stored encrypted on UK hosting, and the PDF made on the server.</p>
+    <button class="btn ghost sm" id="reset">Start again</button>
+  </div>
+</div>
 
 <script>
-const PRICE = 49;
-const DISCOUNTS = { WELCOME10: 0.1, GIFTCOUPLE: 1 };
-
-const QUESTIONS = [
-  { id: 'plans', text: 'When plans change last minute, I…', options: ['Adapt quickly', 'Need time to reset', 'Feel thrown for the day'] },
-  { id: 'noise', text: 'Busy, noisy places leave me…', options: ['Energised', 'Fine for a while', 'Drained'] },
-  { id: 'talk', text: 'I prefer hard conversations…', options: ['Face to face', 'In writing first', 'With a break in the middle'] },
-  { id: 'safe', text: 'Right now, do you feel unsafe or in crisis?', options: ['No', 'Yes'], flag: 'Yes' },
-];
-
-const store = {
-  load() {
-    try { return JSON.parse(localStorage.getItem('couples-demo')) || { orders: [] }; } catch { return { orders: [] }; }
-  },
-  save(state) {
-    try { localStorage.setItem('couples-demo', JSON.stringify(state)); } catch {}
-  },
+const BASE = 49;
+const ADDON = 15;
+const CODES = {
+  WELCOME10: { off: 0.1, label: '10% off' },
+  'GIFT-COUPLE': { off: 1, label: 'Gift voucher, 100% off' },
 };
 
-let state = store.load();
+const QUESTIONS = [
+  { id: 'plans', label: 'Last-minute changes', text: 'When plans change at the last minute, I usually…', options: ['Roll with it', 'Need a little time', 'Feel thrown for the day'] },
+  { id: 'quiet', label: 'After a busy day', text: 'After a busy, noisy day I need…', options: ['Company', 'A quiet hour', 'The whole evening to myself'] },
+  { id: 'talk', label: 'Hard conversations', text: "For a hard conversation, I'd rather…", options: ['Talk it through now', 'Write it down first', 'Take a break and come back'] },
+  { id: 'wellbeing', text: 'Right now, how are things for you?', options: ['Mostly okay', 'Up and down', 'Really struggling'], hold: 'Really struggling' },
+];
 
-const order = (code) => state.orders.find((o) => o.code === code);
-const now = () => new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+const TIPS = {
+  plans: 'Agree a ten-minute heads-up before any change of plan.',
+  quiet: 'Book quiet time after busy days before either of you needs it.',
+  talk: 'Pick one way to start hard conversations and try it for a month.',
+};
+
+const KEY = 'couples-report-demo-v2';
+const fresh = () => ({ view: 'a', addOn: false, discount: null, order: null });
+
+let state = load();
+let flashIds = new Set();
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch { return fresh(); }
+}
+
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
+}
+
+const money = (n) => '£' + n.toFixed(2);
+const clock = () => new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+function total() {
+  const subtotal = BASE + (state.addOn ? ADDON : 0);
+  const off = state.discount ? CODES[state.discount].off : 0;
+  return { subtotal, off: Math.round(subtotal * off * 100) / 100, due: Math.round(subtotal * (1 - off) * 100) / 100 };
+}
 
 function newCode() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let code = '';
-  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
-  return code.slice(0, 3) + '-' + code.slice(3);
+  const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  let s = '';
+  for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s.slice(0, 3) + '-' + s.slice(3);
 }
 
-function status(o) {
+function log(text) {
+  state.order.events.push({ at: clock(), text });
+}
+
+function mail(to, subject, attach) {
+  state.order.emails.unshift({ at: clock(), to, subject, attach });
+  flashIds.add('outbox');
+}
+
+function status() {
+  const o = state.order;
+  if (!o) return 'none';
   if (o.deleted) return 'deleted';
   if (!o.answers.a || !o.answers.b) return 'waiting';
-  if (o.flagged && !o.released) return 'held';
-  return 'ready';
+  if (o.held && !o.released) return 'held';
+  return 'sent';
 }
 
-function pill(o) {
-  const s = status(o);
-  const text = {
-    waiting: `Waiting for ${o.answers.a ? 'partner 2' : 'partner 1'}`,
-    held: 'Held for review',
-    ready: 'Report emailed',
-    deleted: 'Data deleted',
-  }[s];
-  return `<span class="pill ${s}">${text}</span>`;
+function stage() {
+  const o = state.order;
+  if (!o) return 1;
+  if (!o.answers.a) return 2;
+  if (!o.answers.b) return 3;
+  if (status() === 'held') return 4;
+  return 5;
 }
 
-function settle(o) {
-  if (o.answers.a && o.answers.b && !o.settled) {
-    o.settled = true;
-    o.flagged = Object.values(o.answers).some((a) => QUESTIONS.some((q) => q.flag && a[q.id] === q.flag));
-    o.log.push(o.flagged
-      ? `${now()} Both finished. A safety answer was given, so the report is held and you're emailed.`
-      : `${now()} Both finished. PDF report emailed to both partners.`);
-  }
+function renderSteps() {
+  const labels = ['Pay', 'Partner 1 answers', 'Partner 2 joins', 'Safety review', 'Report sent'];
+  const now = stage();
+  const heldSkipped = state.order && state.order.answers.b && !state.order.held;
+  document.getElementById('steps').innerHTML = labels.map((label, i) => {
+    const n = i + 1;
+    let cls = n < now ? 'done' : n === now ? 'now' : '';
+    if (n === 4 && heldSkipped) cls = 'done';
+    const text = n === 4 && heldSkipped ? 'No review needed' : label;
+    return `<li class="${cls}"><b>${n < now ? '✓' : n}</b>${text}</li>`;
+  }).join('');
 }
 
-function questionForm(who, o) {
+function renderSwitch() {
+  const o = state.order;
+  const el = document.getElementById('switch');
+  el.innerHTML = `
+    <button role="tab" data-view="a" class="${state.view === 'a' ? 'on' : ''}" aria-selected="${state.view === 'a'}">Partner 1's phone</button>
+    <button role="tab" data-view="b" class="${state.view === 'b' ? 'on' : ''}" aria-selected="${state.view === 'b'}" ${o ? '' : 'disabled'}>Partner 2's phone</button>`;
+}
+
+function checkout() {
+  const t = total();
+  const d = state.discount;
   return `
-    <form data-who="${who}" data-code="${o.code}">
+    <h3>Couples report</h3>
+    <p class="small">Payment unlocks the questionnaire for both of you.</p>
+    <div class="product"><span>Couples report<br><span class="small">Two questionnaires, one PDF</span></span><strong>${money(BASE)}</strong></div>
+    <label class="addon"><input type="checkbox" id="addon" ${state.addOn ? 'checked' : ''}><span><strong>Add the extra section</strong> · ${money(ADDON)}<br><span class="small">Sharing the load at home</span></span></label>
+
+    <label class="field" for="disc">Discount or gift code</label>
+    <div class="row">
+      <input class="input" id="disc" autocomplete="off" placeholder="Try WELCOME10 or GIFT-COUPLE" value="${d || ''}">
+      <button class="btn ghost sm" id="apply" type="button">Apply</button>
+    </div>
+    ${d ? `<span class="chip">✓ ${CODES[d].label}</span>` : ''}
+    <span id="discErr"></span>
+
+    <label class="field" for="card">Card</label>
+    <input class="input" id="card" value="4242 4242 4242 4242   12/28   123" disabled>
+
+    <div class="totals">
+      <div><span>Subtotal</span><span>${money(t.subtotal)}</span></div>
+      ${t.off ? `<div><span>${d}</span><span>−${money(t.off)}</span></div>` : ''}
+      <div class="sum"><span>Total</span><span>${money(t.due)}</span></div>
+    </div>
+    <button class="btn block" id="pay">${t.due ? `Pay ${money(t.due)}` : 'Redeem voucher'}</button>`;
+}
+
+function questionnaire(who) {
+  const o = state.order;
+  const isB = who === 'b';
+  return `
+    ${isB ? `<h3>Your questions</h3><p class="small">Linked to your partner's order ${o.code}.</p>` : `
+      <h3>Your questions</h3>
+      <p class="small">Share this code with your partner so they can join.</p>
+      <div class="codebox"><span class="code">${o.code}</span><button class="btn ghost sm" type="button" id="copy">Copy</button></div>`}
+    ${isB ? `<p class="hint">Pick <strong>Really struggling</strong> on the last question to see the report held for review.</p>` : ''}
+    <form id="qform" data-who="${who}">
       ${QUESTIONS.map((q) => `
-        <div class="q"><p>${q.text}</p><div class="opts">
-          ${q.options.map((opt) => `<label><input type="radio" name="${q.id}" value="${opt}" required>${opt}</label>`).join('')}
-        </div></div>`).join('')}
-      <button class="btn">Finish my part</button>
+        <fieldset class="q" style="border:0;padding:0;margin:0 0 18px">
+          <legend style="padding:0;font-weight:600;margin-bottom:8px">${q.text}</legend>
+          <div class="opts">${q.options.map((opt) => `
+            <label class="opt"><input type="radio" name="${q.id}" value="${opt}" required><span>${opt}</span></label>`).join('')}
+          </div>
+        </fieldset>`).join('')}
+      <div class="row" style="align-items:center;justify-content:space-between">
+        <button class="link" type="button" id="fill">Fill it in for me</button>
+        <button class="btn" type="submit">Finish my part</button>
+      </div>
     </form>`;
 }
 
-function renderA() {
-  const el = document.getElementById('tab-a');
-  const o = state.current && order(state.current);
+function joinScreen() {
+  return `
+    <h3>Join your partner</h3>
+    <p class="small">Partner 2 gets a link by email and enters the code partner 1 shared.</p>
+    <label class="field" for="join">Code from your partner</label>
+    <input class="input" id="join" autocomplete="off" placeholder="ABC-123">
+    <span id="joinErr"></span>
+    <button class="btn block" id="joinBtn">Join</button>
+    <p class="small" style="margin-top:12px">Code is <strong>${state.order.code}</strong>. <button class="link" type="button" id="paste">Use it</button></p>`;
+}
 
-  if (!o) {
-    el.innerHTML = `
-      <div class="card">
-        <h2>Couples report · £${PRICE}</h2>
-        <p class="muted">Payment unlocks the questionnaire. In the real build this is Stripe Checkout.</p>
-        <label for="disc">Discount or gift code (try WELCOME10 or GIFTCOUPLE)</label>
-        <input type="text" id="disc" autocomplete="off">
-        <button class="btn" id="pay">Pay</button>
-      </div>`;
-
-    document.getElementById('pay').onclick = () => {
-      const entered = document.getElementById('disc').value.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
-      const off = DISCOUNTS[entered] ?? 0;
-      const code = newCode();
-      const paid = Math.round(PRICE * (1 - off) * 100) / 100;
-
-      state.orders.unshift({
-        code,
-        paid,
-        discount: off ? entered : null,
-        answers: {},
-        log: [`${now()} Paid £${paid.toFixed(2)}${off ? ` with ${entered}` : ''}. Questionnaire link emailed to partner 1.`],
-      });
-      state.current = code;
-      store.save(state);
-      render();
-    };
-    return;
-  }
-
-  el.innerHTML = `
-    <div class="card">
-      <h2>Your partner's code</h2>
-      <p class="code">${o.code}</p>
-      <p class="muted">Send this to your partner. Your report is written once you've both finished.</p>
-      ${pill(o)}
-    </div>
-    <div class="card">
-      ${o.answers.a ? '<h2>Thanks, your part is done</h2><p class="muted">We\'ll email the report when it\'s ready.</p>' : `<h2>Your questions</h2>${questionForm('a', o)}`}
+function waitingScreen() {
+  const o = state.order;
+  return `
+    <div class="state">
+      <div class="icon" style="background:var(--butter)">⏳</div>
+      <h3>Waiting for your partner</h3>
+      <p class="small">Your report is written once you've both finished. We'll email you both when it's ready.</p>
+      <div class="codebox" style="justify-content:center"><span class="code">${o.code}</span></div>
+      <button class="btn" data-view="b">Open partner 2's phone →</button>
     </div>`;
 }
 
-function renderB() {
-  const el = document.getElementById('tab-b');
-  const o = state.joined && order(state.joined);
-
-  if (!o) {
-    el.innerHTML = `
-      <div class="card">
-        <h2>Join your partner</h2>
-        <label for="join">Code from your partner</label>
-        <input type="text" id="join" autocomplete="off" placeholder="ABC-123" value="${state.current || ''}">
-        <button class="btn" id="joinBtn">Join</button>
-        <p class="muted" id="joinErr"></p>
-      </div>`;
-
-    document.getElementById('joinBtn').onclick = () => {
-      const code = document.getElementById('join').value.trim().toUpperCase();
-      const found = order(code);
-
-      if (!found || found.deleted) {
-        document.getElementById('joinErr').textContent = "That code doesn't match an order.";
-        return;
-      }
-
-      state.joined = code;
-      found.log.push(`${now()} Partner 2 joined with the code.`);
-      store.save(state);
-      render();
-    };
-    return;
-  }
-
-  el.innerHTML = `
-    <div class="card">
-      <h2>Linked to ${o.code}</h2>
-      ${pill(o)}
-    </div>
-    <div class="card">
-      ${o.answers.b ? '<h2>Thanks, your part is done</h2><p class="muted">We\'ll email the report when it\'s ready.</p>' : `<h2>Your questions</h2>${questionForm('b', o)}`}
+function heldScreen() {
+  return `
+    <div class="state">
+      <div class="icon" style="background:var(--peach)">✉️</div>
+      <h3>Your report is nearly ready</h3>
+      <p class="small">We're making a few final checks and will email it to you both within one working day.</p>
+      <p class="small">The founder now has it to review in <strong>Your admin</strong>, <span class="wide">on the right</span><span class="narrow">just below</span>.</p>
     </div>`;
+}
+
+function deletedScreen() {
+  return `
+    <div class="state">
+      <div class="icon" style="background:#eee6de">🗑</div>
+      <h3>Answers deleted</h3>
+      <p class="small">Both partners' answers were removed. The order record stays for the accounts.</p>
+    </div>`;
+}
+
+function reportScreen() {
+  const o = state.order;
+  const a = o.answers.a;
+  const b = o.answers.b;
+  const asked = QUESTIONS.filter((q) => !q.hold);
+  const same = asked.filter((q) => a[q.id] === b[q.id]);
+  const differ = asked.filter((q) => a[q.id] !== b[q.id]);
+  return `
+    <div class="chip" style="margin:0 0 12px">✓ Emailed to you both · couples-report.pdf</div>
+    <div class="report">
+      <span class="tag">Couples report</span>
+      <h4>How you two work best</h4>
+      <h5>Where you're alike</h5>
+      ${same.length ? `<ul>${same.map((q) => `<li><strong>${q.label}.</strong> You both chose “${a[q.id].toLowerCase()}”.</li>`).join('')}</ul>` : '<p class="small">No exact matches this time, which is common.</p>'}
+      <h5>Where you differ</h5>
+      ${differ.length ? `<ul>${differ.map((q) => `<li><strong>${q.label}.</strong> Partner 1 chose “${a[q.id].toLowerCase()}”, partner 2 chose “${b[q.id].toLowerCase()}”.<br><span class="tip">Try this: ${TIPS[q.id].charAt(0).toLowerCase() + TIPS[q.id].slice(1)}</span></li>`).join('')}</ul>` : '<p class="small">You answered every question the same way.</p>'}
+      ${o.addOn ? `<h5>Extra section: sharing the load at home</h5><ul><li>Write down the jobs that drain each of you most, then swap one each for a fortnight.</li></ul><p class="small" style="margin:6px 0 0">Only in reports where the add-on was bought.</p>` : ''}
+    </div>`;
+}
+
+function renderScreen() {
+  const o = state.order;
+  const el = document.getElementById('screen');
+  const s = status();
+  if (!o) { el.innerHTML = checkout(); return; }
+  if (s === 'deleted') { el.innerHTML = deletedScreen(); return; }
+
+  const who = state.view;
+  if (who === 'b' && !o.joined) { el.innerHTML = joinScreen(); return; }
+  if (!o.answers[who]) { el.innerHTML = questionnaire(who); return; }
+  if (s === 'waiting') { el.innerHTML = who === 'a' ? waitingScreen() : waitingScreen().replace('Open partner 2', 'Back to partner 1').replace('data-view="b"', 'data-view="a"'); return; }
+  if (s === 'held') { el.innerHTML = heldScreen(); return; }
+  el.innerHTML = reportScreen();
 }
 
 function renderAdmin() {
-  const el = document.getElementById('tab-admin');
-  const live = state.orders;
+  const o = state.order;
+  const el = document.getElementById('admin');
+  const s = status();
+  let body = '<p class="empty">Nothing waiting. Held reports show up here.</p>';
+  if (s === 'held') {
+    body = `
+      <div class="review">
+        <p><span class="pill held">Held for review</span></p>
+        <p>Order <strong>${o.code}</strong>. ${o.heldBy} answered <strong>“Really struggling”</strong>, so the report hasn't gone out.</p>
+        <p class="small" style="margin-bottom:12px">You get an email, can check in with them first, then release it.</p>
+        <div class="actions">
+          <button class="btn sm" id="release">Release report</button>
+          <button class="btn ghost sm" id="delete">Delete answers</button>
+        </div>
+      </div>`;
+  } else if (o && s !== 'deleted' && o.answers.a) {
+    body = `<p class="empty">Nothing waiting. <button class="link" id="delete">Delete this order's answers</button> to see a data deletion.</p>`;
+  }
+  el.innerHTML = `<h3>Your admin</h3><p class="sub">Held reports and data deletion</p>${body}`;
+  if (flashIds.has('admin')) el.classList.add('flash');
+}
 
-  if (!live.length) {
-    el.innerHTML = '<div class="card"><h2>Orders</h2><p class="muted">No orders yet. Pay as partner 1 first.</p></div>';
+function renderOutbox() {
+  const o = state.order;
+  const el = document.getElementById('outbox');
+  const list = o && o.emails.length
+    ? o.emails.map((m) => `
+      <div class="mail">
+        <div class="av" aria-hidden="true">✉</div>
+        <div>
+          <div class="to">To ${m.to} · ${m.at}</div>
+          <div class="subj">${m.subject}</div>
+          ${m.attach ? `<span class="att">📎 ${m.attach}</span>` : ''}
+        </div>
+      </div>`).join('')
+    : '<p class="empty">Emails appear here as they would be sent.</p>';
+  el.innerHTML = `<h3>Emails sent</h3><p class="sub">Automatic, no one presses send</p>${list}`;
+  if (flashIds.has('outbox')) el.classList.add('flash');
+}
+
+function renderOrder() {
+  const o = state.order;
+  const el = document.getElementById('order');
+  if (!o) {
+    el.innerHTML = '<h3>Order</h3><p class="sub">Created when someone pays</p><p class="empty">No order yet.</p>';
     return;
   }
-
-  el.innerHTML = `<div class="card"><h2>Orders</h2>${live.map((o) => `
-    <div class="order">
-      <strong>${o.code}</strong> · £${o.paid.toFixed(2)}${o.discount ? ` · ${o.discount}` : ''}<br>
-      ${pill(o)}
-      <div>
-        ${status(o) === 'held' ? `<button class="btn small" data-release="${o.code}">Release report</button>` : ''}
-        ${status(o) !== 'deleted' ? `<button class="btn small ghost" data-delete="${o.code}">Delete answers</button>` : ''}
-      </div>
-      <div class="log">${o.log.join('<br>')}</div>
-    </div>`).join('')}</div>`;
+  const s = status();
+  const label = {
+    waiting: o.answers.a ? 'Waiting for partner 2' : 'Waiting for partner 1',
+    held: 'Held for review',
+    sent: 'Report sent',
+    deleted: 'Answers deleted',
+  }[s];
+  el.innerHTML = `
+    <div class="order-head"><h3>Order <strong>${o.code}</strong></h3><span class="pill ${s}">${label}</span></div>
+    <p class="sub">${money(o.paid)} paid${o.discount ? ` with ${o.discount}` : ''}${o.addOn ? ' · extra section' : ''}</p>
+    <ul class="timeline">${o.events.slice().reverse().map((e) => `<li><time>${e.at}</time><span>${e.text}</span></li>`).join('')}</ul>`;
 }
 
 function render() {
-  renderA();
-  renderB();
+  renderSteps();
+  renderSwitch();
+  renderScreen();
   renderAdmin();
+  renderOutbox();
+  renderOrder();
+  save();
+  setTimeout(() => {
+    document.querySelectorAll('.flash').forEach((n) => n.classList.remove('flash'));
+    flashIds.clear();
+  }, 1300);
 }
 
-document.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const o = order(form.dataset.code);
-  o.answers[form.dataset.who] = Object.fromEntries(new FormData(form));
-  o.log.push(`${now()} Partner ${form.dataset.who === 'a' ? 1 : 2} finished.`);
-  settle(o);
-  store.save(state);
-  render();
-});
+function finish(who, answers) {
+  const o = state.order;
+  o.answers[who] = answers;
+  const name = who === 'a' ? 'Partner 1' : 'Partner 2';
+  log(`${name} finished their questions.`);
+
+  if (!o.answers.a || !o.answers.b) {
+    mail(name.toLowerCase(), "Thanks, we're waiting for your partner");
+    return;
+  }
+
+  const flagged = ['a', 'b'].find((w) => QUESTIONS.some((q) => q.hold && o.answers[w][q.id] === q.hold));
+  if (flagged) {
+    o.held = true;
+    o.heldBy = flagged === 'a' ? 'Partner 1' : 'Partner 2';
+    log('Both finished. A wellbeing answer put the report on hold.');
+    mail('you (the founder)', `Report ${o.code} is held for your review`);
+    flashIds.add('admin');
+    return;
+  }
+  sendReport();
+}
+
+function sendReport() {
+  const o = state.order;
+  log('PDF report generated and emailed to both partners.');
+  mail('partner 1 and partner 2', 'Your couples report is ready', 'couples-report.pdf');
+}
 
 document.addEventListener('click', (e) => {
-  const tab = e.target.dataset.tab;
-  const release = e.target.dataset.release;
-  const del = e.target.dataset.delete;
+  const t = e.target.closest('button, [data-view]');
+  if (!t) return;
 
-  if (tab) {
-    document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
-    ['a', 'b', 'admin'].forEach((t) => document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab));
+  if (t.dataset.view) {
+    if (t.disabled) return;
+    state.view = t.dataset.view;
+    render();
+    return;
   }
 
-  if (release) {
-    const o = order(release);
-    o.released = true;
-    o.log.push(`${now()} You released the report. PDF emailed to both partners.`);
+  switch (t.id) {
+    case 'apply': {
+      const v = document.getElementById('disc').value.trim().toUpperCase();
+      if (CODES[v]) { state.discount = v; render(); }
+      else { state.discount = null; render(); document.getElementById('discErr').innerHTML = '<span class="chip err">That code isn\'t valid</span>'; }
+      break;
+    }
+    case 'pay': {
+      const t2 = total();
+      state.order = { code: newCode(), paid: t2.due, discount: state.discount, addOn: state.addOn, answers: {}, events: [], emails: [], joined: false };
+      log(t2.due ? `Paid ${money(t2.due)} by card.` : `Gift voucher ${state.discount} redeemed.`);
+      mail('partner 1', 'Your questionnaire is ready');
+      state.view = 'a';
+      render();
+      break;
+    }
+    case 'copy': {
+      try { navigator.clipboard.writeText(state.order.code); t.textContent = 'Copied'; } catch {}
+      break;
+    }
+    case 'fill': {
+      QUESTIONS.forEach((q) => {
+        const pick = q.hold ? q.options[0] : q.options[Math.floor(Math.random() * q.options.length)];
+        const input = document.querySelector(`input[name="${q.id}"][value="${pick}"]`);
+        if (input) input.checked = true;
+      });
+      break;
+    }
+    case 'paste': {
+      document.getElementById('join').value = state.order.code;
+      break;
+    }
+    case 'joinBtn': {
+      const v = document.getElementById('join').value.trim().toUpperCase();
+      if (v !== state.order.code) {
+        document.getElementById('joinErr').innerHTML = '<span class="chip err">That code doesn\'t match an order</span>';
+        break;
+      }
+      state.order.joined = true;
+      log('Partner 2 joined with the code.');
+      mail('partner 2', 'Your partner invited you to the couples report');
+      render();
+      break;
+    }
+    case 'release': {
+      state.order.released = true;
+      log('You reviewed and released the report.');
+      sendReport();
+      render();
+      break;
+    }
+    case 'delete': {
+      const o = state.order;
+      o.deleted = true;
+      o.answers = { a: o.answers.a ? {} : null, b: o.answers.b ? {} : null };
+      log('Answers deleted on request. The order record stays for the accounts.');
+      render();
+      break;
+    }
+    case 'reset': {
+      state = fresh();
+      render();
+      break;
+    }
   }
+});
 
-  if (del) {
-    const o = order(del);
-    o.answers = { a: o.answers.a && {}, b: o.answers.b && {} };
-    o.deleted = true;
-    o.log.push(`${now()} Answers deleted. The order record stays for your accounts.`);
-  }
-
-  if (release || del) {
-    store.save(state);
+document.addEventListener('change', (e) => {
+  if (e.target.id === 'addon') {
+    state.addOn = e.target.checked;
     render();
   }
 });
 
-document.getElementById('reset').onclick = () => {
-  state = { orders: [] };
-  store.save(state);
+document.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  finish(form.dataset.who, Object.fromEntries(new FormData(form)));
   render();
-};
+});
 
 render();
 </script>
