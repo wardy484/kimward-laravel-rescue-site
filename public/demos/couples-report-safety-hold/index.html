@@ -4,596 +4,537 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#fff8ef">
-<title>Couples report demo</title>
+<meta name="theme-color" content="#1C2E28">
+<title>Couples profile concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  @font-face { font-family: "DM Sans"; src: url("/fonts/dm-sans-latin.woff2") format("woff2"); font-weight: 100 1000; font-display: swap; }
-  @font-face { font-family: "Instrument Serif"; src: url("/fonts/instrument-serif-latin.woff2") format("woff2"); font-display: swap; }
-  @font-face { font-family: "Instrument Serif"; src: url("/fonts/instrument-serif-italic-latin.woff2") format("woff2"); font-style: italic; font-display: swap; }
-
   :root {
-    --cream: #fff8ef; --ink: #2e2430; --muted: #65575f; --line: #eadfd3;
-    --coral: #b8492a; --coral-hover: #9c3b20;
-    --butter: #ffedb0; --lilac: #e3dafa; --lilac-soft: #f4f0ff; --mint: #cdeedd; --mint-soft: #ecf8f1;
-    --peach: #ffdcc8; --peach-soft: #fff0e6; --sky: #d5e9f8;
-    --sans: "DM Sans", Arial, sans-serif; --serif: "Instrument Serif", Georgia, serif;
-    --radius: 24px;
-    --shadow: 0 1px 2px rgb(94 52 38 / 0.06), 0 12px 32px -12px rgb(94 52 38 / 0.22);
+    --bg: #EDE7DE; --card: #F6F3EE; --forest: #1C2E28; --forest-soft: #263D35;
+    --gold: #C9AE7A; --gold-dark: #9E824E; --ink: #1F2624; --muted: #525E59; --line: #D6CEC2;
+    --serif: Georgia, "Times New Roman", serif; --sans: Roboto, Arial, sans-serif;
+    --alert: #8A3B22; --alert-soft: #F3E3DA; --ok: #2F5D46; --ok-soft: #DCE9DF;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--cream); color: var(--ink); font: 16px/1.55 var(--sans); }
-  button, input { font: inherit; color: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+  button, input, textarea { font: inherit; color: inherit; }
   button { cursor: pointer; }
-  :focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+  :focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 2px; }
 
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 16px 56px; }
-  .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: .02em; background: var(--butter); padding: 4px 12px; border-radius: 999px; }
-  h1 { font: 400 clamp(34px, 6vw, 52px)/1.05 var(--serif); margin: 14px 0 10px; letter-spacing: -.01em; }
-  h1 em { color: var(--coral); }
-  .lede { max-width: 640px; color: var(--muted); margin: 0 0 6px; }
-  .small { font-size: 14px; color: var(--muted); }
-  .small a { color: var(--coral); }
+  .strip { background: var(--forest); color: #d9d2c4; font-size: 13px; padding: 8px 16px; text-align: center; }
+  .strip a { color: var(--gold); }
 
-  .steps { display: flex; gap: 8px; flex-wrap: wrap; margin: 22px 0 22px; padding: 0; list-style: none; }
-  .steps li { display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-  .steps li b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--peach-soft); font-size: 13px; color: var(--ink); }
-  .steps li.done { color: var(--ink); }
-  .steps li.done b { background: var(--mint); }
-  .steps li.now { color: #fff; background: var(--ink); border-color: var(--ink); }
-  .steps li.now b { background: var(--coral); color: #fff; }
+  .tabs { display: flex; gap: 6px; padding: 12px 16px 0; position: sticky; top: 0; z-index: 2; background: var(--bg); }
+  .tabs button { flex: 1; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 6px; font-size: 13px; font-weight: 500; }
+  .tabs button.on { background: var(--forest); color: #fff; border-color: var(--forest); }
+  @media (min-width: 1100px) { .tabs { display: none; } }
 
-  .grid { display: grid; gap: 20px; align-items: start; }
-  @media (min-width: 900px) { .grid { grid-template-columns: 400px 1fr; } }
+  .stage { display: grid; gap: 24px; padding: 16px; max-width: 1240px; margin: 0 auto; }
+  @media (min-width: 1100px) { .stage { grid-template-columns: 340px 340px 1fr; padding: 28px 24px; align-items: start; } }
+  .col > .label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); margin: 0 0 10px 4px; }
+  @media (max-width: 1099px) { .col { display: none; } .col.on { display: block; } .col > .label { display: none; } }
 
-  .panel-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0 0 10px; }
-  .panel-title h2 { font: 400 26px/1.1 var(--serif); margin: 0; }
+  .phone { background: var(--forest); border: 8px solid var(--forest); border-radius: 36px; overflow: hidden; min-height: 640px; display: flex; flex-direction: column; max-width: 360px; margin: 0 auto; }
+  .bar { background: var(--forest); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
+  .brand { font: 19px var(--serif); }
+  .brand span { color: var(--gold); font-size: 13px; }
+  .bar small { color: #b9c2bd; font-size: 12px; }
+  .body { padding: 22px 20px 24px; flex: 1; display: flex; flex-direction: column; background: var(--card); border-radius: 0 0 28px 28px; }
+  .body h2 { font: 400 25px/1.2 var(--serif); margin: 0 0 8px; }
+  .body h2 em { color: var(--gold-dark); }
+  .body p { margin: 0 0 12px; color: var(--muted); }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; }
 
-  .phone { background: #fff; border-radius: 34px; box-shadow: var(--shadow); border: 1px solid var(--line); overflow: hidden; }
-  .switch { display: flex; gap: 6px; padding: 10px; background: var(--peach-soft); border-bottom: 1px solid var(--line); }
-  .switch button { flex: 1; border: 0; background: transparent; padding: 9px 8px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--muted); }
-  .switch button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgb(94 52 38 / .15); }
-  .switch button:disabled { opacity: .45; cursor: not-allowed; }
-  .screen { padding: 22px 20px 24px; }
-  @media (min-width: 900px) { .screen { min-height: 520px; } }
-  .narrow { display: inline; }
-  .wide { display: none; }
-  @media (min-width: 900px) { .narrow { display: none; } .wide { display: inline; } }
-  .screen h3 { font: 400 28px/1.1 var(--serif); margin: 0 0 6px; }
-  .screen p { margin: 0 0 14px; }
+  .btn { border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 500; background: var(--forest); color: #fff; }
+  .btn.gold { background: var(--gold); color: var(--forest); }
+  .btn.line { background: transparent; border: 1px solid var(--forest); color: var(--forest); }
+  .btn.sm { padding: 7px 14px; font-size: 13px; }
+  .btn.block { width: 100%; }
+  .btn:disabled { opacity: .45; cursor: default; }
+  .push { margin-top: auto; }
+  .text-btn { border: 0; background: none; padding: 0; color: var(--muted); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
 
-  .product { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 16px; background: var(--lilac-soft); margin: 14px 0 10px; }
-  .product strong { font-size: 17px; }
-  .addon { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: 16px; margin-bottom: 10px; font-size: 15px; }
-  .addon input { margin-top: 4px; accent-color: var(--coral); width: 18px; height: 18px; }
-  .field { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin: 14px 0 6px; }
-  .row { display: flex; gap: 8px; }
-  .input { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
-  .input[disabled] { background: #faf6f1; color: var(--muted); }
-  .chip { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--mint); margin-top: 8px; }
-  .chip.err { background: var(--peach); }
-  .totals { margin: 16px 0 4px; font-size: 15px; }
-  .totals div { display: flex; justify-content: space-between; padding: 3px 0; }
-  .totals .sum { font-weight: 700; font-size: 18px; border-top: 1px solid var(--line); margin-top: 6px; padding-top: 10px; }
+  .summary { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+  .summary .row { display: flex; justify-content: space-between; font-size: 14px; padding: 2px 0; }
+  .summary .total { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 8px; font-weight: 700; color: var(--ink); }
+  label.f { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin: 10px 0 4px; }
+  .input { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+  .input[readonly] { color: var(--muted); }
+  .inline { display: flex; gap: 6px; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .note.bad { color: var(--alert); }
+  .stripe { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
 
-  .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 13px 22px; background: var(--coral); color: #fff; font-weight: 600; transition: background .15s, transform .15s; }
-  .btn:hover { background: var(--coral-hover); }
-  .btn:active { transform: scale(.98); }
-  .btn.block { width: 100%; margin-top: 14px; }
-  .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
-  .btn.ghost:hover { background: var(--peach-soft); }
-  .btn.sm { padding: 8px 14px; font-size: 14px; }
-  .link { border: 0; background: none; padding: 0; color: var(--coral); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .code { font: 700 26px/1 ui-monospace, Menlo, monospace; letter-spacing: .14em; color: var(--forest); background: #fff; border: 1px dashed var(--gold); border-radius: 12px; padding: 14px; text-align: center; margin: 4px 0 14px; }
 
-  .codebox { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px; border-radius: 16px; background: var(--butter); margin: 6px 0 18px; }
-  .codebox .code { font: 600 24px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
-  .q { margin: 0 0 18px; }
-  .q > p { font-weight: 600; margin: 0 0 8px; }
+  .progress { height: 4px; background: var(--line); border-radius: 4px; margin: 0 0 20px; overflow: hidden; }
+  .progress i { display: block; height: 100%; background: var(--gold); }
+  .q { font: 400 21px/1.3 var(--serif); color: var(--ink); margin: 0 0 16px; }
   .opts { display: grid; gap: 8px; }
-  .opt { position: relative; }
-  .opt input { position: absolute; opacity: 0; inset: 0; }
-  .opt span { display: block; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 14px; background: #fff; transition: border-color .15s, background .15s; }
-  .opt input:checked + span { border-color: var(--coral); background: var(--peach-soft); }
-  .opt input:focus-visible + span { outline: 3px solid var(--coral); outline-offset: 2px; }
-  .hint { font-size: 14px; background: var(--sky); border-radius: 14px; padding: 10px 14px; margin: 0 0 16px; }
+  .opt { text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .opt:hover { border-color: var(--gold); }
+  .private { background: var(--forest); color: #e9e4da; border-radius: 12px; padding: 12px 14px; font-size: 13px; margin-bottom: 14px; }
+  .private b { color: var(--gold); }
+  textarea.input { min-height: 96px; resize: vertical; }
+  .toggle { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); margin: 10px 0 14px; }
+  .toggle input { margin-top: 3px; accent-color: var(--forest); }
+  .qfoot { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
 
-  .state { text-align: center; padding: 30px 6px 10px; }
-  .state .icon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 14px; font-size: 28px; }
+  .mail { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
+  .mail .from { font-size: 12px; color: var(--muted); }
+  .mail .subj { font-weight: 500; margin: 2px 0 6px; }
+  .pdf { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+  .pdf::before { content: "PDF"; font: 700 10px var(--sans); color: #fff; background: var(--alert); padding: 2px 4px; border-radius: 3px; }
 
-  .report { border: 1px solid var(--line); border-radius: 18px; padding: 20px; background: #fffdf9; box-shadow: 0 1px 0 #fff inset; }
-  .report .tag { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--coral); }
-  .report h4 { font: 400 22px/1.15 var(--serif); margin: 4px 0 12px; }
-  .report h5 { font-size: 14px; margin: 16px 0 6px; }
-  .report ul { margin: 0; padding-left: 18px; font-size: 15px; }
-  .report li { margin: 0 0 6px; }
-  .report .tip { color: var(--muted); }
+  .same-note { max-width: 720px; font-size: 13px; color: var(--muted); text-align: center; margin: 4px auto 0; }
+  @media (min-width: 1100px) { .same-note { grid-column: 1 / 3; } }
 
-  .side { display: grid; gap: 16px; }
-  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); }
-  .card h3 { margin: 0 0 4px; font-size: 17px; }
-  .card .sub { font-size: 14px; color: var(--muted); margin: 0 0 12px; }
-  .empty { font-size: 14px; color: var(--muted); padding: 10px 0 2px; }
-  .pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 13px; font-weight: 600; background: var(--lilac); }
-  .pill.waiting { background: var(--butter); }
-  .pill.held { background: var(--peach); color: #7a2e17; }
-  .pill.sent { background: var(--mint); }
-  .pill.deleted { background: #eee6de; color: var(--muted); }
-  .order-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .order-head strong { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
-  .timeline { list-style: none; margin: 12px 0 0; padding: 0; }
-  .timeline li { display: grid; grid-template-columns: 52px 1fr; gap: 8px; font-size: 14px; padding: 6px 0; border-top: 1px dashed var(--line); }
-  .timeline time { color: var(--muted); font-variant-numeric: tabular-nums; }
-  .mail { display: grid; grid-template-columns: 36px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
-  .mail:first-of-type { border-top: 0; }
-  .mail .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--lilac-soft); font-size: 16px; }
-  .mail .to { font-size: 13px; color: var(--muted); }
-  .mail .subj { font-weight: 600; font-size: 15px; }
-  .mail .att { display: inline-block; margin-top: 4px; font-size: 12px; padding: 2px 8px; border-radius: 6px; background: var(--peach-soft); border: 1px solid var(--peach); }
-  .review { border-radius: 18px; background: var(--peach-soft); border: 1px solid var(--peach); padding: 14px 16px; }
-  .review p { margin: 0 0 10px; font-size: 15px; }
-  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .foot { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
-  .flash { animation: flash 1.2s ease; }
-  @keyframes flash { 0% { box-shadow: 0 0 0 0 rgb(184 73 42 / .45); } 100% { box-shadow: var(--shadow); } }
-  @media (prefers-reduced-motion: reduce) { .flash { animation: none; } .btn { transition: none; } }
+  .admin { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .admin-bar { background: var(--forest); color: #fff; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
+  .admin-bar small { color: #b9c2bd; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 10px 18px; border-bottom: 1px solid var(--line); }
+  td { padding: 12px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.mono { font-family: ui-monospace, Menlo, monospace; letter-spacing: .06em; }
+  tr.sel td { background: #FBF8F3; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); white-space: nowrap; }
+  .badge.wait { background: #F4EEDF; border-color: #E5D8B8; }
+  .badge.check { background: #E6EEF2; border-color: #C9D9E2; }
+  .badge.held { background: var(--alert-soft); border-color: #E2BFAE; color: var(--alert); }
+  .badge.sent { background: var(--ok-soft); border-color: #BCD3C2; color: var(--ok); }
+  .badge.closed { color: var(--muted); }
+  .detail { padding: 18px; border-top: 1px solid var(--line); }
+  .detail h3 { font: 400 20px var(--serif); margin: 0 0 4px; }
+  .detail .sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .flag { background: var(--alert-soft); border: 1px solid #E2BFAE; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+  .flag strong { color: var(--alert); }
+  .flag p { margin: 6px 0 12px; font-size: 14px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .draft { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 14px; margin-bottom: 12px; white-space: pre-line; }
+  .draft .to { font-size: 12px; color: var(--muted); margin-bottom: 6px; white-space: normal; }
+
+  .report { display: grid; grid-template-columns: 150px 1fr; gap: 16px; margin-bottom: 14px; }
+  @media (max-width: 560px) { .report { grid-template-columns: 1fr; } }
+  .cover { background: var(--forest); color: #fff; border-radius: 6px; padding: 16px 14px; aspect-ratio: 1 / 1.41; display: flex; flex-direction: column; }
+  .cover .t { font: 15px/1.25 var(--serif); margin-top: auto; }
+  .cover .n { color: var(--gold); font: italic 14px var(--serif); margin-top: 6px; }
+  .cover .brand { font-size: 13px; }
+  .pages h4 { font: 400 16px var(--serif); margin: 0 0 6px; }
+  .pages ul { margin: 0 0 10px; padding-left: 18px; font-size: 14px; }
+  .pages li { margin-bottom: 4px; }
+  .quote { font: italic 14px/1.45 var(--serif); border-left: 3px solid var(--gold); padding-left: 10px; margin: 0 0 10px; }
+
+  .log { list-style: none; margin: 14px 0 0; padding: 0; font-size: 13px; color: var(--muted); }
+  .log li { padding: 5px 0; border-top: 1px dashed var(--line); display: grid; grid-template-columns: 48px 1fr; }
+  .empty { padding: 18px; color: var(--muted); font-size: 14px; }
+  .reset { display: block; margin: 16px auto 32px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <span class="eyebrow">A quick demo for your Upwork post</span>
-  <h1>Two partners, one report, and a <em>safety hold</em></h1>
-  <p class="lede">Pay, answer as partner 1, join with the code as partner 2. The report waits until you've both finished, and some answers hold it for review before anything is sent.</p>
-  <p class="small">Fake data, saved in this browser only. Nothing is charged or emailed. Built by <a href="https://kimward.co.uk/">Kim Ward</a>.</p>
+<div class="strip">Concept for NeuroKeen by <a href="https://kimward.co.uk/">Kim Ward</a>. Not a live NeuroKeen page. Fake data, nothing is charged or emailed.</div>
 
-  <ol class="steps" id="steps"></ol>
-
-  <div class="grid">
-    <section aria-labelledby="customer-title">
-      <div class="panel-title"><h2 id="customer-title">What your customer sees</h2></div>
-      <div class="phone">
-        <div class="switch" role="tablist" id="switch"></div>
-        <div class="screen" id="screen"></div>
-      </div>
-    </section>
-
-    <section aria-labelledby="behind-title">
-      <div class="panel-title"><h2 id="behind-title">Behind the scenes</h2></div>
-      <div class="side">
-        <div class="card" id="admin"></div>
-        <div class="card" id="outbox"></div>
-        <div class="card" id="order"></div>
-      </div>
-    </section>
-  </div>
-
-  <div class="foot">
-    <p class="small" style="margin:0">In the real build: Stripe Checkout, answers stored encrypted on UK hosting, and the PDF made on the server.</p>
-    <button class="btn ghost sm" id="reset">Start again</button>
-  </div>
+<div class="tabs" role="tablist">
+  <button data-tab="a" class="on">Alex's phone</button>
+  <button data-tab="b">Sam's phone</button>
+  <button data-tab="admin">Your admin</button>
 </div>
 
+<main class="stage">
+  <section class="col on" id="col-a"><p class="label">Alex's phone</p><div class="phone" id="phone-a"></div></section>
+  <section class="col" id="col-b"><p class="label">Sam's phone</p><div class="phone" id="phone-b"></div></section>
+  <section class="col" id="col-admin"><p class="label">Your admin</p><div class="admin" id="admin"></div></section>
+  <p class="same-note" id="same-note"></p>
+</main>
+<button class="btn line sm reset" id="reset">Start again</button>
+
 <script>
-const BASE = 49;
-const ADDON = 15;
-const CODES = {
-  WELCOME10: { off: 0.1, label: '10% off' },
-  'GIFT-COUPLE': { off: 1, label: 'Gift voucher, 100% off' },
-};
+const PRICE = 39;
+const PROMOS = { WELCOME10: { off: .1, label: '10% off' }, 'GIFT-7KQ2': { off: 1, label: 'Gift voucher' } };
+const NAMES = { a: 'Alex', b: 'Sam' };
+const OTHER = { a: 'b', b: 'a' };
 
 const QUESTIONS = [
-  { id: 'plans', label: 'Last-minute changes', text: 'When plans change at the last minute, I usually…', options: ['Roll with it', 'Need a little time', 'Feel thrown for the day'] },
-  { id: 'quiet', label: 'After a busy day', text: 'After a busy, noisy day I need…', options: ['Company', 'A quiet hour', 'The whole evening to myself'] },
-  { id: 'talk', label: 'Hard conversations', text: "For a hard conversation, I'd rather…", options: ['Talk it through now', 'Write it down first', 'Take a break and come back'] },
-  { id: 'wellbeing', text: 'Right now, how are things for you?', options: ['Mostly okay', 'Up and down', 'Really struggling'], hold: 'Really struggling' },
+  { id: 'change', label: 'Plans changing at short notice', text: 'When plans change at short notice, you…', options: ['Adjust fine', 'Need a moment', 'Lose the rest of the day'] },
+  { id: 'evening', label: 'Evenings after a busy day', text: 'After a busy day, home needs to be…', options: ['Sociable', 'Calm', 'Silent for a while'] },
+  { id: 'disagree', label: 'Disagreements', text: "When there's a disagreement, you'd rather…", options: ['Sort it now', 'Write it down first', 'Pause and come back'] },
+  { id: 'load', label: 'Keeping track of jobs at home', text: 'Who keeps track of the jobs at home?', options: ['Mostly me', 'Mostly them', 'Both of us', 'Nobody, really'] },
+  { id: 'words', type: 'text', text: "In your own words, what's one thing you wish they knew?" },
+  { id: 'safety', type: 'private', text: 'Do you ever feel unsafe at home?', options: ['No', 'Sometimes', 'Yes', "I'd rather not say"], hold: ['Sometimes', 'Yes'] },
 ];
 
-const TIPS = {
-  plans: 'Agree a ten-minute heads-up before any change of plan.',
-  quiet: 'Book quiet time after busy days before either of you needs it.',
-  talk: 'Pick one way to start hard conversations and try it for a month.',
+const STRATEGY = {
+  change: 'Agree a heads-up time for any change of plan, even a small one.',
+  evening: 'Plan the first hour after work before either of you needs it.',
+  disagree: 'Pick one way to start hard conversations and stick to it for 30 days.',
+  load: 'Write the jobs list down where you both can see it.',
 };
 
-const KEY = 'couples-report-demo-v2';
-const fresh = () => ({ view: 'a', addOn: false, discount: null, order: null });
+const KEY = 'nk-concept-v3';
+const blank = () => ({ tab: 'a', promo: null, order: null });
+let s = load();
 
-let state = load();
-let flashIds = new Set();
-
-function load() {
-  try { return JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch { return fresh(); }
-}
-
-function save() {
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
-}
-
-const money = (n) => '£' + n.toFixed(2);
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || blank(); } catch { return blank(); } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} }
+const esc = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const clock = () => new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+const money = (n) => '£' + n.toFixed(2);
+const due = () => Math.round(PRICE * (1 - (s.promo ? PROMOS[s.promo].off : 0)) * 100) / 100;
 
-function total() {
-  const subtotal = BASE + (state.addOn ? ADDON : 0);
-  const off = state.discount ? CODES[state.discount].off : 0;
-  return { subtotal, off: Math.round(subtotal * off * 100) / 100, due: Math.round(subtotal * (1 - off) * 100) / 100 };
+function code() {
+  const c = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  let r = '';
+  for (let i = 0; i < 6; i++) r += c[Math.floor(Math.random() * c.length)];
+  return r.slice(0, 3) + '-' + r.slice(3);
 }
 
-function newCode() {
-  const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
-  let s = '';
-  for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
-  return s.slice(0, 3) + '-' + s.slice(3);
-}
-
-function log(text) {
-  state.order.events.push({ at: clock(), text });
-}
-
-function mail(to, subject, attach) {
-  state.order.emails.unshift({ at: clock(), to, subject, attach });
-  flashIds.add('outbox');
-}
+function log(text) { s.order.log.push({ at: clock(), text }); }
 
 function status() {
-  const o = state.order;
-  if (!o) return 'none';
-  if (o.deleted) return 'deleted';
-  if (!o.answers.a || !o.answers.b) return 'waiting';
-  if (o.held && !o.released) return 'held';
-  return 'sent';
+  const o = s.order;
+  if (!o) return null;
+  if (o.closed) return 'closed';
+  if (o.sent) return 'sent';
+  if (!o.a.done || !o.b.done) return 'wait';
+  if (o.flagged) return 'held';
+  return 'check';
 }
 
-function stage() {
-  const o = state.order;
-  if (!o) return 1;
-  if (!o.answers.a) return 2;
-  if (!o.answers.b) return 3;
-  if (status() === 'held') return 4;
-  return 5;
+function badge() {
+  const o = s.order;
+  const st = status();
+  const text = {
+    wait: !o.a.done && !o.b.done ? 'Waiting for both' : `Waiting for ${o.a.done ? 'Sam' : 'Alex'}`,
+    check: 'Ready to check',
+    held: 'Held: safety',
+    sent: 'Sent, answers deleted',
+    closed: 'No joint report',
+  }[st];
+  return `<span class="badge ${st}">${text}</span>`;
 }
 
-function renderSteps() {
-  const labels = ['Pay', 'Partner 1 answers', 'Partner 2 joins', 'Safety review', 'Report sent'];
-  const now = stage();
-  const heldSkipped = state.order && state.order.answers.b && !state.order.held;
-  document.getElementById('steps').innerHTML = labels.map((label, i) => {
-    const n = i + 1;
-    let cls = n < now ? 'done' : n === now ? 'now' : '';
-    if (n === 4 && heldSkipped) cls = 'done';
-    const text = n === 4 && heldSkipped ? 'No review needed' : label;
-    return `<li class="${cls}"><b>${n < now ? '✓' : n}</b>${text}</li>`;
-  }).join('');
-}
+/* ---------- phones ---------- */
 
-function renderSwitch() {
-  const o = state.order;
-  const el = document.getElementById('switch');
-  el.innerHTML = `
-    <button role="tab" data-view="a" class="${state.view === 'a' ? 'on' : ''}" aria-selected="${state.view === 'a'}">Partner 1's phone</button>
-    <button role="tab" data-view="b" class="${state.view === 'b' ? 'on' : ''}" aria-selected="${state.view === 'b'}" ${o ? '' : 'disabled'}>Partner 2's phone</button>`;
+function bar(who) {
+  return `<div class="bar"><span class="brand">NeuroKeen <span>♥</span></span><small>${NAMES[who]}</small></div>`;
 }
 
 function checkout() {
-  const t = total();
-  const d = state.discount;
+  const p = s.promo;
   return `
-    <h3>Couples report</h3>
-    <p class="small">Payment unlocks the questionnaire for both of you.</p>
-    <div class="product"><span>Couples report<br><span class="small">Two questionnaires, one PDF</span></span><strong>${money(BASE)}</strong></div>
-    <label class="addon"><input type="checkbox" id="addon" ${state.addOn ? 'checked' : ''}><span><strong>Add the extra section</strong> · ${money(ADDON)}<br><span class="small">Sharing the load at home</span></span></label>
-
-    <label class="field" for="disc">Discount or gift code</label>
-    <div class="row">
-      <input class="input" id="disc" autocomplete="off" placeholder="Try WELCOME10 or GIFT-COUPLE" value="${d || ''}">
-      <button class="btn ghost sm" id="apply" type="button">Apply</button>
+    <div class="eyebrow">Couples Home & Relationship Profile</div>
+    <h2>Pay and you'll go straight to your <em>questionnaire</em></h2>
+    <div class="summary">
+      <div class="row"><span>Couples profile</span><span>${money(PRICE)}</span></div>
+      ${p ? `<div class="row"><span>${esc(p)} · ${PROMOS[p].label}</span><span>−${money(PRICE - due())}</span></div>` : ''}
+      <div class="row total"><span>Total</span><span>${money(due())}</span></div>
     </div>
-    ${d ? `<span class="chip">✓ ${CODES[d].label}</span>` : ''}
-    <span id="discErr"></span>
-
-    <label class="field" for="card">Card</label>
-    <input class="input" id="card" value="4242 4242 4242 4242   12/28   123" disabled>
-
-    <div class="totals">
-      <div><span>Subtotal</span><span>${money(t.subtotal)}</span></div>
-      ${t.off ? `<div><span>${d}</span><span>−${money(t.off)}</span></div>` : ''}
-      <div class="sum"><span>Total</span><span>${money(t.due)}</span></div>
-    </div>
-    <button class="btn block" id="pay">${t.due ? `Pay ${money(t.due)}` : 'Redeem voucher'}</button>`;
+    <label class="f" for="promo">Discount or gift code</label>
+    <div class="inline"><input class="input" id="promo" placeholder="WELCOME10 or GIFT-7KQ2" value="${p ? esc(p) : ''}" autocomplete="off"><button class="btn line sm" id="apply">Apply</button></div>
+    <div class="note" id="promo-note"></div>
+    <label class="f" for="card">Card</label>
+    <input class="input" id="card" value="4242 4242 4242 4242   12 / 29   123" readonly>
+    <button class="btn block push" id="pay" style="margin-top:18px">${due() ? `Pay ${money(due())}` : 'Use gift voucher'}</button>
+    <div class="stripe">Secure payment by Stripe</div>`;
 }
 
-function questionnaire(who) {
-  const o = state.order;
-  const isB = who === 'b';
-  return `
-    ${isB ? `<h3>Your questions</h3><p class="small">Linked to your partner's order ${o.code}.</p>` : `
-      <h3>Your questions</h3>
-      <p class="small">Share this code with your partner so they can join.</p>
-      <div class="codebox"><span class="code">${o.code}</span><button class="btn ghost sm" type="button" id="copy">Copy</button></div>`}
-    ${isB ? `<p class="hint">Pick <strong>Really struggling</strong> on the last question to see the report held for review.</p>` : ''}
-    <form id="qform" data-who="${who}">
-      ${QUESTIONS.map((q) => `
-        <fieldset class="q" style="border:0;padding:0;margin:0 0 18px">
-          <legend style="padding:0;font-weight:600;margin-bottom:8px">${q.text}</legend>
-          <div class="opts">${q.options.map((opt) => `
-            <label class="opt"><input type="radio" name="${q.id}" value="${opt}" required><span>${opt}</span></label>`).join('')}
-          </div>
-        </fieldset>`).join('')}
-      <div class="row" style="align-items:center;justify-content:space-between">
-        <button class="link" type="button" id="fill">Fill it in for me</button>
-        <button class="btn" type="submit">Finish my part</button>
-      </div>
-    </form>`;
-}
-
-function joinScreen() {
-  return `
-    <h3>Join your partner</h3>
-    <p class="small">Partner 2 gets a link by email and enters the code partner 1 shared.</p>
-    <label class="field" for="join">Code from your partner</label>
-    <input class="input" id="join" autocomplete="off" placeholder="ABC-123">
-    <span id="joinErr"></span>
-    <button class="btn block" id="joinBtn">Join</button>
-    <p class="small" style="margin-top:12px">Code is <strong>${state.order.code}</strong>. <button class="link" type="button" id="paste">Use it</button></p>`;
-}
-
-function waitingScreen() {
-  const o = state.order;
-  return `
-    <div class="state">
-      <div class="icon" style="background:var(--butter)">⏳</div>
-      <h3>Waiting for your partner</h3>
-      <p class="small">Your report is written once you've both finished. We'll email you both when it's ready.</p>
-      <div class="codebox" style="justify-content:center"><span class="code">${o.code}</span></div>
-      <button class="btn" data-view="b">Open partner 2's phone →</button>
-    </div>`;
-}
-
-function heldScreen() {
-  return `
-    <div class="state">
-      <div class="icon" style="background:var(--peach)">✉️</div>
-      <h3>Your report is nearly ready</h3>
-      <p class="small">We're making a few final checks and will email it to you both within one working day.</p>
-      <p class="small">The founder now has it to review in <strong>Your admin</strong>, <span class="wide">on the right</span><span class="narrow">just below</span>.</p>
-    </div>`;
-}
-
-function deletedScreen() {
-  return `
-    <div class="state">
-      <div class="icon" style="background:#eee6de">🗑</div>
-      <h3>Answers deleted</h3>
-      <p class="small">Both partners' answers were removed. The order record stays for the accounts.</p>
-    </div>`;
-}
-
-function reportScreen() {
-  const o = state.order;
-  const a = o.answers.a;
-  const b = o.answers.b;
-  const asked = QUESTIONS.filter((q) => !q.hold);
-  const same = asked.filter((q) => a[q.id] === b[q.id]);
-  const differ = asked.filter((q) => a[q.id] !== b[q.id]);
-  return `
-    <div class="chip" style="margin:0 0 12px">✓ Emailed to you both · couples-report.pdf</div>
-    <div class="report">
-      <span class="tag">Couples report</span>
-      <h4>How you two work best</h4>
-      <h5>Where you're alike</h5>
-      ${same.length ? `<ul>${same.map((q) => `<li><strong>${q.label}.</strong> You both chose “${a[q.id].toLowerCase()}”.</li>`).join('')}</ul>` : '<p class="small">No exact matches this time, which is common.</p>'}
-      <h5>Where you differ</h5>
-      ${differ.length ? `<ul>${differ.map((q) => `<li><strong>${q.label}.</strong> Partner 1 chose “${a[q.id].toLowerCase()}”, partner 2 chose “${b[q.id].toLowerCase()}”.<br><span class="tip">Try this: ${TIPS[q.id].charAt(0).toLowerCase() + TIPS[q.id].slice(1)}</span></li>`).join('')}</ul>` : '<p class="small">You answered every question the same way.</p>'}
-      ${o.addOn ? `<h5>Extra section: sharing the load at home</h5><ul><li>Write down the jobs that drain each of you most, then swap one each for a fortnight.</li></ul><p class="small" style="margin:6px 0 0">Only in reports where the add-on was bought.</p>` : ''}
-    </div>`;
-}
-
-function renderScreen() {
-  const o = state.order;
-  const el = document.getElementById('screen');
-  const s = status();
-  if (!o) { el.innerHTML = checkout(); return; }
-  if (s === 'deleted') { el.innerHTML = deletedScreen(); return; }
-
-  const who = state.view;
-  if (who === 'b' && !o.joined) { el.innerHTML = joinScreen(); return; }
-  if (!o.answers[who]) { el.innerHTML = questionnaire(who); return; }
-  if (s === 'waiting') { el.innerHTML = who === 'a' ? waitingScreen() : waitingScreen().replace('Open partner 2', 'Back to partner 1').replace('data-view="b"', 'data-view="a"'); return; }
-  if (s === 'held') { el.innerHTML = heldScreen(); return; }
-  el.innerHTML = reportScreen();
-}
-
-function renderAdmin() {
-  const o = state.order;
-  const el = document.getElementById('admin');
-  const s = status();
-  let body = '<p class="empty">Nothing waiting. Held reports show up here.</p>';
-  if (s === 'held') {
-    body = `
-      <div class="review">
-        <p><span class="pill held">Held for review</span></p>
-        <p>Order <strong>${o.code}</strong>. ${o.heldBy} answered <strong>“Really struggling”</strong>, so the report hasn't gone out.</p>
-        <p class="small" style="margin-bottom:12px">You get an email, can check in with them first, then release it.</p>
-        <div class="actions">
-          <button class="btn sm" id="release">Release report</button>
-          <button class="btn ghost sm" id="delete">Delete answers</button>
-        </div>
-      </div>`;
-  } else if (o && s !== 'deleted' && o.answers.a) {
-    body = `<p class="empty">Nothing waiting. <button class="link" id="delete">Delete this order's answers</button> to see a data deletion.</p>`;
+function welcome(who) {
+  const o = s.order;
+  if (who === 'a') {
+    return `
+      <div class="eyebrow">Paid · ${money(o.paid)}</div>
+      <h2>Welcome, Alex</h2>
+      <p>Send Sam this code. You each answer on your own device, and nobody sees the other's answers.</p>
+      <div class="code">${o.code}</div>
+      <p>About 17 minutes. Your progress saves as you go.</p>
+      <button class="btn block push" data-start="a">Start my questions</button>`;
   }
-  el.innerHTML = `<h3>Your admin</h3><p class="sub">Held reports and data deletion</p>${body}`;
-  if (flashIds.has('admin')) el.classList.add('flash');
+  return `
+    <div class="mail">
+      <div class="from">NeuroKeen · ${o.invitedAt}</div>
+      <div class="subj">Alex has started your couples profile</div>
+      <div style="font-size:13px;color:var(--muted)">Use the code Alex sends you to join. You'll answer on your own.</div>
+    </div>
+    <h2>Join Alex</h2>
+    <label class="f" for="join">Code</label>
+    <input class="input" id="join" placeholder="ABC-123" autocomplete="off">
+    <div class="note" id="join-note"></div>
+    <button class="text-btn" id="usecode" style="margin-top:8px;align-self:flex-start">Use Alex's code</button>
+    <button class="btn block push" id="joinbtn">Join and start</button>`;
 }
 
-function renderOutbox() {
-  const o = state.order;
-  const el = document.getElementById('outbox');
-  const list = o && o.emails.length
-    ? o.emails.map((m) => `
+function question(who) {
+  const p = s.order[who];
+  const q = QUESTIONS[p.step];
+  const pct = Math.round((p.step / QUESTIONS.length) * 100);
+  let inner = '';
+
+  if (q.type === 'text') {
+    inner = `
+      <textarea class="input" id="words-${who}" placeholder="Type as much or as little as you like">${esc(p.answers.words || '')}</textarea>
+      <label class="toggle"><input type="checkbox" id="share-${who}" ${p.shareable ? 'checked' : ''}><span><strong>Shareable.</strong> Your partner can see these words in the report. Leave it off and they never will.</span></label>
+      <button class="btn block" data-next="${who}">Continue</button>`;
+  } else {
+    inner = `
+      ${q.type === 'private' ? `<div class="private"><b>Private.</b> ${NAMES[OTHER[who]]} never sees this, and it isn't in your report.</div>` : ''}
+      <div class="opts">${q.options.map((opt) => `<button class="opt" data-answer="${who}" data-value="${esc(opt)}">${esc(opt)}</button>`).join('')}</div>`;
+  }
+
+  return `
+    <div class="progress"><i style="width:${pct}%"></i></div>
+    <div class="eyebrow">Question ${p.step + 1} of ${QUESTIONS.length}</div>
+    <p class="q">${q.text}</p>
+    ${inner}
+    <div class="qfoot push">
+      <button class="text-btn" data-skip="${who}">Skip this one</button>
+      ${p.step === 0 ? `<button class="text-btn" data-autofill="${who}">Answer the rest for me</button>` : ''}
+    </div>`;
+}
+
+function finished(who) {
+  const o = s.order;
+  if (o.sent) {
+    return `
       <div class="mail">
-        <div class="av" aria-hidden="true">✉</div>
-        <div>
-          <div class="to">To ${m.to} · ${m.at}</div>
-          <div class="subj">${m.subject}</div>
-          ${m.attach ? `<span class="att">📎 ${m.attach}</span>` : ''}
-        </div>
-      </div>`).join('')
-    : '<p class="empty">Emails appear here as they would be sent.</p>';
-  el.innerHTML = `<h3>Emails sent</h3><p class="sub">Automatic, no one presses send</p>${list}`;
-  if (flashIds.has('outbox')) el.classList.add('flash');
+        <div class="from">NeuroKeen · ${o.sentAt}</div>
+        <div class="subj">Your couples profile is ready</div>
+        <span class="pdf">alex-and-sam-profile.pdf</span>
+      </div>
+      <h2>Read it in parts, at your own pace</h2>
+      <p>Start with your profiles, then your strategies, then the plan. Pick one strategy to try first.</p>`;
+  }
+  return `
+    <h2>Thanks, ${NAMES[who]}</h2>
+    <p>Your report arrives by email within 24 hours of you both finishing. We check every report before it's sent.</p>
+    <p>Then we delete your answers.</p>`;
 }
 
-function renderOrder() {
-  const o = state.order;
-  const el = document.getElementById('order');
-  if (!o) {
-    el.innerHTML = '<h3>Order</h3><p class="sub">Created when someone pays</p><p class="empty">No order yet.</p>';
-    return;
-  }
-  const s = status();
-  const label = {
-    waiting: o.answers.a ? 'Waiting for partner 2' : 'Waiting for partner 1',
-    held: 'Held for review',
-    sent: 'Report sent',
-    deleted: 'Answers deleted',
-  }[s];
-  el.innerHTML = `
-    <div class="order-head"><h3>Order <strong>${o.code}</strong></h3><span class="pill ${s}">${label}</span></div>
-    <p class="sub">${money(o.paid)} paid${o.discount ? ` with ${o.discount}` : ''}${o.addOn ? ' · extra section' : ''}</p>
-    <ul class="timeline">${o.events.slice().reverse().map((e) => `<li><time>${e.at}</time><span>${e.text}</span></li>`).join('')}</ul>`;
+function phone(who) {
+  const o = s.order;
+  let body;
+  if (!o) body = who === 'a' ? checkout() : `<h2>Nothing here yet</h2><p>Sam gets an email once Alex has paid.</p>`;
+  else if (who === 'b' && !o.b.joined) body = welcome('b');
+  else if (!o[who].started) body = welcome(who);
+  else if (!o[who].done) body = question(who);
+  else body = finished(who);
+  return bar(who) + `<div class="body">${body}</div>`;
 }
+
+/* ---------- admin ---------- */
+
+function reportPreview() {
+  const o = s.order;
+  const asked = QUESTIONS.filter((q) => !q.type);
+  const both = (q) => o.a.answers[q.id] && o.b.answers[q.id];
+  const alike = asked.filter((q) => both(q) && o.a.answers[q.id] === o.b.answers[q.id]);
+  const differ = asked.filter((q) => both(q) && o.a.answers[q.id] !== o.b.answers[q.id]);
+  const quotes = ['a', 'b'].filter((w) => o[w].shareable && o[w].answers.words);
+  return `
+    <div class="report">
+      <div class="cover"><span class="brand">NeuroKeen <span>♥</span></span><span class="t">Couples Home &amp; Relationship Profile</span><span class="n">Alex &amp; Sam</span></div>
+      <div class="pages">
+        <h4>Where you're alike</h4>
+        <ul>${alike.length ? alike.map((q) => `<li>${q.label}: you both said “${esc(o.a.answers[q.id].toLowerCase())}”.</li>`).join('') : '<li>No exact matches. That\'s common, and useful to know.</li>'}</ul>
+        <h4>Where you differ</h4>
+        <ul>${differ.length ? differ.map((q) => `<li>${q.label}: Alex said “${esc(o.a.answers[q.id].toLowerCase())}”, Sam said “${esc(o.b.answers[q.id].toLowerCase())}”. <em>${STRATEGY[q.id]}</em></li>`).join('') : '<li>None this time.</li>'}</ul>
+        ${quotes.length ? `<h4>In your own words</h4>${quotes.map((w) => `<p class="quote">“${esc(o[w].answers.words)}” · ${NAMES[w]}</p>`).join('')}` : ''}
+        <p class="note">Private answers and unshared words never appear in the report.</p>
+      </div>
+    </div>`;
+}
+
+function adminDetail() {
+  const o = s.order;
+  const st = status();
+  let main = '';
+
+  if (st === 'wait') {
+    main = `<p class="sub">Nothing to check until both have finished. ${!o.a.done && !o.b.done ? 'Neither has finished yet.' : `${o.a.done ? 'Alex' : 'Sam'} has finished.`}</p>`;
+  }
+
+  if (st === 'check') {
+    main = `
+      <p class="sub">Both finished. No safety answers. Check it, then send.</p>
+      ${reportPreview()}
+      <div class="actions"><button class="btn" id="send">Approve and send to both</button></div>`;
+  }
+
+  if (st === 'held') {
+    const who = o.flagged;
+    main = `
+      <div class="flag">
+        <strong>Held: no joint report until you've been in touch</strong>
+        <p>${NAMES[who]} answered “${esc(o[who].answers.safety)}” to <em>Do you ever feel unsafe at home?</em> in the private section. ${NAMES[OTHER[who]]} hasn't been told anything and sees the same screen as every other couple.</p>
+        ${o.contacted ? '' : `<div class="actions"><button class="btn" id="contact">Email ${NAMES[who]} privately</button></div>`}
+      </div>
+      ${o.contacted ? `
+        <div class="draft"><div class="to">Sent to ${NAMES[who]} only · ${o.contactedAt}</div>Hi ${NAMES[who]},
+
+Thanks for finishing your questions. Before we send anything, we wanted to check in with you on your own. Your partner hasn't seen your private answers and won't.
+
+If you're in danger now, call 999. The National Domestic Abuse Helpline is free on 0808 2000 247, 24 hours a day.
+
+Reply to this email whenever you're ready, and tell us what you'd like us to do with the report.</div>
+        <div class="actions">
+          <button class="btn line" id="close">Don't send a joint report</button>
+          <button class="btn line" id="override">${NAMES[who]} says it's fine to send</button>
+        </div>` : ''}`;
+  }
+
+  if (st === 'sent') {
+    main = `<p class="sub">Emailed to both at ${o.sentAt}. Answers deleted. The order stays for your accounts.</p>`;
+  }
+
+  if (st === 'closed') {
+    main = `<p class="sub">No joint report sent. Answers deleted. Alex and Sam weren't told why.</p>`;
+  }
+
+  return `
+    <div class="detail">
+      <h3>Order ${o.code}</h3>
+      <p class="sub">Couples profile · ${money(o.paid)}${o.promo ? ` · ${esc(o.promo)}` : ''}</p>
+      ${main}
+      <ul class="log">${o.log.slice().reverse().map((l) => `<li><span>${l.at}</span><span>${esc(l.text)}</span></li>`).join('')}</ul>
+    </div>`;
+}
+
+function admin() {
+  const o = s.order;
+  const head = `<div class="admin-bar"><span class="brand">NeuroKeen <span>♥</span> admin</span><small>Orders</small></div>`;
+  if (!o) return head + `<p class="empty">No orders yet. Pay on Alex's phone to create one.</p>`;
+  return head + `
+    <table>
+      <thead><tr><th>Order</th><th>Product</th><th>Status</th></tr></thead>
+      <tbody><tr class="sel"><td class="mono">${o.code}</td><td>Couples profile</td><td>${badge()}</td></tr></tbody>
+    </table>
+    ${adminDetail()}`;
+}
+
+/* ---------- render ---------- */
 
 function render() {
-  renderSteps();
-  renderSwitch();
-  renderScreen();
-  renderAdmin();
-  renderOutbox();
-  renderOrder();
+  document.getElementById('phone-a').innerHTML = phone('a');
+  document.getElementById('phone-b').innerHTML = phone('b');
+  document.getElementById('admin').innerHTML = admin();
+  document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === s.tab));
+  ['a', 'b', 'admin'].forEach((t) => document.getElementById(`col-${t}`).classList.toggle('on', t === s.tab));
+  const o = s.order;
+  document.getElementById('same-note').textContent = o && o.a.done && o.b.done && !o.sent
+    ? 'Both phones show the same thing whether or not a safety answer was given.'
+    : '';
   save();
-  setTimeout(() => {
-    document.querySelectorAll('.flash').forEach((n) => n.classList.remove('flash'));
-    flashIds.clear();
-  }, 1300);
 }
 
-function finish(who, answers) {
-  const o = state.order;
-  o.answers[who] = answers;
-  const name = who === 'a' ? 'Partner 1' : 'Partner 2';
-  log(`${name} finished their questions.`);
+function answer(who, value) {
+  const o = s.order;
+  const p = o[who];
+  const q = QUESTIONS[p.step];
+  if (value !== undefined) p.answers[q.id] = value;
+  p.step += 1;
+  if (p.step >= QUESTIONS.length) finish(who);
+}
 
-  if (!o.answers.a || !o.answers.b) {
-    mail(name.toLowerCase(), "Thanks, we're waiting for your partner");
-    return;
-  }
+function finish(who) {
+  const o = s.order;
+  o[who].done = true;
+  log(`${NAMES[who]} finished.`);
+  if (!o.a.done || !o.b.done) return;
 
-  const flagged = ['a', 'b'].find((w) => QUESTIONS.some((q) => q.hold && o.answers[w][q.id] === q.hold));
+  const flagged = ['a', 'b'].find((w) => QUESTIONS.find((q) => q.id === 'safety').hold.includes(o[w].answers.safety));
   if (flagged) {
-    o.held = true;
-    o.heldBy = flagged === 'a' ? 'Partner 1' : 'Partner 2';
-    log('Both finished. A wellbeing answer put the report on hold.');
-    mail('you (the founder)', `Report ${o.code} is held for your review`);
-    flashIds.add('admin');
-    return;
+    o.flagged = flagged;
+    log(`Held. ${NAMES[flagged]} gave a safety answer. You were emailed.`);
+  } else {
+    log('Both finished. Report built and waiting for your check.');
   }
-  sendReport();
-}
-
-function sendReport() {
-  const o = state.order;
-  log('PDF report generated and emailed to both partners.');
-  mail('partner 1 and partner 2', 'Your couples report is ready', 'couples-report.pdf');
 }
 
 document.addEventListener('click', (e) => {
-  const t = e.target.closest('button, [data-view]');
+  const t = e.target.closest('button');
   if (!t) return;
+  const o = s.order;
+  const d = t.dataset;
 
-  if (t.dataset.view) {
-    if (t.disabled) return;
-    state.view = t.dataset.view;
+  if (d.tab) { s.tab = d.tab; render(); return; }
+  if (d.start) { o[d.start].started = true; log(`${NAMES[d.start]} started.`); render(); return; }
+  if (d.answer) { answer(d.answer, d.value); render(); return; }
+  if (d.skip) { answer(d.skip); render(); return; }
+  if (d.next) {
+    const w = d.next;
+    o[w].answers.words = document.getElementById(`words-${w}`).value.trim();
+    o[w].shareable = document.getElementById(`share-${w}`).checked;
+    answer(w);
+    render();
+    return;
+  }
+  if (d.autofill) {
+    const w = d.autofill;
+    const p = o[w];
+    QUESTIONS.forEach((q) => {
+      if (q.type === 'text') p.answers.words = w === 'a' ? 'I go quiet because I need time, not because I don\'t care.' : 'Lists help me more than reminders out loud.';
+      else if (q.type === 'private') return;
+      else p.answers[q.id] = q.options[Math.floor(Math.random() * q.options.length)];
+    });
+    p.shareable = true;
+    p.step = QUESTIONS.length - 1;
     render();
     return;
   }
 
   switch (t.id) {
     case 'apply': {
-      const v = document.getElementById('disc').value.trim().toUpperCase();
-      if (CODES[v]) { state.discount = v; render(); }
-      else { state.discount = null; render(); document.getElementById('discErr').innerHTML = '<span class="chip err">That code isn\'t valid</span>'; }
+      const v = document.getElementById('promo').value.trim().toUpperCase();
+      s.promo = PROMOS[v] ? v : null;
+      render();
+      if (!PROMOS[v]) { const n = document.getElementById('promo-note'); n.textContent = "That code isn't valid."; n.className = 'note bad'; }
       break;
     }
     case 'pay': {
-      const t2 = total();
-      state.order = { code: newCode(), paid: t2.due, discount: state.discount, addOn: state.addOn, answers: {}, events: [], emails: [], joined: false };
-      log(t2.due ? `Paid ${money(t2.due)} by card.` : `Gift voucher ${state.discount} redeemed.`);
-      mail('partner 1', 'Your questionnaire is ready');
-      state.view = 'a';
+      s.order = { code: code(), paid: due(), promo: s.promo, invitedAt: clock(), log: [], a: { started: false, done: false, step: 0, answers: {} }, b: { joined: false, started: false, done: false, step: 0, answers: {} } };
+      log(s.order.paid ? `Paid ${money(s.order.paid)} by card.` : `Gift voucher ${s.order.promo} used.`);
+      log('Questionnaire link emailed to Alex, invite emailed to Sam.');
       render();
       break;
     }
-    case 'copy': {
-      try { navigator.clipboard.writeText(state.order.code); t.textContent = 'Copied'; } catch {}
-      break;
-    }
-    case 'fill': {
-      QUESTIONS.forEach((q) => {
-        const pick = q.hold ? q.options[0] : q.options[Math.floor(Math.random() * q.options.length)];
-        const input = document.querySelector(`input[name="${q.id}"][value="${pick}"]`);
-        if (input) input.checked = true;
-      });
-      break;
-    }
-    case 'paste': {
-      document.getElementById('join').value = state.order.code;
-      break;
-    }
-    case 'joinBtn': {
+    case 'usecode': document.getElementById('join').value = o.code; break;
+    case 'joinbtn': {
       const v = document.getElementById('join').value.trim().toUpperCase();
-      if (v !== state.order.code) {
-        document.getElementById('joinErr').innerHTML = '<span class="chip err">That code doesn\'t match an order</span>';
-        break;
-      }
-      state.order.joined = true;
-      log('Partner 2 joined with the code.');
-      mail('partner 2', 'Your partner invited you to the couples report');
+      if (v !== o.code) { const n = document.getElementById('join-note'); n.textContent = "That code doesn't match an order."; n.className = 'note bad'; break; }
+      o.b.joined = true;
+      o.b.started = true;
+      log('Sam joined with the code.');
       render();
       break;
     }
-    case 'release': {
-      state.order.released = true;
-      log('You reviewed and released the report.');
-      sendReport();
+    case 'send': {
+      o.sent = true;
+      o.sentAt = clock();
+      log('You checked and sent the report to both. Answers deleted.');
       render();
       break;
     }
-    case 'delete': {
-      const o = state.order;
-      o.deleted = true;
-      o.answers = { a: o.answers.a ? {} : null, b: o.answers.b ? {} : null };
-      log('Answers deleted on request. The order record stays for the accounts.');
+    case 'contact': {
+      o.contacted = true;
+      o.contactedAt = clock();
+      log(`You emailed ${NAMES[o.flagged]} privately.`);
       render();
       break;
     }
-    case 'reset': {
-      state = fresh();
+    case 'close': {
+      o.closed = true;
+      log('Closed without a joint report. Answers deleted.');
       render();
       break;
     }
+    case 'override': {
+      const who = o.flagged;
+      o.flagged = null;
+      log(`${NAMES[who]} replied and asked for the report. Moved to checking.`);
+      render();
+      break;
+    }
+    case 'reset': s = blank(); render(); break;
   }
-});
-
-document.addEventListener('change', (e) => {
-  if (e.target.id === 'addon') {
-    state.addOn = e.target.checked;
-    render();
-  }
-});
-
-document.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.target;
-  finish(form.dataset.who, Object.fromEntries(new FormData(form)));
-  render();
 });
 
 render();
