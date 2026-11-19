@@ -8,145 +8,159 @@
 <title>Couples profile concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #EDE7DE; --card: #F6F3EE; --forest: #1C2E28; --forest-soft: #263D35;
-    --gold: #C9AE7A; --gold-dark: #9E824E; --ink: #1F2624; --muted: #525E59; --line: #D6CEC2;
-    --serif: Georgia, "Times New Roman", serif; --sans: Roboto, Arial, sans-serif;
-    --alert: #8A3B22; --alert-soft: #F3E3DA; --ok: #2F5D46; --ok-soft: #DCE9DF;
+    --bg: #EDE7DE; --card: #F6F3EE; --ink: #1F2624; --muted: #525E59;
+    --forest: #1C2E28; --forest-soft: #263D35; --gold: #C9AE7A; --gold-dark: #9E824E;
+    --line: #D6CEC2; --stone: #EDE7DE;
+    --max: 1120px; --gut: 20px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 var(--sans); }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.65 Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: normal; color: var(--forest); text-wrap: balance; margin: 0; line-height: 1.15; }
+  h1 { font-size: clamp(2.2rem, 5.4vw, 3.4rem); }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
+  h3 { font-size: 1.28rem; }
+  p { margin: 0; }
   button, input, textarea { font: inherit; color: inherit; }
-  button { cursor: pointer; }
-  :focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 2px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+  .eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dark); }
+  .lede { font-size: 1.14rem; color: var(--muted); max-width: 62ch; }
+  .muted { color: var(--muted); }
+  .small { font-size: .9rem; }
 
-  .strip { background: var(--forest); color: #d9d2c4; font-size: 13px; padding: 8px 16px; text-align: center; }
-  .strip a { color: var(--gold); }
+  .concept { background: var(--forest); color: #C9C3B8; font-size: .82rem; text-align: center; padding: 7px 16px; border-bottom: 1px solid rgba(201,174,122,.3); }
+  .concept a { color: var(--gold); }
+  .site-head { background: var(--forest); border-bottom: 1px solid var(--gold); }
+  .site-head .wrap { display: flex; align-items: center; min-height: 68px; gap: 16px; }
+  .logo { font-family: Georgia, serif; font-size: 1.5rem; color: var(--stone); display: flex; align-items: center; gap: 10px; }
+  .logo i { font-style: normal; color: var(--gold); font-size: 1rem; }
+  .site-head .who { margin-left: auto; color: #C9C3B8; font-size: .9rem; }
 
-  .tabs { display: flex; gap: 6px; padding: 12px 16px 0; position: sticky; top: 0; z-index: 2; background: var(--bg); }
-  .tabs button { flex: 1; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 8px 6px; font-size: 13px; font-weight: 500; }
-  .tabs button.on { background: var(--forest); color: #fff; border-color: var(--forest); }
-  @media (min-width: 1100px) { .tabs { display: none; } }
-
-  .stage { display: grid; gap: 24px; padding: 16px; max-width: 1240px; margin: 0 auto; }
-  @media (min-width: 1100px) { .stage { grid-template-columns: 340px 340px 1fr; padding: 28px 24px; align-items: start; } }
-  .col > .label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-dark); margin: 0 0 10px 4px; }
-  @media (max-width: 1099px) { .col { display: none; } .col.on { display: block; } .col > .label { display: none; } }
-
-  .phone { background: var(--forest); border: 8px solid var(--forest); border-radius: 36px; overflow: hidden; min-height: 640px; display: flex; flex-direction: column; max-width: 360px; margin: 0 auto; }
-  .bar { background: var(--forest); color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; }
-  .brand { font: 19px var(--serif); }
-  .brand span { color: var(--gold); font-size: 13px; }
-  .bar small { color: #b9c2bd; font-size: 12px; }
-  .body { padding: 22px 20px 24px; flex: 1; display: flex; flex-direction: column; background: var(--card); border-radius: 0 0 28px 28px; }
-  .body h2 { font: 400 25px/1.2 var(--serif); margin: 0 0 8px; }
-  .body h2 em { color: var(--gold-dark); }
-  .body p { margin: 0 0 12px; color: var(--muted); }
-  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 8px; }
-
-  .btn { border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 500; background: var(--forest); color: #fff; }
+  .btn { display: inline-block; font: 600 .98rem Roboto, Arial, sans-serif; border-radius: 999px; padding: 13px 26px; border: 1px solid transparent; cursor: pointer; text-align: center; transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--forest); color: var(--stone); }
   .btn.gold { background: var(--gold); color: var(--forest); }
-  .btn.line { background: transparent; border: 1px solid var(--forest); color: var(--forest); }
-  .btn.sm { padding: 7px 14px; font-size: 13px; }
-  .btn.block { width: 100%; }
-  .btn:disabled { opacity: .45; cursor: default; }
-  .push { margin-top: auto; }
-  .text-btn { border: 0; background: none; padding: 0; color: var(--muted); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; }
+  .btn.ghost { background: transparent; color: var(--forest); border-color: var(--gold-dark); }
+  .btn.ghost-light { background: transparent; color: var(--stone); border-color: var(--gold); }
+  .btn.sm { padding: 9px 18px; font-size: .9rem; }
+  .btn:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .link { background: none; border: 0; padding: 0; color: var(--forest); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-size: .9rem; }
+  .dark .link { color: var(--stone); }
 
-  .summary { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
-  .summary .row { display: flex; justify-content: space-between; font-size: 14px; padding: 2px 0; }
-  .summary .total { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 8px; font-weight: 700; color: var(--ink); }
-  label.f { display: block; font-size: 12px; font-weight: 500; color: var(--muted); margin: 10px 0 4px; }
-  .input { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
-  .input[readonly] { color: var(--muted); }
-  .inline { display: flex; gap: 6px; }
-  .note { font-size: 12px; color: var(--muted); margin-top: 6px; }
-  .note.bad { color: var(--alert); }
-  .stripe { font-size: 12px; color: var(--muted); text-align: center; margin-top: 10px; }
+  section { padding-block: clamp(48px, 7vw, 88px); }
+  .dark { background: var(--forest); color: var(--stone); }
+  .dark h2, .dark h3 { color: var(--stone); }
+  .dark .lede, .dark .muted { color: #C9C3B8; }
+  .dark .eyebrow { color: var(--gold); }
+  .sec-head { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; max-width: 760px; }
+  .rule { width: 56px; height: 2px; background: var(--gold); border: 0; margin: 0; }
 
-  .code { font: 700 26px/1 ui-monospace, Menlo, monospace; letter-spacing: .14em; color: var(--forest); background: #fff; border: 1px dashed var(--gold); border-radius: 12px; padding: 14px; text-align: center; margin: 4px 0 14px; }
+  .grid { display: grid; gap: 20px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 860px) { .g2 { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .dark .card { background: var(--forest-soft); border-color: rgba(201,174,122,.3); }
+  .tag { align-self: flex-start; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid var(--gold); border-radius: 999px; padding: 3px 10px; }
+  .dark .tag { color: var(--gold); }
+  .card.person { min-height: 300px; }
+  .card.featured { border: 2px solid var(--gold); box-shadow: 0 18px 40px rgba(28,46,40,.12); }
 
-  .progress { height: 4px; background: var(--line); border-radius: 4px; margin: 0 0 20px; overflow: hidden; }
-  .progress i { display: block; height: 100%; background: var(--gold); }
-  .q { font: 400 21px/1.3 var(--serif); color: var(--ink); margin: 0 0 16px; }
-  .opts { display: grid; gap: 8px; }
-  .opt { text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
-  .opt:hover { border-color: var(--gold); }
-  .private { background: var(--forest); color: #e9e4da; border-radius: 12px; padding: 12px 14px; font-size: 13px; margin-bottom: 14px; }
-  .private b { color: var(--gold); }
-  textarea.input { min-height: 96px; resize: vertical; }
-  .toggle { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--muted); margin: 10px 0 14px; }
-  .toggle input { margin-top: 3px; accent-color: var(--forest); }
-  .qfoot { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+  .price { font-family: Georgia, serif; font-size: 2.2rem; color: var(--forest); line-height: 1; }
+  .price small { font-family: Roboto, Arial, sans-serif; font-size: .85rem; color: var(--muted); }
+  .ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .ticks li { padding-left: 26px; position: relative; }
+  .ticks li::before { content: "♥"; position: absolute; left: 0; color: var(--gold-dark); font-size: .85rem; top: 3px; }
+  .dark .ticks li::before { color: var(--gold); }
 
-  .mail { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
-  .mail .from { font-size: 12px; color: var(--muted); }
-  .mail .subj { font-weight: 500; margin: 2px 0 6px; }
-  .pdf { display: inline-flex; gap: 8px; align-items: center; font-size: 13px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
-  .pdf::before { content: "PDF"; font: 700 10px var(--sans); color: #fff; background: var(--alert); padding: 2px 4px; border-radius: 3px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: .82rem; color: var(--muted); }
+  .input { width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  .input[readonly] { background: var(--card); color: var(--muted); }
+  .row { display: flex; gap: 10px; }
+  .row .input { flex: 1; }
+  .msg { font-size: .85rem; color: var(--gold-dark); }
 
-  .same-note { max-width: 720px; font-size: 13px; color: var(--muted); text-align: center; margin: 4px auto 0; }
-  @media (min-width: 1100px) { .same-note { grid-column: 1 / 3; } }
+  .bar { height: 2px; background: var(--line); }
+  .bar i { display: block; height: 100%; background: var(--gold); }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { border: 1px solid var(--gold-dark); border-radius: 999px; padding: 9px 18px; font-size: .95rem; color: var(--forest); background: var(--card); cursor: pointer; }
+  .chip:hover { background: #fff; }
+  .private { border-left: 4px solid var(--gold); background: #fff; border-radius: 8px; padding: 12px 16px; font-size: .92rem; }
+  textarea.input { min-height: 110px; resize: vertical; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; color: var(--muted); }
+  .check input { margin-top: 4px; accent-color: var(--forest); width: 16px; height: 16px; }
+  .code { font-family: Georgia, serif; font-size: 2rem; letter-spacing: .12em; color: var(--forest); }
+  .note { background: #fff; border-left: 4px solid var(--gold); border-radius: 8px; padding: 14px 18px; }
+  .note .from { font-size: .8rem; color: var(--muted); }
+  .same { text-align: center; margin-top: 22px; font-size: .9rem; }
 
-  .admin { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  .admin-bar { background: var(--forest); color: #fff; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
-  .admin-bar small { color: #b9c2bd; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th { text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding: 10px 18px; border-bottom: 1px solid var(--line); }
-  td { padding: 12px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  td.mono { font-family: ui-monospace, Menlo, monospace; letter-spacing: .06em; }
-  tr.sel td { background: #FBF8F3; }
-  .badge { display: inline-block; font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); white-space: nowrap; }
-  .badge.wait { background: #F4EEDF; border-color: #E5D8B8; }
-  .badge.check { background: #E6EEF2; border-color: #C9D9E2; }
-  .badge.held { background: var(--alert-soft); border-color: #E2BFAE; color: var(--alert); }
-  .badge.sent { background: var(--ok-soft); border-color: #BCD3C2; color: var(--ok); }
-  .badge.closed { color: var(--muted); }
-  .detail { padding: 18px; border-top: 1px solid var(--line); }
-  .detail h3 { font: 400 20px var(--serif); margin: 0 0 4px; }
-  .detail .sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
-  .flag { background: var(--alert-soft); border: 1px solid #E2BFAE; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
-  .flag strong { color: var(--alert); }
-  .flag p { margin: 6px 0 12px; font-size: 14px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
-  .draft { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 14px; margin-bottom: 12px; white-space: pre-line; }
-  .draft .to { font-size: 12px; color: var(--muted); margin-bottom: 6px; white-space: normal; }
+  .orders { width: 100%; border-collapse: collapse; font-size: .95rem; }
+  .orders th { text-align: left; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 700; padding: 0 0 10px; border-bottom: 1px solid rgba(201,174,122,.3); }
+  .orders td { padding: 14px 0; border-bottom: 1px solid rgba(201,174,122,.3); }
+  .orders td:first-child { font-family: Georgia, serif; letter-spacing: .08em; white-space: nowrap; padding-right: 12px; }
+  .admin-grid { display: grid; gap: 20px; grid-template-columns: 1.1fr .9fr; align-items: start; }
+  @media (max-width: 960px) { .admin-grid { grid-template-columns: 1fr; } }
+  .email { background: var(--stone); color: var(--ink); border-radius: 10px; padding: 18px 20px; white-space: pre-line; font-size: .95rem; }
+  .email .from { font-size: .8rem; color: var(--muted); white-space: normal; margin-bottom: 8px; display: block; }
+  .log { list-style: none; margin: 0; padding: 0; font-size: .88rem; color: #C9C3B8; }
+  .log li { display: grid; grid-template-columns: 52px 1fr; padding: 7px 0; border-top: 1px solid rgba(201,174,122,.2); }
+  .log time { color: var(--gold); }
 
-  .report { display: grid; grid-template-columns: 150px 1fr; gap: 16px; margin-bottom: 14px; }
-  @media (max-width: 560px) { .report { grid-template-columns: 1fr; } }
-  .cover { background: var(--forest); color: #fff; border-radius: 6px; padding: 16px 14px; aspect-ratio: 1 / 1.41; display: flex; flex-direction: column; }
-  .cover .t { font: 15px/1.25 var(--serif); margin-top: auto; }
-  .cover .n { color: var(--gold); font: italic 14px var(--serif); margin-top: 6px; }
-  .cover .brand { font-size: 13px; }
-  .pages h4 { font: 400 16px var(--serif); margin: 0 0 6px; }
-  .pages ul { margin: 0 0 10px; padding-left: 18px; font-size: 14px; }
-  .pages li { margin-bottom: 4px; }
-  .quote { font: italic 14px/1.45 var(--serif); border-left: 3px solid var(--gold); padding-left: 10px; margin: 0 0 10px; }
+  .pages { display: grid; padding: 10px 0 24px; }
+  .page { grid-area: 1 / 1; width: 62%; border-radius: 6px; box-shadow: 0 24px 60px rgba(0,0,0,.35); aspect-ratio: 1 / 1.41; padding: 18px; overflow: hidden; }
+  .page.cover { background: var(--forest); border: 1px solid rgba(201,174,122,.4); justify-self: start; margin-top: 40px; transform: rotate(-4deg); display: flex; flex-direction: column; }
+  .page.cover .logo { font-size: .95rem; }
+  .page.cover .t { margin-top: 38%; max-width: 58%; font: 1.05rem/1.25 Georgia, serif; color: var(--stone); }
+  .page.cover .n { max-width: 58%; font: italic 1rem Georgia, serif; color: var(--gold); margin-top: 6px; }
+  .page.inner { background: #fff; color: var(--ink); justify-self: end; transform: rotate(3deg); font-size: .66rem; line-height: 1.45; }
+  .page.inner .eyebrow { font-size: .5rem; }
+  .page.inner h4 { font: .95rem Georgia, serif; color: var(--forest); margin: 4px 0 8px; }
+  .page.inner h5 { font: .72rem Georgia, serif; color: var(--forest); margin: 8px 0 3px; }
+  .page.inner p { margin: 0 0 4px; }
+  .page.inner .q { font-style: italic; font-family: Georgia, serif; border-left: 2px solid var(--gold); padding-left: 6px; }
+  .empty { color: #C9C3B8; }
 
-  .log { list-style: none; margin: 14px 0 0; padding: 0; font-size: 13px; color: var(--muted); }
-  .log li { padding: 5px 0; border-top: 1px dashed var(--line); display: grid; grid-template-columns: 48px 1fr; }
-  .empty { padding: 18px; color: var(--muted); font-size: 14px; }
-  .reset { display: block; margin: 16px auto 32px; }
+  .site-foot { background: var(--forest); color: #C9C3B8; border-top: 1px solid var(--gold); padding-block: 28px; font-size: .9rem; }
+  .site-foot .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .site-foot a { color: var(--stone); }
 </style>
 </head>
 <body>
-<div class="strip">Concept for NeuroKeen by <a href="https://kimward.co.uk/">Kim Ward</a>. Not a live NeuroKeen page. Fake data, nothing is charged or emailed.</div>
+<div class="concept">A concept for NeuroKeen by <a href="https://kimward.co.uk/">Kim Ward</a>. Not a live NeuroKeen page. Fake data, nothing is charged or emailed.</div>
+<header class="site-head"><div class="wrap"><span class="logo">NeuroKeen <i>♥</i></span><span class="who">Couples profile</span></div></header>
 
-<div class="tabs" role="tablist">
-  <button data-tab="a" class="on">Alex's phone</button>
-  <button data-tab="b">Sam's phone</button>
-  <button data-tab="admin">Your admin</button>
-</div>
+<main>
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Couples Home &amp; Relationship Profile</span>
+        <h1>Two of you, answering on your own</h1>
+        <p class="lede">Alex pays and shares a code. Sam joins with it. Neither ever sees the other's answers, and the report waits until you've both finished.</p>
+      </div>
+      <div class="grid g2">
+        <div class="card person" id="alex"></div>
+        <div class="card person" id="sam"></div>
+      </div>
+      <p class="same muted" id="same"></p>
+    </div>
+  </section>
 
-<main class="stage">
-  <section class="col on" id="col-a"><p class="label">Alex's phone</p><div class="phone" id="phone-a"></div></section>
-  <section class="col" id="col-b"><p class="label">Sam's phone</p><div class="phone" id="phone-b"></div></section>
-  <section class="col" id="col-admin"><p class="label">Your admin</p><div class="admin" id="admin"></div></section>
-  <p class="same-note" id="same-note"></p>
+  <section class="dark">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Your admin</span>
+        <h2>Every report is checked before it's sent</h2>
+        <hr class="rule">
+      </div>
+      <div id="admin"></div>
+    </div>
+  </section>
 </main>
-<button class="btn line sm reset" id="reset">Start again</button>
+
+<footer class="site-foot"><div class="wrap"><span>Concept by <a href="https://kimward.co.uk/">Kim Ward</a></span><button class="btn ghost-light sm" id="reset">Start again</button></div></footer>
 
 <script>
 const PRICE = 39;
@@ -156,7 +170,7 @@ const OTHER = { a: 'b', b: 'a' };
 
 const QUESTIONS = [
   { id: 'change', label: 'Plans changing at short notice', text: 'When plans change at short notice, you…', options: ['Adjust fine', 'Need a moment', 'Lose the rest of the day'] },
-  { id: 'evening', label: 'Evenings after a busy day', text: 'After a busy day, home needs to be…', options: ['Sociable', 'Calm', 'Silent for a while'] },
+  { id: 'evening', label: 'After a busy day', text: 'After a busy day, home needs to be…', options: ['Sociable', 'Calm', 'Silent for a while'] },
   { id: 'disagree', label: 'Disagreements', text: "When there's a disagreement, you'd rather…", options: ['Sort it now', 'Write it down first', 'Pause and come back'] },
   { id: 'load', label: 'Keeping track of jobs at home', text: 'Who keeps track of the jobs at home?', options: ['Mostly me', 'Mostly them', 'Both of us', 'Nobody, really'] },
   { id: 'words', type: 'text', text: "In your own words, what's one thing you wish they knew?" },
@@ -166,22 +180,22 @@ const QUESTIONS = [
 const STRATEGY = {
   change: 'Agree a heads-up time for any change of plan, even a small one.',
   evening: 'Plan the first hour after work before either of you needs it.',
-  disagree: 'Pick one way to start hard conversations and stick to it for 30 days.',
-  load: 'Write the jobs list down where you both can see it.',
+  disagree: 'Pick one way to start hard conversations and keep it for 30 days.',
+  load: 'Write the jobs list down where you can both see it.',
 };
 
-const KEY = 'nk-concept-v3';
-const blank = () => ({ tab: 'a', promo: null, order: null });
+const KEY = 'nk-concept-v4';
+const blank = () => ({ promo: null, order: null });
 let s = load();
 
 function load() { try { return JSON.parse(localStorage.getItem(KEY)) || blank(); } catch { return blank(); } }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} }
 const esc = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const clock = () => new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-const money = (n) => '£' + n.toFixed(2);
+const money = (n) => '£' + (Number.isInteger(n) ? n : n.toFixed(2));
 const due = () => Math.round(PRICE * (1 - (s.promo ? PROMOS[s.promo].off : 0)) * 100) / 100;
 
-function code() {
+function newCode() {
   const c = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
   let r = '';
   for (let i = 0; i < 6; i++) r += c[Math.floor(Math.random() * c.length)];
@@ -200,234 +214,210 @@ function status() {
   return 'check';
 }
 
-function badge() {
-  const o = s.order;
-  const st = status();
-  const text = {
-    wait: !o.a.done && !o.b.done ? 'Waiting for both' : `Waiting for ${o.a.done ? 'Sam' : 'Alex'}`,
-    check: 'Ready to check',
-    held: 'Held: safety',
-    sent: 'Sent, answers deleted',
-    closed: 'No joint report',
-  }[st];
-  return `<span class="badge ${st}">${text}</span>`;
-}
-
-/* ---------- phones ---------- */
-
-function bar(who) {
-  return `<div class="bar"><span class="brand">NeuroKeen <span>♥</span></span><small>${NAMES[who]}</small></div>`;
-}
+/* ---------- the two people ---------- */
 
 function checkout() {
   const p = s.promo;
   return `
-    <div class="eyebrow">Couples Home & Relationship Profile</div>
-    <h2>Pay and you'll go straight to your <em>questionnaire</em></h2>
-    <div class="summary">
-      <div class="row"><span>Couples profile</span><span>${money(PRICE)}</span></div>
-      ${p ? `<div class="row"><span>${esc(p)} · ${PROMOS[p].label}</span><span>−${money(PRICE - due())}</span></div>` : ''}
-      <div class="row total"><span>Total</span><span>${money(due())}</span></div>
+    <span class="tag">Alex</span>
+    <h3>Couples Home &amp; Relationship Profile</h3>
+    <p class="price">${money(due())} <small>per couple${p ? ` · ${PROMOS[p].label}` : ''}</small></p>
+    <ul class="ticks">
+      <li>You each answer separately, in about 17 minutes</li>
+      <li>One shared report, checked before it's sent</li>
+      <li>Your answers are deleted once it's delivered</li>
+    </ul>
+    <div class="field">
+      <label for="promo">Discount or gift code</label>
+      <div class="row"><input class="input" id="promo" placeholder="WELCOME10 or GIFT-7KQ2" value="${p ? esc(p) : ''}" autocomplete="off"><button class="btn ghost sm" id="apply">Apply</button></div>
+      <span class="msg" id="promo-msg"></span>
     </div>
-    <label class="f" for="promo">Discount or gift code</label>
-    <div class="inline"><input class="input" id="promo" placeholder="WELCOME10 or GIFT-7KQ2" value="${p ? esc(p) : ''}" autocomplete="off"><button class="btn line sm" id="apply">Apply</button></div>
-    <div class="note" id="promo-note"></div>
-    <label class="f" for="card">Card</label>
-    <input class="input" id="card" value="4242 4242 4242 4242   12 / 29   123" readonly>
-    <button class="btn block push" id="pay" style="margin-top:18px">${due() ? `Pay ${money(due())}` : 'Use gift voucher'}</button>
-    <div class="stripe">Secure payment by Stripe</div>`;
+    <div class="field">
+      <label for="card">Card</label>
+      <input class="input" id="card" value="4242 4242 4242 4242   12 / 29   123" readonly>
+    </div>
+    <div class="btns"><button class="btn primary" id="pay">${due() ? `Pay ${money(due())}` : 'Use gift voucher'}</button><span class="small muted">Secure payment by Stripe</span></div>`;
 }
 
-function welcome(who) {
+function welcomeAlex() {
   const o = s.order;
-  if (who === 'a') {
-    return `
-      <div class="eyebrow">Paid · ${money(o.paid)}</div>
-      <h2>Welcome, Alex</h2>
-      <p>Send Sam this code. You each answer on your own device, and nobody sees the other's answers.</p>
-      <div class="code">${o.code}</div>
-      <p>About 17 minutes. Your progress saves as you go.</p>
-      <button class="btn block push" data-start="a">Start my questions</button>`;
-  }
   return `
-    <div class="mail">
-      <div class="from">NeuroKeen · ${o.invitedAt}</div>
-      <div class="subj">Alex has started your couples profile</div>
-      <div style="font-size:13px;color:var(--muted)">Use the code Alex sends you to join. You'll answer on your own.</div>
+    <span class="tag">Alex</span>
+    <h3>Welcome, Alex</h3>
+    <p class="muted">Send Sam this code. You each answer on your own, and nobody sees the other's answers.</p>
+    <p class="code">${o.code}</p>
+    <p class="small muted">About 17 minutes. Your progress saves as you go.</p>
+    <div class="btns"><button class="btn primary" data-start="a">Start my questions</button></div>`;
+}
+
+function joinSam() {
+  const o = s.order;
+  return `
+    <span class="tag">Sam</span>
+    <div class="note"><span class="from">From NeuroKeen · ${o.invitedAt}</span><br>Alex has started your couples profile. Use the code they send you to join.</div>
+    <h3>Join Alex</h3>
+    <div class="field">
+      <label for="join">Code from Alex</label>
+      <div class="row"><input class="input" id="join" placeholder="ABC-123" autocomplete="off"><button class="link" id="usecode">Use Alex's code</button></div>
+      <span class="msg" id="join-msg"></span>
     </div>
-    <h2>Join Alex</h2>
-    <label class="f" for="join">Code</label>
-    <input class="input" id="join" placeholder="ABC-123" autocomplete="off">
-    <div class="note" id="join-note"></div>
-    <button class="text-btn" id="usecode" style="margin-top:8px;align-self:flex-start">Use Alex's code</button>
-    <button class="btn block push" id="joinbtn">Join and start</button>`;
+    <div class="btns"><button class="btn primary" id="joinbtn">Join and start</button></div>`;
 }
 
 function question(who) {
   const p = s.order[who];
   const q = QUESTIONS[p.step];
   const pct = Math.round((p.step / QUESTIONS.length) * 100);
-  let inner = '';
+  let body;
 
   if (q.type === 'text') {
-    inner = `
-      <textarea class="input" id="words-${who}" placeholder="Type as much or as little as you like">${esc(p.answers.words || '')}</textarea>
-      <label class="toggle"><input type="checkbox" id="share-${who}" ${p.shareable ? 'checked' : ''}><span><strong>Shareable.</strong> Your partner can see these words in the report. Leave it off and they never will.</span></label>
-      <button class="btn block" data-next="${who}">Continue</button>`;
+    body = `
+      <textarea class="input" id="words-${who}" placeholder="As much or as little as you like">${esc(p.answers.words || '')}</textarea>
+      <label class="check"><input type="checkbox" id="share-${who}" ${p.shareable ? 'checked' : ''}><span><strong>Shareable.</strong> ${NAMES[OTHER[who]]} can read these words in your report. Leave it off and they never will.</span></label>
+      <div class="btns"><button class="btn primary" data-next="${who}">Continue</button></div>`;
   } else {
-    inner = `
-      ${q.type === 'private' ? `<div class="private"><b>Private.</b> ${NAMES[OTHER[who]]} never sees this, and it isn't in your report.</div>` : ''}
-      <div class="opts">${q.options.map((opt) => `<button class="opt" data-answer="${who}" data-value="${esc(opt)}">${esc(opt)}</button>`).join('')}</div>`;
+    body = `
+      ${q.type === 'private' ? `<p class="private"><strong>This part is private.</strong> ${NAMES[OTHER[who]]} never sees it, and it isn't in your report.</p>` : ''}
+      <div class="chips">${q.options.map((o) => `<button class="chip" data-answer="${who}" data-value="${esc(o)}">${esc(o)}</button>`).join('')}</div>`;
   }
 
   return `
-    <div class="progress"><i style="width:${pct}%"></i></div>
-    <div class="eyebrow">Question ${p.step + 1} of ${QUESTIONS.length}</div>
-    <p class="q">${q.text}</p>
-    ${inner}
-    <div class="qfoot push">
-      <button class="text-btn" data-skip="${who}">Skip this one</button>
-      ${p.step === 0 ? `<button class="text-btn" data-autofill="${who}">Answer the rest for me</button>` : ''}
+    <span class="tag">${NAMES[who]}</span>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <span class="eyebrow">Question ${p.step + 1} of ${QUESTIONS.length}</span>
+    <h3>${q.text}</h3>
+    ${body}
+    <div class="btns" style="margin-top:auto">
+      <button class="link" data-skip="${who}">Skip this one</button>
+      ${p.step === 0 ? `<button class="link" data-autofill="${who}">Answer the rest for me</button>` : ''}
     </div>`;
 }
 
-function finished(who) {
+function done(who) {
   const o = s.order;
   if (o.sent) {
     return `
-      <div class="mail">
-        <div class="from">NeuroKeen · ${o.sentAt}</div>
-        <div class="subj">Your couples profile is ready</div>
-        <span class="pdf">alex-and-sam-profile.pdf</span>
-      </div>
-      <h2>Read it in parts, at your own pace</h2>
-      <p>Start with your profiles, then your strategies, then the plan. Pick one strategy to try first.</p>`;
+      <span class="tag">${NAMES[who]}</span>
+      <div class="note"><span class="from">From NeuroKeen · ${o.sentAt}</span><br><strong>Your couples profile is ready.</strong> alex-and-sam.pdf attached.</div>
+      <h3>Read it in parts, at your own pace</h3>
+      <p class="muted">Start with your profiles, then your strategies, then the plan. Pick one strategy to try first.</p>`;
   }
   return `
-    <h2>Thanks, ${NAMES[who]}</h2>
-    <p>Your report arrives by email within 24 hours of you both finishing. We check every report before it's sent.</p>
-    <p>Then we delete your answers.</p>`;
+    <span class="tag">${NAMES[who]}</span>
+    <h3>Thanks, ${NAMES[who]}</h3>
+    <p class="muted">Your report arrives by email within 24 hours of you both finishing. We check every report before it's sent, then we delete your answers.</p>`;
 }
 
-function phone(who) {
+function person(who) {
   const o = s.order;
-  let body;
-  if (!o) body = who === 'a' ? checkout() : `<h2>Nothing here yet</h2><p>Sam gets an email once Alex has paid.</p>`;
-  else if (who === 'b' && !o.b.joined) body = welcome('b');
-  else if (!o[who].started) body = welcome(who);
-  else if (!o[who].done) body = question(who);
-  else body = finished(who);
-  return bar(who) + `<div class="body">${body}</div>`;
+  if (!o) return who === 'a' ? checkout() : `<span class="tag">Sam</span><h3>Nothing yet</h3><p class="muted">Sam gets an email as soon as Alex has paid.</p>`;
+  if (who === 'b' && !o.b.joined) return joinSam();
+  if (!o[who].started) return welcomeAlex();
+  if (!o[who].done) return question(who);
+  return done(who);
 }
 
 /* ---------- admin ---------- */
 
-function reportPreview() {
+function statusText() {
+  const o = s.order;
+  return {
+    wait: !o.a.done && !o.b.done ? 'Waiting for both' : `Waiting for ${o.a.done ? 'Sam' : 'Alex'}`,
+    check: 'Ready to check',
+    held: 'Held: safety',
+    sent: 'Sent · answers deleted',
+    closed: 'No joint report',
+  }[status()];
+}
+
+function pages() {
   const o = s.order;
   const asked = QUESTIONS.filter((q) => !q.type);
   const both = (q) => o.a.answers[q.id] && o.b.answers[q.id];
   const alike = asked.filter((q) => both(q) && o.a.answers[q.id] === o.b.answers[q.id]);
   const differ = asked.filter((q) => both(q) && o.a.answers[q.id] !== o.b.answers[q.id]);
-  const quotes = ['a', 'b'].filter((w) => o[w].shareable && o[w].answers.words);
+  const quote = ['a', 'b'].find((w) => o[w].shareable && o[w].answers.words);
   return `
-    <div class="report">
-      <div class="cover"><span class="brand">NeuroKeen <span>♥</span></span><span class="t">Couples Home &amp; Relationship Profile</span><span class="n">Alex &amp; Sam</span></div>
-      <div class="pages">
-        <h4>Where you're alike</h4>
-        <ul>${alike.length ? alike.map((q) => `<li>${q.label}: you both said “${esc(o.a.answers[q.id].toLowerCase())}”.</li>`).join('') : '<li>No exact matches. That\'s common, and useful to know.</li>'}</ul>
-        <h4>Where you differ</h4>
-        <ul>${differ.length ? differ.map((q) => `<li>${q.label}: Alex said “${esc(o.a.answers[q.id].toLowerCase())}”, Sam said “${esc(o.b.answers[q.id].toLowerCase())}”. <em>${STRATEGY[q.id]}</em></li>`).join('') : '<li>None this time.</li>'}</ul>
-        ${quotes.length ? `<h4>In your own words</h4>${quotes.map((w) => `<p class="quote">“${esc(o[w].answers.words)}” · ${NAMES[w]}</p>`).join('')}` : ''}
-        <p class="note">Private answers and unshared words never appear in the report.</p>
+    <div class="pages">
+      <div class="page cover"><span class="logo">NeuroKeen <i>♥</i></span><span class="t">Couples Home &amp; Relationship Profile</span><span class="n">Alex &amp; Sam</span></div>
+      <div class="page inner">
+        <span class="eyebrow">Your profiles</span>
+        <h4>Where you're alike, and where you differ</h4>
+        ${alike.map((q) => `<h5>${q.label}</h5><p>You both said “${esc(o.a.answers[q.id].toLowerCase())}”.</p>`).join('')}
+        ${differ.slice(0, 2).map((q) => `<h5>${q.label}</h5><p>Alex: “${esc(o.a.answers[q.id].toLowerCase())}”. Sam: “${esc(o.b.answers[q.id].toLowerCase())}”.</p><p><em>${STRATEGY[q.id]}</em></p>`).join('')}
+        ${quote ? `<h5>In ${NAMES[quote]}'s words</h5><p class="q">${esc(o[quote].answers.words)}</p>` : ''}
       </div>
     </div>`;
 }
 
-function adminDetail() {
+function adminAction() {
   const o = s.order;
   const st = status();
-  let main = '';
 
-  if (st === 'wait') {
-    main = `<p class="sub">Nothing to check until both have finished. ${!o.a.done && !o.b.done ? 'Neither has finished yet.' : `${o.a.done ? 'Alex' : 'Sam'} has finished.`}</p>`;
-  }
+  if (st === 'wait') return `<p class="muted">Nothing to check until both have finished.</p>`;
 
   if (st === 'check') {
-    main = `
-      <p class="sub">Both finished. No safety answers. Check it, then send.</p>
-      ${reportPreview()}
-      <div class="actions"><button class="btn" id="send">Approve and send to both</button></div>`;
+    return `
+      <span class="tag">Ready to check</span>
+      <p class="muted">Both finished, no safety answers. Private answers and unshared words are left out.</p>
+      ${pages()}
+      <div class="btns"><button class="btn gold" id="send">Approve and send to both</button></div>`;
   }
 
   if (st === 'held') {
-    const who = o.flagged;
-    main = `
-      <div class="flag">
-        <strong>Held: no joint report until you've been in touch</strong>
-        <p>${NAMES[who]} answered “${esc(o[who].answers.safety)}” to <em>Do you ever feel unsafe at home?</em> in the private section. ${NAMES[OTHER[who]]} hasn't been told anything and sees the same screen as every other couple.</p>
-        ${o.contacted ? '' : `<div class="actions"><button class="btn" id="contact">Email ${NAMES[who]} privately</button></div>`}
-      </div>
+    const w = o.flagged;
+    return `
+      <span class="tag">Held · safety</span>
+      <h3>No joint report until you've been in touch</h3>
+      <p class="muted">${NAMES[w]} answered “${esc(o[w].answers.safety)}” to <em>Do you ever feel unsafe at home?</em> ${NAMES[OTHER[w]]} hasn't been told and sees the same screen as every other couple.</p>
       ${o.contacted ? `
-        <div class="draft"><div class="to">Sent to ${NAMES[who]} only · ${o.contactedAt}</div>Hi ${NAMES[who]},
+        <div class="email"><span class="from">Sent to ${NAMES[w]} only · ${o.contactedAt}</span>Hi ${NAMES[w]},
 
 Thanks for finishing your questions. Before we send anything, we wanted to check in with you on your own. Your partner hasn't seen your private answers and won't.
 
 If you're in danger now, call 999. The National Domestic Abuse Helpline is free on 0808 2000 247, 24 hours a day.
 
-Reply to this email whenever you're ready, and tell us what you'd like us to do with the report.</div>
-        <div class="actions">
-          <button class="btn line" id="close">Don't send a joint report</button>
-          <button class="btn line" id="override">${NAMES[who]} says it's fine to send</button>
-        </div>` : ''}`;
+Reply whenever you're ready, and tell us what you'd like us to do with the report.</div>
+        <div class="btns">
+          <button class="btn ghost-light" id="close">Don't send a joint report</button>
+          <button class="btn ghost-light" id="override">${NAMES[w]} says it's fine to send</button>
+        </div>` : `<div class="btns"><button class="btn gold" id="contact">Email ${NAMES[w]} privately</button></div>`}`;
   }
 
-  if (st === 'sent') {
-    main = `<p class="sub">Emailed to both at ${o.sentAt}. Answers deleted. The order stays for your accounts.</p>`;
-  }
-
-  if (st === 'closed') {
-    main = `<p class="sub">No joint report sent. Answers deleted. Alex and Sam weren't told why.</p>`;
-  }
-
-  return `
-    <div class="detail">
-      <h3>Order ${o.code}</h3>
-      <p class="sub">Couples profile · ${money(o.paid)}${o.promo ? ` · ${esc(o.promo)}` : ''}</p>
-      ${main}
-      <ul class="log">${o.log.slice().reverse().map((l) => `<li><span>${l.at}</span><span>${esc(l.text)}</span></li>`).join('')}</ul>
-    </div>`;
+  if (st === 'sent') return `<span class="tag">Sent</span><p class="muted">Emailed to both at ${o.sentAt}. Answers deleted. The order stays for your accounts.</p>`;
+  return `<span class="tag">Closed</span><p class="muted">No joint report sent. Answers deleted. Neither partner was told why.</p>`;
 }
 
 function admin() {
   const o = s.order;
-  const head = `<div class="admin-bar"><span class="brand">NeuroKeen <span>♥</span> admin</span><small>Orders</small></div>`;
-  if (!o) return head + `<p class="empty">No orders yet. Pay on Alex's phone to create one.</p>`;
-  return head + `
-    <table>
-      <thead><tr><th>Order</th><th>Product</th><th>Status</th></tr></thead>
-      <tbody><tr class="sel"><td class="mono">${o.code}</td><td>Couples profile</td><td>${badge()}</td></tr></tbody>
-    </table>
-    ${adminDetail()}`;
+  if (!o) return `<div class="card"><p class="empty">No orders yet. Pay as Alex to create one.</p></div>`;
+  return `
+    <div class="admin-grid">
+      <div class="card">${adminAction()}</div>
+      <div class="card">
+        <table class="orders"><thead><tr><th>Order</th><th>Paid</th><th>Status</th></tr></thead>
+          <tbody><tr><td>${o.code}</td><td>${money(o.paid)}${o.promo ? ` · ${esc(o.promo)}` : ''}</td><td>${statusText()}</td></tr></tbody></table>
+        <ul class="log">${o.log.slice().reverse().map((l) => `<li><time>${l.at}</time><span>${esc(l.text)}</span></li>`).join('')}</ul>
+      </div>
+    </div>`;
 }
 
-/* ---------- render ---------- */
+/* ---------- render and events ---------- */
 
 function render() {
-  document.getElementById('phone-a').innerHTML = phone('a');
-  document.getElementById('phone-b').innerHTML = phone('b');
+  document.getElementById('alex').innerHTML = person('a');
+  document.getElementById('sam').innerHTML = person('b');
+  document.getElementById('alex').classList.toggle('featured', !s.order);
   document.getElementById('admin').innerHTML = admin();
-  document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === s.tab));
-  ['a', 'b', 'admin'].forEach((t) => document.getElementById(`col-${t}`).classList.toggle('on', t === s.tab));
   const o = s.order;
-  document.getElementById('same-note').textContent = o && o.a.done && o.b.done && !o.sent
-    ? 'Both phones show the same thing whether or not a safety answer was given.'
+  document.getElementById('same').textContent = o && o.a.done && o.b.done && !o.sent
+    ? 'Alex and Sam see the same thing whether or not a safety answer was given.'
     : '';
   save();
 }
 
 function answer(who, value) {
-  const o = s.order;
-  const p = o[who];
+  const p = s.order[who];
   const q = QUESTIONS[p.step];
   if (value !== undefined) p.answers[q.id] = value;
   p.step += 1;
@@ -439,8 +429,8 @@ function finish(who) {
   o[who].done = true;
   log(`${NAMES[who]} finished.`);
   if (!o.a.done || !o.b.done) return;
-
-  const flagged = ['a', 'b'].find((w) => QUESTIONS.find((q) => q.id === 'safety').hold.includes(o[w].answers.safety));
+  const hold = QUESTIONS.find((q) => q.id === 'safety').hold;
+  const flagged = ['a', 'b'].find((w) => hold.includes(o[w].answers.safety));
   if (flagged) {
     o.flagged = flagged;
     log(`Held. ${NAMES[flagged]} gave a safety answer. You were emailed.`);
@@ -455,7 +445,6 @@ document.addEventListener('click', (e) => {
   const o = s.order;
   const d = t.dataset;
 
-  if (d.tab) { s.tab = d.tab; render(); return; }
   if (d.start) { o[d.start].started = true; log(`${NAMES[d.start]} started.`); render(); return; }
   if (d.answer) { answer(d.answer, d.value); render(); return; }
   if (d.skip) { answer(d.skip); render(); return; }
@@ -471,9 +460,8 @@ document.addEventListener('click', (e) => {
     const w = d.autofill;
     const p = o[w];
     QUESTIONS.forEach((q) => {
-      if (q.type === 'text') p.answers.words = w === 'a' ? 'I go quiet because I need time, not because I don\'t care.' : 'Lists help me more than reminders out loud.';
-      else if (q.type === 'private') return;
-      else p.answers[q.id] = q.options[Math.floor(Math.random() * q.options.length)];
+      if (q.type === 'text') p.answers.words = w === 'a' ? "I go quiet because I need time, not because I don't care." : 'Lists help me more than reminders out loud.';
+      else if (!q.type) p.answers[q.id] = q.options[Math.floor(Math.random() * q.options.length)];
     });
     p.shareable = true;
     p.step = QUESTIONS.length - 1;
@@ -486,53 +474,30 @@ document.addEventListener('click', (e) => {
       const v = document.getElementById('promo').value.trim().toUpperCase();
       s.promo = PROMOS[v] ? v : null;
       render();
-      if (!PROMOS[v]) { const n = document.getElementById('promo-note'); n.textContent = "That code isn't valid."; n.className = 'note bad'; }
+      if (!PROMOS[v]) document.getElementById('promo-msg').textContent = "That code isn't valid.";
       break;
     }
     case 'pay': {
-      s.order = { code: code(), paid: due(), promo: s.promo, invitedAt: clock(), log: [], a: { started: false, done: false, step: 0, answers: {} }, b: { joined: false, started: false, done: false, step: 0, answers: {} } };
+      s.order = { code: newCode(), paid: due(), promo: s.promo, invitedAt: clock(), log: [], a: { started: false, done: false, step: 0, answers: {} }, b: { joined: false, started: false, done: false, step: 0, answers: {} } };
       log(s.order.paid ? `Paid ${money(s.order.paid)} by card.` : `Gift voucher ${s.order.promo} used.`);
-      log('Questionnaire link emailed to Alex, invite emailed to Sam.');
+      log('Questionnaire link emailed to Alex. Invite emailed to Sam.');
       render();
       break;
     }
     case 'usecode': document.getElementById('join').value = o.code; break;
     case 'joinbtn': {
       const v = document.getElementById('join').value.trim().toUpperCase();
-      if (v !== o.code) { const n = document.getElementById('join-note'); n.textContent = "That code doesn't match an order."; n.className = 'note bad'; break; }
+      if (v !== o.code) { document.getElementById('join-msg').textContent = "That code doesn't match an order."; break; }
       o.b.joined = true;
       o.b.started = true;
       log('Sam joined with the code.');
       render();
       break;
     }
-    case 'send': {
-      o.sent = true;
-      o.sentAt = clock();
-      log('You checked and sent the report to both. Answers deleted.');
-      render();
-      break;
-    }
-    case 'contact': {
-      o.contacted = true;
-      o.contactedAt = clock();
-      log(`You emailed ${NAMES[o.flagged]} privately.`);
-      render();
-      break;
-    }
-    case 'close': {
-      o.closed = true;
-      log('Closed without a joint report. Answers deleted.');
-      render();
-      break;
-    }
-    case 'override': {
-      const who = o.flagged;
-      o.flagged = null;
-      log(`${NAMES[who]} replied and asked for the report. Moved to checking.`);
-      render();
-      break;
-    }
+    case 'send': o.sent = true; o.sentAt = clock(); log('You checked and sent the report to both. Answers deleted.'); render(); break;
+    case 'contact': o.contacted = true; o.contactedAt = clock(); log(`You emailed ${NAMES[o.flagged]} privately.`); render(); break;
+    case 'close': o.closed = true; log('Closed without a joint report. Answers deleted.'); render(); break;
+    case 'override': { const w = o.flagged; o.flagged = null; log(`${NAMES[w]} replied and asked for the report. Moved to checking.`); render(); break; }
     case 'reset': s = blank(); render(); break;
   }
 });
