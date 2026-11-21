@@ -37,6 +37,33 @@ class PortfolioTest extends TestCase
         $this->assertSame('https://kimward.co.uk/', $entities['WebSite']['url']);
     }
 
+    public function test_diff_stage_is_shown_with_the_client_work_and_the_agent_tools_line(): void
+    {
+        $content = $this->get('/')
+            ->assertOk()
+            ->assertSee('class="project project-sky"', false)
+            ->assertSee('id="diff-stage"', false)
+            ->assertSee('poster="/videos/diff-stage.webp"', false)
+            ->assertSee('src="/videos/diff-stage.mp4"', false)
+            ->assertSee('Side-by-side browser test videos for Laravel pull requests.', false)
+            ->assertSee('href="https://diffstage.com">', false)
+            ->assertSee('href="https://diffstage.com/tools/dusk-to-pest"', false)
+            ->getContent();
+
+        $this->assertFileExists(public_path('videos/diff-stage.mp4'));
+        $this->assertFileExists(public_path('videos/diff-stage.webp'));
+
+        $this->assertMatchesRegularExpression(
+            '/id="diff-stage".*Laravel.*Pest.*Playwright.*GitHub Actions.*\bAI\b/s',
+            $content,
+        );
+
+        $this->assertMatchesRegularExpression(
+            '/build tools, like <a href="https:\/\/diffstage\.com">Diff Stage<\/a>, that keep/',
+            $content,
+        );
+    }
+
     public function test_the_retired_service_page_is_no_longer_available(): void
     {
         $this->get('/shopify-reconciliation-report')->assertNotFound();
